@@ -23,7 +23,7 @@
 
 <script lang="ts">
 	import type { Project } from '$lib/projects';
-	
+
 	export let project: Project;
 </script>
 

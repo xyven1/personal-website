@@ -23,10 +23,7 @@
 	<nav class="grow sm:ml-14">
 		<ul class="flex text-2xl sm:text-4xl sm:justify-center">
 			{#each routes as route}
-				<li
-					class:text-accent={$page.url.pathname === route.path}
-					class="transition duration-300 mx-4 hover:text-accent"
-				>
+				<li class:text-accent={$page.url.pathname === route.path}>
 					<a sveltekit:prefetch href={route.path}>
 						{route.name}
 					</a>

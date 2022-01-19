@@ -12,11 +12,11 @@
 
 <div>
 	{#each projects as project}
-		<a href={`work/${project.path}`} class="transition duration-300 mx-4 hover:text-accent">
+		<a href="/work/{project.path}">
 			<h2 class="text-3xl">{project.name}</h2>
 			<p>{project.short_description}</p>
 			<picture class="flex justify-center">
-				<img src="/{project.image}" alt={project.name} />
+				<img src="/images/{project.image}" alt={project.name} />
 			</picture>
 		</a>
 	{/each}
