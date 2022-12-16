@@ -22,7 +22,7 @@
 </script>
 
 <script lang="ts">
-	import type { Project } from '$lib/projects';
+	import { Project } from '$lib/projects';
 
 	export let project: Project;
 </script>
@@ -40,13 +40,15 @@
 	{#if project.short_description}
 		<p class="text-xl">{project.short_description}</p>
 	{/if}
-	{#if project.embed_path}
+	{#if project.embed_info}
 		<iframe
-			class="bg-white"
+			class:flex-grow={project.embed_info.fill_height}
+			class:w-full={project.embed_info.fill_width}
+			class="bg-neutral-400"
 			title="Dipole Simulation"
-			src={project.embed_path}
-			height="528"
-			width="700"
+			src={project.embed_info.path}
+			height={project.embed_info.height}
+			width={project.embed_info.width}
 		/>
 	{:else if project.image}
 		<picture class="flex justify-center">
@@ -54,6 +56,6 @@
 		</picture>
 	{/if}
 	{#if project.long_description}
-		<p class="text-justify text-lg">{project.long_description}</p>
+		<div class="text-justify text-lg indent-8">{@html project.long_description}</div>
 	{/if}
 </div>
