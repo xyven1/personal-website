@@ -34,10 +34,12 @@
 	<h2 class="text-3xl">
 		{project.name}
 		{#if project.github_url}
-			<a href={project.github_url}>(Github repo)</a>
+			(<a class="mx-0" href={project.github_url}>Github repo</a>)
 		{/if}
 	</h2>
-	<p>{project.short_description}</p>
+	{#if project.short_description}
+		<p class="text-xl">{project.short_description}</p>
+	{/if}
 	{#if project.embed_path}
 		<iframe
 			class="bg-white"
@@ -52,6 +54,6 @@
 		</picture>
 	{/if}
 	{#if project.long_description}
-		<p class="text-justify">{project.long_description}</p>
+		<p class="text-justify text-lg">{project.long_description}</p>
 	{/if}
 </div>
