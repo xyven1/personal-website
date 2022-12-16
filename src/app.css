@@ -6,5 +6,8 @@
 @layer base {
 	a {
 		@apply transition duration-300 mx-4 hover:text-accent;
+    @apply underline;
+    @apply decoration-1;
+    @apply hover:decoration-2;
 	}
 }

@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+  </head>
+  <body>
+
+    <div id="dipole-simulation"> </div>
+
+    <script src='/dipole_simulation.js'></script>
+
+    <script>
+    window.addEventListener('load', function () {
+      wasm_bindgen('/dipole_simulation_bg.wasm')
+        .then(function () {
+          // Start our rust application. You can find `WebClient` in `src/lib.rs`
+          const webClient = new wasm_bindgen.WebClient()
+          webClient.start()
+
+          let time = Date.now();
+          function render () {
+            const dt = Date.now() - time
+
+            webClient.update(dt/1000)
+            webClient.render()
+            window.requestAnimationFrame(render)
+
+            time = Date.now()
+          }
+
+          render()
+        })
+    })
+    </script>
+
+  </body>
+</html>
