@@ -6,11 +6,11 @@
 
     <div id="dipole-simulation"> </div>
 
-    <script src='/dipole_simulation.js'></script>
+    <script src='/dipole-simulation/dipole_simulation.js'></script>
 
     <script>
     window.addEventListener('load', function () {
-      wasm_bindgen('/dipole_simulation_bg.wasm')
+      wasm_bindgen('/dipole-simulation/dipole_simulation_bg.wasm')
         .then(function () {
           // Start our rust application. You can find `WebClient` in `src/lib.rs`
           const webClient = new wasm_bindgen.WebClient()
