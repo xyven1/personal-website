@@ -7,6 +7,7 @@
 	a {
 		@apply transition duration-300 mx-4 hover:text-accent;
     @apply underline;
+    @apply underline-offset-2;
     @apply decoration-1;
     @apply hover:decoration-2;
 	}
