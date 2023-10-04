@@ -3,10 +3,12 @@
 	import '../app.css';
 </script>
 
-<div class="text-white flex flex-col min-h-screen bg-black">
+<div class="flex min-h-full flex-col bg-black text-white">
 	<Header />
 
-	<main class="flex-grow px-8 sm:px-16 max-w-6xl mx-auto flex">
+	<main
+		class="flex w-full max-w-6xl flex-grow flex-col items-center justify-center self-center px-8 sm:px-16"
+	>
 		<slot />
 	</main>
 

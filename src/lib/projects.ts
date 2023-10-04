@@ -17,6 +17,8 @@ export type Project = {
 	image: string;
 };
 export type Projects = Project[];
+import dipole from '$lib/images/dipole-physics-simulation.png?as=run';
+import homeManagement1 from '$lib/images/home-managment-1.png?as=run';
 
 const projects: Projects = [
 	{
@@ -31,7 +33,7 @@ const projects: Projects = [
 			max_height: 528,
 			min_height: 528
 		},
-		image: 'dipole-physics-simulation.png',
+		image: dipole,
 		long_description: `<p>This project was developed for the simulation of dipole moments in a way which is accessible on the web. I opted to use web assembly with Rust for this project as the performance benefit for the numerical calculations necessary for the simulation would be noticeable. I used raw WebGL for the graphical display aspect of the project, as there was no complex graphics necessary and it gave fine grained control with high performance. For the simulation I wrote a 4th order Runge Kutta algorithm for linear and rotational mechanics. The input forces for the Runge Kutta were calculated using Coulomb's law across discrete charges. The dipoles were modeled as a physical dipole with two opposite charges separated by an offset.
 <p/>
 <p>
@@ -42,7 +44,7 @@ As this simulation does not account for any repulsive or normal forces between o
 		short_description: 'A web application for managing your home',
 		github_url: 'https://github.com/Xyven1/home-management',
 		path: 'home-managment',
-		image: 'home-managment-1.png',
+		image: homeManagement1,
 		long_description: `<p>This project uses`
 	}
 ];

@@ -12,3 +12,7 @@
     @apply hover:decoration-2;
 	}
 }
+
+html, body {
+  @apply h-full;
+}
