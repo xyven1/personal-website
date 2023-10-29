@@ -2,6 +2,7 @@
 	import Icon from '$lib/Icon.svelte';
 	import { mdiLoading } from '@mdi/js';
 	import { onMount } from 'svelte';
+	import type { EventHandler } from 'svelte/elements';
 	enum State {
 		None,
 		Input,
@@ -23,7 +24,7 @@
 			}[window.location.hostname] || api;
 		state = State.Input;
 	});
-	const submit = async (data) => {
+	const submit: EventHandler<SubmitEvent, HTMLFormElement> = async (data) => {
 		state = State.Submitting;
 		const formData = new FormData(data.currentTarget);
 		const object = Object.fromEntries(formData);
