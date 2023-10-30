@@ -15,4 +15,5 @@
 
 html, body {
   @apply h-full;
+  font-family: 'Cutive Mono', monospace;
 }
