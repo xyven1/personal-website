@@ -1,3 +1,11 @@
+import homeManagementEdit from '$lib/home-management/home-management-edit.svg';
+import homeManagementIrrigation from '$lib/home-management/home-management-irrigation.svg';
+import homeManagementLightMode from '$lib/home-management/home-management-light-mode.svg';
+import homeManagementLights from '$lib/home-management/home-management-lights.svg';
+import homeManagementMobile from '$lib/home-management/home-management-mobile.svg';
+
+import dipole from '$lib/images/dipole-physics-simulation.png?as=run';
+import type { Picture } from 'imagetools-core';
 export type EmbedInfo = {
 	path: string;
 	fill_width?: boolean;
@@ -13,12 +21,10 @@ export type Project = {
 	long_description?: string;
 	github_url?: string;
 	embed_info?: EmbedInfo;
-	path: string;
-	image: string;
+	slug: string;
+	images: (Picture | string)[];
 };
 export type Projects = Project[];
-import dipole from '$lib/images/dipole-physics-simulation.png?as=run';
-import homeManagement1 from '$lib/images/home-managment-1.png?as=run';
 
 const projects: Projects = [
 	{
@@ -26,14 +32,14 @@ const projects: Projects = [
 		short_description:
 			'A physics simulation of a dipole. Mess around with it, it is interactive! (best on desktop)',
 		github_url: 'https://github.com/Xyven1/dipole-simulation',
-		path: 'dipole-physics-simulation',
+		slug: 'dipole-physics-simulation',
 		embed_info: {
 			path: '/dipole-simulation/dipole_simulation.htm',
 			max_width: 700,
 			max_height: 528,
 			min_height: 528
 		},
-		image: dipole,
+		images: [dipole],
 		long_description: `<p>This project was developed for the simulation of dipole moments in a way which is accessible on the web. I opted to use web assembly with Rust for this project as the performance benefit for the numerical calculations necessary for the simulation would be noticeable. I used raw WebGL for the graphical display aspect of the project, as there was no complex graphics necessary and it gave fine grained control with high performance. For the simulation I wrote a 4th order Runge Kutta algorithm for linear and rotational mechanics. The input forces for the Runge Kutta were calculated using Coulomb's law across discrete charges. The dipoles were modeled as a physical dipole with two opposite charges separated by an offset.
 <p/>
 <p>
@@ -43,9 +49,16 @@ As this simulation does not account for any repulsive or normal forces between o
 		name: 'Home Managment',
 		short_description: 'A web application for managing your home',
 		github_url: 'https://github.com/Xyven1/home-management',
-		path: 'home-managment',
-		image: homeManagement1,
-		long_description: `<p>This project uses`
+		slug: 'home-managment',
+		images: [
+			homeManagementLights,
+			homeManagementMobile,
+			homeManagementEdit,
+			homeManagementIrrigation,
+			homeManagementLightMode
+		],
+		long_description: `<p>This application is designed to manage all the IoT devices in my house, including lights, TV, and audio equipment.</p>
+		<p>This project uses Express and Socket.io for the backend and Vite-Vue-Vuetify for the front end. It is a redisign of my earlier project <a href="https://github.com/Xyven1/wemo-interface">wemo-interface</a> updated to use vite, and refactored so that mutiple different interfaces can be created and navigated.</p>`
 	}
 ];
 export default projects;

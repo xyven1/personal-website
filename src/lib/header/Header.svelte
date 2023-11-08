@@ -5,8 +5,12 @@
 
 	const routes = [
 		{
-			name: 'Work',
-			path: '/'
+			name: 'Projects',
+			path: '/projects'
+		},
+		{
+			name: 'Blogs',
+			path: '/blogs'
 		},
 		{
 			name: 'About',
@@ -48,7 +52,7 @@
 		"
 		on:click={closeSideMenu}
 	>
-		<ul class="pt-12 text-4xl sm:flex sm:justify-center sm:pt-0">
+		<ul class="pt-12 text-3xl sm:flex sm:justify-center sm:pt-0 md:text-4xl">
 			{#each routes as route}
 				<li class:text-accent={$page.url.pathname === route.path}>
 					<a href={route.path} on:focusin={openSideMenu} on:focusout={closeSideMenu}>

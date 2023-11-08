@@ -52,10 +52,10 @@
 	<script src="https://web3forms.com/client/script.js" async defer></script>
 </svelte:head>
 {#if state === State.Success}
-	<div class="flex flex-col items-center justify-center">
-		<h1 class="text-4xl font-bold">Success!</h1>
+	<hgroup class="flex flex-col items-center justify-center">
+		<h2 class="text-4xl font-bold">Success!</h2>
 		<p class="text-xl">Your message has been sent.</p>
-	</div>
+	</hgroup>
 {:else}
 	<form
 		class="relative flex w-full max-w-xl flex-grow flex-col justify-center px-8"
