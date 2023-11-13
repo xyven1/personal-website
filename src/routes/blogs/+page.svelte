@@ -7,7 +7,7 @@
 	<meta name="description" content="My writing" />
 </svelte:head>
 
-<div class="flex flex-col">
+<article class="flex flex-col">
 	{#each data.posts as post}
 		<section class="link p-4">
 			<a href="/blogs/{post.slug}">
@@ -16,4 +16,4 @@
 			</a>
 		</section>
 	{/each}
-</div>
+</article>

@@ -7,6 +7,16 @@
 	import '../splide-overrides.css';
 </script>
 
+<svelte:head>
+	<noscript>
+		<style>
+			.jsonly {
+				display: none;
+			}
+		</style>
+	</noscript>
+</svelte:head>
+
 <div class="flex min-h-full flex-col bg-black text-white">
 	<Header />
 

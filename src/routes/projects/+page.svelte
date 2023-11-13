@@ -29,6 +29,7 @@
 						arrows: project.images.length > 1,
 						pagination: project.images.length > 1
 					}}
+					class="jsonly"
 				>
 					<SplideTrack>
 						{#each project.images as image}
@@ -47,6 +48,15 @@
 						<div class="splide__progress__bar"></div>
 					</div>
 				</Splide>
+				<noscript>
+					<a href="/projects/{project.slug}">
+						{#if typeof project.images[0] === 'string' && project.images[0].endsWith('.svg')}
+							<img class="h-full" src={project.images[0]} />
+						{:else}
+							<Img src={project.images[0]} />
+						{/if}
+					</a>
+				</noscript>
 			{/if}
 		</section>
 	{/each}

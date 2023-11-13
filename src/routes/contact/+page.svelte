@@ -63,8 +63,13 @@
 	>
 		<!-- overlay -->
 		{#if state === State.Submitting || state === State.None}
-			<div class="absolute inset-0 flex flex-col items-center justify-center bg-black opacity-50">
-				<Icon size={2} path={mdiLoading} class="animate-spin" />
+			<div
+				class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50"
+			>
+				<noscript class="text-center text-3xl">
+					This form requires JavaScript, appologies for the inconvenience.
+				</noscript>
+				<Icon size={2} path={mdiLoading} class="jsonly animate-spin" />
 			</div>
 		{/if}
 		<input type="hidden" name="access_key" value={api} />
