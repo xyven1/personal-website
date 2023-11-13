@@ -8,7 +8,7 @@
 	<title>{data.project.name}</title>
 	<meta name="description" content={data.project.short_description} />
 </svelte:head>
-<section class="flex flex-col items-center">
+<article class="flex flex-col items-center">
 	<hgroup class="text-center">
 		<h1 class="text-4xl sm:text-5xl">
 			{data.project.name}
@@ -60,4 +60,4 @@
 			{/each}
 		</section>
 	{/if}
-</section>
+</article>
