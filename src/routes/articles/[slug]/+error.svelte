@@ -7,7 +7,7 @@
 		{$page.error?.message || $page.error}
 	</h2>
 	<h3 class="text-xl">
-		"{$page.params.slug}" is not valid project. The project may have been moved or deleted.
-		<a href="/projects">Check here for a list of all my projects.</a>
+		"{$page.params.slug}" is not valid blog. The blog may have been moved or deleted.
+		<a href="/articles">Check here for a list of all my posts.</a>
 	</h3>
 </div>

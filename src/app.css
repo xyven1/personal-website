@@ -4,16 +4,27 @@
 @tailwind utilities;
 
 @layer base {
-	a {
-		@apply transition duration-300 mx-4 hover:text-accent;
-    @apply underline;
-    @apply underline-offset-2;
-    @apply decoration-1;
-    @apply hover:decoration-2;
+	a:not(.large-anchor) {
+		@apply underline decoration-1 underline-offset-2 transition
+      duration-300 hover:text-accent;
+	}
+	.large-anchor:hover > .large-anchor-link{
+		@apply text-accent;
+	}
+	.large-anchor > .large-anchor-link  {
+		@apply underline decoration-1 underline-offset-2  transition
+		duration-300;
 	}
 }
 
-html, body {
-  @apply h-full;
-  font-family: 'Cutive Mono', monospace;
+html,
+body {
+	@apply h-full;
+}
+body {
+	font-family: 'Cutive Mono', monospace;
+	background:none transparent;
+}
+:root {
+	color-scheme: dark;
 }

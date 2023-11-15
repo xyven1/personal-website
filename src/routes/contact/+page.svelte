@@ -117,7 +117,7 @@
 				class="w-full flex-grow appearance-none rounded border border-white bg-inherit px-3 py-2 leading-tight transition-colors focus:border-accent focus:outline-none"
 			></textarea>
 		</div>
-		<div class="h-captcha" data-captcha="true"></div>
+		<div class="h-captcha flex justify-center" data-captcha="true" data-theme="dark"></div>
 		<div class="flex justify-center">
 			<button
 				class="rounded border border-white px-2 py-1 transition-colors hover:border-accent"

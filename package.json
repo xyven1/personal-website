@@ -12,8 +12,13 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@bitmachina/highlighter": "^1.0.0-alpha.7",
+		"@fontsource/cutive-mono": "^5.0.17",
+		"@mdi/js": "^7.3.67",
+		"@splidejs/svelte-splide": "^0.2.9",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
+		"@tailwindcss/typography": "^0.5.10",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"@zerodevx/svelte-img": "^2.1.0",
@@ -27,8 +32,11 @@
 		"prettier": "^3.0.3",
 		"prettier-plugin-svelte": "^3.0.0",
 		"prettier-plugin-tailwindcss": "^0.5.5",
+		"rehype-autolink-headings": "^7.1.0",
+		"rehype-katex-svelte": "^1.2.0",
 		"rehype-pretty-code": "^0.10.2",
 		"rehype-slug": "^6.0.0",
+		"remark-math": "^3.0.1",
 		"remark-toc": "^9.0.0",
 		"remark-unwrap-images": "^4.0.0",
 		"shiki": "^0.14.5",
@@ -39,10 +47,5 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.4.2"
 	},
-	"type": "module",
-	"dependencies": {
-		"@fontsource/cutive-mono": "^5.0.12",
-		"@mdi/js": "^7.2.96",
-		"@splidejs/svelte-splide": "^0.2.9"
-	}
+	"type": "module"
 }

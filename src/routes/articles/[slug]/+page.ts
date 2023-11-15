@@ -6,7 +6,7 @@ export async function load({
 	params
 }): Promise<{ content: InstanceType<ComponentType<any>>; meta: Post }> {
 	try {
-		const post = await import(`../../../blogs/${params.slug}.md`);
+		const post = await import(`../../../articles/${params.slug}.md`);
 
 		return {
 			content: post.default,

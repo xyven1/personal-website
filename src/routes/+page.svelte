@@ -15,7 +15,7 @@
 		Checkout my <a href="/projects" class="mx-0">projects</a>, and feel free to
 		<a href="/contact" class="mx-0">contact</a>
 		me for any reason.
-		<!-- and <a href="/blogs">blogs</a>-->
+		<!-- and <a href="/articles">articles</a>-->
 	</p>
 	<section class="space-y-4">
 		<hgroup>
@@ -31,8 +31,8 @@
 			led me to where I am today, studying computer science at WPI, and coding professionally.
 		</p>
 		<p class="text-center text-2xl sm:text-left">
-			I am currently pursuing my bachelor's degree in Computer Science at WPI, with plans to
-			complete a 4 year BS/MS program with a focus on ML.
+			I am currently pursuing my masters's degree in Computer Science at WPI, with plans to complete
+			a 4 year BS/MS program with a focus on ML.
 		</p>
 	</section>
 </article>

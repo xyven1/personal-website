@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-  theme: {
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	theme: {
 		fontFamily: {
 			sans: ['Cutive Mono']
 		},
@@ -10,6 +10,6 @@ export default {
 				accent: '#0077c7'
 			}
 		}
-  },
-  plugins: [],
-}
+	},
+	plugins: [require('@tailwindcss/typography')]
+};

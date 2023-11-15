@@ -3,28 +3,10 @@
 	import Icon from '$lib/Icon.svelte';
 	import { mdiGithub } from '@mdi/js';
 
-	const routes = [
-		{
-			name: 'Home',
-			path: '/'
-		},
-		{
-			name: 'Projects',
-			path: '/projects'
-		},
-		// {
-		// 	name: 'Blogs',
-		// 	path: '/blogs'
-		// },
-		// {
-		// 	name: 'About',
-		// 	path: '/about'
-		// },
-		{
-			name: 'Contact',
-			path: '/contact'
-		}
-	];
+	export let routes: {
+		name: string;
+		path: string;
+	}[];
 	let sideMenu = false;
 	function closeSideMenu() {
 		sideMenu = false;
@@ -34,32 +16,29 @@
 	}
 </script>
 
-<header class="sticky top-0 z-50 flex h-12 overflow-clip overflow-x-hidden bg-black">
+<header
+	class="sticky top-0 z-50 flex h-12 overflow-clip overflow-x-hidden bg-gradient-to-b from-neutral-900 from-60% to-transparent"
+>
 	<input class="side-menu peer hidden" type="checkbox" id="side-menu" bind:checked={sideMenu} />
 	<label class="hamb group z-10 cursor-pointer p-5 sm:hidden" for="side-menu">
-		<span
-			class="hamb-line relative block h-0.5 w-6 bg-white
-			group-checked/menu:bg-red-500
-			"
-		>
-		</span>
+		<span class="hamb-line relative block h-0.5 w-6 bg-white" />
 	</label>
-	<span class="grow sm:w-12 sm:grow-0"></span>
+	<span class="grow sm:max-w-[3rem]"></span>
 
 	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<nav
 		class="
-			fixed h-full max-h-0 w-full overflow-hidden bg-black
-			bg-opacity-80 transition-all duration-300 peer-[.side-menu]:peer-checked:max-h-full
-			sm:relative sm:max-h-none sm:bg-transparent
+			fixed h-full max-h-0 w-full overflow-hidden bg-black bg-opacity-80
+			transition-[max-height] duration-300 peer-[.side-menu]:peer-checked:max-h-full
+			sm:relative sm:max-h-none sm:w-auto sm:grow sm:bg-transparent
 		"
 		on:click={closeSideMenu}
 	>
-		<ul class="pt-12 text-3xl sm:flex sm:justify-center sm:pt-0 md:text-4xl">
+		<ul class="h-full pt-12 text-3xl sm:flex sm:items-center sm:justify-center sm:pt-0 md:text-4xl">
 			{#each routes as route}
 				<li class:text-accent={$page.url.pathname === route.path}>
-					<a href={route.path} on:focusin={openSideMenu} on:focusout={closeSideMenu}>
+					<a href={route.path} on:focusin={openSideMenu} on:focusout={closeSideMenu} class="mx-4">
 						{route.name}
 					</a>
 				</li>
@@ -67,7 +46,7 @@
 		</ul>
 	</nav>
 
-	<div class="flex w-12 justify-center">
+	<div class=" w-12 justify-center">
 		<a href="https://github.com/Xyven1" aria-label="Github Account">
 			<Icon size={2} path={mdiGithub} />
 		</a>
