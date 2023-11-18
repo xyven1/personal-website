@@ -10,7 +10,7 @@
 	<meta name="description" content="My projects" />
 </svelte:head>
 
-<article class="flex w-full flex-col">
+<article class="flex w-full max-w-6xl flex-col">
 	{#each data.projects as project}
 		<section class="link p-4">
 			<a href="/projects/{project.slug}">

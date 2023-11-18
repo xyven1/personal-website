@@ -12,7 +12,7 @@
 }
 
 .splide__arrow {
-  @apply bg-white bg-opacity-70;
+  @apply bg-white/70;
 }
 
 .splide {

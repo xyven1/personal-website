@@ -7,14 +7,17 @@ tags:
   - svelte
 published: true
 ---
-## Contents
-
-## Markdown
+Math Test
+-----------------
 
 
 For testing right now  
-$C_c = 5 \in T$
 
+---
+$C_c = 5 \in T$
+### Math Block Test this is areaaly long header
+
+#### Quadruple header
 $$
 \begin{align}
 C_c &= 5 \in T \\
@@ -24,7 +27,15 @@ C_c &= 5 \in T \\
 \end{align}
 $$
 
-```js showLineNumbers {6-12}
+## List Test
+0. test
+1. test2
+
+- test
+- test
+
+## Code Test
+```svelte title="Testing"
 <svelte:head>
 	<title>About</title>
 	<meta name="description" content="About me" />
@@ -39,13 +50,8 @@ $$
 	</p>
 </div>
 ```
-
-| Tables asdf asd fasdf asdf | Are asdf asdf asdf | Cool asdf asdf |
-| :-------------------------- | :----------------: | -------------: |
-| col 3 is                   |       right        |          $1600 |
-## Test2
-
-```ts title="Say hello to Shiki highlighting" {1}
+And some more code:
+```ts title="Say hello to Shiki highlighting"
 import projects from '$lib/projects';
 import { json } from '@sveltejs/kit';
 
@@ -58,5 +64,7 @@ export async function GET() {
 	return json(projects);
 }
 ```
-Moew
-
+## Table Test
+| Tables asdf asd fasdf asdf | Are asdf asdf asdf | Cool asdf asdf |
+| :-------------------------- | :----------------: | -------------: |
+| col 3 is                   |       right        |          $1600 |

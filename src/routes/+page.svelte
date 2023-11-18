@@ -6,7 +6,7 @@
 	<meta name="description" content="Home page" />
 </svelte:head>
 
-<article class="flex grow flex-col space-y-4">
+<article class="flex max-w-6xl grow flex-col space-y-4">
 	<hgroup>
 		<h1 class="text-4xl">Welcome to my site.</h1>
 		<hr />

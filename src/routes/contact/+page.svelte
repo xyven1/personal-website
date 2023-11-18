@@ -63,9 +63,7 @@
 	>
 		<!-- overlay -->
 		{#if state === State.Submitting || state === State.None}
-			<div
-				class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50"
-			>
+			<div class="absolute inset-0 flex flex-col items-center justify-center bg-black/50">
 				<noscript class="text-center text-3xl">
 					This form requires JavaScript, appologies for the inconvenience.
 				</noscript>
@@ -117,7 +115,7 @@
 				class="w-full flex-grow appearance-none rounded border border-white bg-inherit px-3 py-2 leading-tight transition-colors focus:border-accent focus:outline-none"
 			></textarea>
 		</div>
-		<div class="h-captcha flex justify-center" data-captcha="true" data-theme="dark"></div>
+		<!-- <div class="h-captcha flex justify-center" data-captcha="true" data-theme="dark"></div> -->
 		<div class="flex justify-center">
 			<button
 				class="rounded border border-white px-2 py-1 transition-colors hover:border-accent"

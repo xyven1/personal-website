@@ -17,7 +17,7 @@
 </script>
 
 <header
-	class="sticky top-0 z-50 flex h-12 overflow-clip overflow-x-hidden bg-gradient-to-b from-neutral-900 from-60% to-transparent"
+	class="sticky top-0 z-50 flex h-12 overflow-clip overflow-x-hidden bg-gradient-to-b from-neutral-900 from-80% to-transparent"
 >
 	<input class="side-menu peer hidden" type="checkbox" id="side-menu" bind:checked={sideMenu} />
 	<label class="hamb group z-10 cursor-pointer p-5 sm:hidden" for="side-menu">
@@ -29,7 +29,7 @@
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<nav
 		class="
-			fixed h-full max-h-0 w-full overflow-hidden bg-black bg-opacity-80
+			fixed h-full max-h-0 w-full overflow-hidden bg-black/80
 			transition-[max-height] duration-300 peer-[.side-menu]:peer-checked:max-h-full
 			sm:relative sm:max-h-none sm:w-auto sm:grow sm:bg-transparent
 		"

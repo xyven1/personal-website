@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 </script>
 
-<div class="flex flex-col items-center justify-center text-center">
+<div class="flex max-w-xl flex-col items-center justify-center text-center">
 	<h1 class="text-3xl">
 		{$page.error?.message || $page.error}
 	</h1>
