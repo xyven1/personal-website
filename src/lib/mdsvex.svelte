@@ -32,7 +32,7 @@
 	/* Line numbers */
 	.prose :global(code[data-line-numbers] > span[data-line-number]::before) {
 		content: attr(data-line-number);
-		@apply absolute -ml-16 inline-block w-10 border-0 border-transparent bg-transparent text-right text-neutral-500;
+		@apply absolute -ml-[61px] inline-block w-10 bg-neutral-950 pr-1 text-right text-neutral-500;
 	}
 	.prose :global([id]::before) {
 		content: '';

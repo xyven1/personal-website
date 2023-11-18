@@ -2,7 +2,16 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
+		function clear(tocLinks) {
+			tocLinks.forEach((l) => {
+				l.classList.remove('toc-link-active');
+				l.classList.add('toc-link-inactive');
+			});
+		}
 		function update() {
+			if (window.innerWidth < 1280) {
+				return;
+			}
 			const anchors = Array.from(document.querySelectorAll('.article-heading'));
 			const tocLinks = Array.from(document.querySelectorAll('.toc-link'));
 			if (!anchors || tocLinks.length != anchors.length) return;
@@ -10,10 +19,7 @@
 				if (anchors[i].offsetTop > window.scrollY + 65) {
 					anchors.forEach((a) => (a.style.color = ''));
 					if (tocLinks[i - 1].classList.contains('toc-link-active')) return;
-					tocLinks.forEach((l) => {
-						l.classList.remove('toc-link-active');
-						l.classList.add('toc-link-inactive');
-					});
+					clear(tocLinks);
 					tocLinks[i - 1].classList.add('toc-link-active');
 					tocLinks[i - 1].classList.remove('toc-link-inactive');
 					window.history.replaceState(
@@ -27,6 +33,16 @@
 		}
 		update();
 		window.addEventListener('scroll', update);
+		let prevWindowWidth = window.innerWidth;
+		window.addEventListener('resize', () => {
+			if (window.innerWidth < 1280 && prevWindowWidth >= 1280) {
+				clear(Array.from(document.querySelectorAll('.toc-link')));
+			} else if (window.innerWidth >= 1280 && prevWindowWidth < 1280) {
+				console.log('update');
+				update();
+			}
+			prevWindowWidth = window.innerWidth;
+		});
 	});
 
 	export let data;

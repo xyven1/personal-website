@@ -19,7 +19,7 @@ const autoLinkOptions = {
 	properties: {
 		class: 'article-heading'
 	},
-	content(_) {
+	content() {
 		return h(
 			'svg',
 			{

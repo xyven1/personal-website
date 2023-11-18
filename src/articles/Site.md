@@ -35,7 +35,7 @@ $$
 - test
 
 ## Code Test
-```svelte title="Testing"
+```svelte {1-4} title="Testing" showLineNumbers
 <svelte:head>
 	<title>About</title>
 	<meta name="description" content="About me" />
@@ -51,7 +51,7 @@ $$
 </div>
 ```
 And some more code:
-```ts title="Say hello to Shiki highlighting"
+```ts {1} title="Say hello to Shiki highlighting"
 import projects from '$lib/projects';
 import { json } from '@sveltejs/kit';
 
