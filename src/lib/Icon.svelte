@@ -1,12 +1,9 @@
-<script>
-	export let path;
+<script lang="ts">
+	export let path: string;
 	export let size = 1;
-	export let color = null;
-	export let flip = null;
+	export let color: string | null = null;
+	export let flip: 'h' | 'v' | true | false = false;
 	export let rotate = 0;
-
-	// size
-	if (Number(size)) size = Number(size);
 
 	const getStyles = () => {
 		const transform = [];
@@ -34,7 +31,7 @@
 			return `${cur} ${item[0]}:${item[1]};`;
 		}, '');
 	};
-	$: style = getStyles(size, color, flip, rotate);
+	$: style = getStyles();
 </script>
 
 <svg viewBox="0 0 24 24" {style} class={$$props.class}>
