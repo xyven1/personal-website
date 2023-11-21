@@ -1,12 +1,14 @@
 <script lang="ts">
+	import Icon from '$lib/Icon.svelte';
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';
-	// This has to come after tailwind
+// This has to come after tailwind
 	import '@splidejs/svelte-splide/css';
 	// finally override some svelte-splide styles
 	import '../splide-overrides.css';
 	// preload fonts
 	import f from '@fontsource/cutive-mono/files/cutive-mono-latin-400-normal.woff2';
+	import { mdiRss } from '@mdi/js';
 
 	const routes = [
 		{
@@ -51,7 +53,7 @@
 	</main>
 
 	<footer class="text-center">
-		<a href="/rss.xml">RSS Feed</a>
+		<a href="/rss.xml"><Icon path={mdiRss} class="inline" size={0.8} />RSS Feed</a>
 		|
 		<span>Blake Bruell 2022</span>
 	</footer>

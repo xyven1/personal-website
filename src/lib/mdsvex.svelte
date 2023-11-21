@@ -21,7 +21,7 @@
 		@apply grid overflow-x-auto;
 	}
 	.prose :global(code > span) {
-		@apply border-l-4 border-transparent px-4;
+		@apply border-l-[3px] border-transparent px-4;
 	}
 	.prose :global(code > span[data-highlighted]) {
 		@apply border-accent bg-accent/30;

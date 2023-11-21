@@ -1,7 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	onMount(() => {
+	export let data;
+</script>
+
+<!-- SEO -->
+<svelte:head>
+	<title>{data.meta.title}</title>
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content={data.meta.title} />
+	<script>
 		function clear(tocLinks) {
 			tocLinks.forEach((l) => {
 				l.classList.remove('toc-link-active');
@@ -31,7 +39,7 @@
 				}
 			}
 		}
-		update();
+		window.onload = update;
 		window.addEventListener('scroll', update);
 		let prevWindowWidth = window.innerWidth;
 		window.addEventListener('resize', () => {
@@ -43,16 +51,7 @@
 			}
 			prevWindowWidth = window.innerWidth;
 		});
-	});
-
-	export let data;
-</script>
-
-<!-- SEO -->
-<svelte:head>
-	<title>{data.meta.title}</title>
-	<meta property="og:type" content="article" />
-	<meta property="og:title" content={data.meta.title} />
+	</script>
 </svelte:head>
 
 <article class="max-w-full">
