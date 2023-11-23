@@ -1,6 +1,6 @@
 ---
 title: How I Made My Peronal Website
-description: How my personal site works, and why I made the techincal choices I did.
+description: How my personal site works, and why I made the technical choices I did.
 date: 2023-11-21
 tags:
   - sveltekit
@@ -76,6 +76,6 @@ export async function GET() {
 | col 3 is | aligned  right |       $1600 |
 
 
-<script lang="module">
+<script>
 	export let source;
 </script>
