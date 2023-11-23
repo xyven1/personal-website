@@ -41,7 +41,7 @@ const mdsvexOptions = {
 	},
 	remarkPlugins: [remarkUnwrapImages, remarkMath],
 	rehypePlugins: [
-		[rehypeKatex, { output: 'mathml' }],
+		[rehypeKatex],
 		rehypeSlug,
 		[rehypeAutoLinkHeadings, autoLinkOptions],
 		[

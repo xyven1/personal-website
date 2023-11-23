@@ -2,8 +2,11 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Home page" />
+	<title>Blake Bruell - Software Engineer</title>
+	<meta
+		name="description"
+		content="Blake Bruell is a software engineer persuing a Master's degree in CS with a focus on AI, with an interest in programming languages and systems programming."
+	/>
 </svelte:head>
 
 <article class="flex max-w-6xl grow flex-col space-y-4">
@@ -12,9 +15,8 @@
 		<hr />
 	</hgroup>
 	<p class="text-2xl">
-		Checkout my <a href="/projects" class="mx-0">projects</a>, and feel free to
-		<a href="/contact" class="mx-0">contact</a>
-		me for any reason.
+		Checkout my <a href="/projects">projects</a>, my <a href="/articles">articles</a>, and feel free
+		to <a href="/contact">contact</a> me for any reason.
 		<!-- and <a href="/articles">articles</a>-->
 	</p>
 	<section class="space-y-4">

@@ -6,8 +6,11 @@
 </script>
 
 <svelte:head>
-	<title>Projects</title>
-	<meta name="description" content="My projects" />
+	<title>Projects - Blake Bruell</title>
+	<meta
+		name="description"
+		content="Blake Bruell is a software engineer persuing a Master's degree in CS with a focus on AI, with an interest in programming languages and systems programming."
+	/>
 </svelte:head>
 
 <article class="flex w-full max-w-6xl flex-col">

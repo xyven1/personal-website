@@ -7,6 +7,7 @@
 	// finally override some svelte-splide styles
 	import '../splide-overrides.css';
 	// preload fonts
+
 	import f from '@fontsource/cutive-mono/files/cutive-mono-latin-400-normal.woff2';
 	import { mdiRss } from '@mdi/js';
 
@@ -19,10 +20,10 @@
 			name: 'Projects',
 			path: '/projects'
 		},
-		// {
-		// 	name: 'Articles',
-		// 	path: '/articles'
-		// },
+		{
+			name: 'Articles',
+			path: '/articles'
+		},
 		{
 			name: 'Contact',
 			path: '/contact'

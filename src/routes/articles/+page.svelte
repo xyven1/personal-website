@@ -3,8 +3,11 @@
 </script>
 
 <svelte:head>
-	<title>Articles</title>
-	<meta name="description" content="My writing" />
+	<title>Articles - Blake Bruell</title>
+	<meta
+		name="description"
+		content="Blake Bruell is a software engineer persuing a Master's degree in CS with a focus on AI, with an interest in programming languages and systems programming."
+	/>
 </svelte:head>
 
 <article>
@@ -18,7 +21,7 @@
 						>
 							{post.title}
 						</h2>
-						<p class="text-neutral-400">{post.date}</p>
+						<p class="text-neutral-400">{new Date(post.date).toLocaleDateString()}</p>
 						<p>{post.description}</p>
 					</div>
 					<div class="sm:flex sm:flex-col sm:items-end">
