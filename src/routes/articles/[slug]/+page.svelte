@@ -69,7 +69,7 @@
 </svelte:head>
 
 <article class="max-w-full">
-	<section class="border-b-[3px] border-neutral-800 pb-2">
+	<section class="relative border-b-[3px] border-neutral-800 pb-2">
 		<h1 class="text-4xl sm:text-5xl">{data.meta.title}</h1>
 		<div class="flex flex-wrap">
 			<div>
@@ -91,7 +91,7 @@
 		</div>
 	</section>
 	<div class="xl:flex xl:items-start xl:gap-8">
-		<svelte:component this={data.content} class="xl:flex-1" {source} />
+		<svelte:component this={data.content} class="my-4 xl:flex-1" {source} />
 	</div>
 </article>
 
