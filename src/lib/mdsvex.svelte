@@ -66,7 +66,7 @@
 		@apply text-accent;
 	}
 	:global(.toc-link-inactive) {
-		@apply !text-inherit hover:!text-accent;
+		/* @apply !text-inherit hover:!text-accent/100; */
 	}
 	:global(.toc-level) {
 		@apply border-l-2 border-neutral-700 pl-4;
