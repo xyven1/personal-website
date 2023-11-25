@@ -1,5 +1,4 @@
 <script lang="ts" context="module">
-	import f from '@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2';
 	import img from '@zerodevx/svelte-img';
 	import 'katex/dist/katex.min.css';
 
@@ -7,12 +6,11 @@
 </script>
 
 <svelte:head>
-	<link rel="preload" as="font" href={f} type="font/woff2" crossorigin="anonymous" />
+	<!-- <link rel="preload" as="font" href={f} type="font/woff2" crossorigin="anonymous" /> -->
 </svelte:head>
 
 <section
-	class={'prose prose-neutral prose-invert min-w-0 max-w-[80ch] md:prose-lg prose-table:border-collapse prose-td:border ' +
-		$$props.class}
+	class={'prose prose-neutral prose-invert min-w-0 max-w-[80ch] md:prose-lg ' + $$props.class}
 >
 	<slot />
 </section>
