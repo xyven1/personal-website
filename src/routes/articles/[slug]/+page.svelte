@@ -27,7 +27,7 @@
 		function clear(tocLinks) {
 			tocLinks.forEach((l) => {
 				l.classList.remove('toc-link-active');
-				l.classList.add('toc-link-inactive');
+				// l.classList.add('toc-link-inactive');
 			});
 		}
 		function update() {
@@ -43,7 +43,7 @@
 					if (tocLinks[i - 1].classList.contains('toc-link-active')) return;
 					clear(tocLinks);
 					tocLinks[i - 1].classList.add('toc-link-active');
-					tocLinks[i - 1].classList.remove('toc-link-inactive');
+					// tocLinks[i - 1].classList.remove('toc-link-inactive');
 					window.history.replaceState(
 						null,
 						null,
