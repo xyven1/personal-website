@@ -4,14 +4,14 @@ export async function GET({ fetch }) {
 	const response = await fetch('/api/articles');
 	const posts: Post[] = await response.json();
 
-	const headers = { 'Content-Type': 'application/xml' };
+	const headers = { 'Content-Type': 'application/rss+xml' };
 
 	const xml = `
 		<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
 			<channel>
-				<title>Xyven's Articles</title>
-				<description>What Xyven is talking and thinking about</description>
-				<link>https://xyven.dev</link>
+				<title>Blake Bruell's Articles</title>
+				<description>What Blake Bruell is talking and thinking about</description>
+				<link>https://xyven.dev/articles</link>
 				<atom:link href="https://xyven.dev/rss.xml" rel="self" type="application/rss+xml"/>
 				${posts
 					.map(
