@@ -1,5 +1,5 @@
 ---
-title: How I Made My Peronal Website
+title: How I Made My Website
 description: How my personal site works, and why I made the technical choices I did.
 date: 2023-11-21
 updated: 2023-11-25
@@ -21,7 +21,7 @@ I chose to use [**tailwindcss**](https://github.com/tailwindlabs/tailwindcss) (^
 When setting up the articles portion of this site, I also added [**@tailwindcss/typography**](https://github.com/tailwindlabs/tailwindcss-typography) (^0.5.10) to get access to the `.prose` which provides the majority of the styling for the very page you are looking at.
 
 ### MDSveX
-Another key tool is [**mdsvex**](https://github.com/pngwn/MDsveX) (^0.11.0), a tool for generating HTML from markdown files, but with the ability to embed not only HTML but also svelte components. The flexibility this grants ensured that anything I could do with a normal svelte file was possible using the markdown files used to layout these pages. 
+Another key tool is [**mdsvex**](https://github.com/pngwn/MDsveX) (^0.11.0), a tool for generating HTML from markdown files, but with the ability to embed not only HTML but also svelte components. The flexibility this grants ensured that anything I could do with a normal svelte file was possible using the markdown files used to layout these pages.
 #### Remark and Rehype
 Using MDSveX also opened up a huge ecosystem of **remark** and **rehype** plugins, which allow complex transformations of the AST at both the markdown stage and the HTML stage of the transformation. The plugins used include the following:
 - **remark-math** and **rehype-katex**: This combination of plugins allows for beautiful and easy math equations embedded right in the markdown. This plays nicely with markdown editors like obsidian, making editing more ergonomic.
@@ -34,7 +34,7 @@ While there are robust rehype based highlighting plugins, there are often issues
 Currently, the site is hosted on Cloudflare using [Cloudflare Pages](https://developers.cloudflare.com/pages/). There are some nice advantages:
 - Cloudflare pages support serverless functions, which pair nicely with `+server.ts` routes in SvelteKit
 - Continuous deployment is free and plentiful (500 per month on the free plan) and updates are extremely fast
-- Integration with SvelteKit is completely automatic using the preinstalled `adapter-auto` 
+- Integration with SvelteKit is completely automatic using the preinstalled `adapter-auto`
 - Setting up multiple domains was easy, and I was already using Cloudflare to manage the relevant DNS
 - Active community
 
@@ -55,20 +55,20 @@ a(b^2b^{-2}) &= b(b^2b^{-2}) \\
 a &= b
 \end{aligned}
 $$
-### Code 
+### Code
 #### Basic Block
-```svelte 
+```svelte
 <script lang="ts">
-	let data; 
+	let data;
 </script>
 ```
 
 #### Title and Highlighting
-```ts {1} title="src/route/+page.ts" 
+```ts {1} title="src/route/+page.ts"
 import projects from '$lib/projects';
 ```
 
-#### Highlighting and Line numbers 
+#### Highlighting and Line numbers
 ```ts {1-3, 6,} showLineNumbers{10}
 async function getProjects() {
 	return projects;
