@@ -9,9 +9,7 @@
 	<!-- <link rel="preload" as="font" href={f} type="font/woff2" crossorigin="anonymous" /> -->
 </svelte:head>
 
-<section
-	class={'prose prose-neutral prose-invert min-w-0 max-w-[80ch] md:prose-lg ' + $$props.class}
->
+<section class={'prose prose-neutral prose-invert min-w-0 max-w-full md:prose-lg ' + $$props.class}>
 	<slot />
 </section>
 
@@ -74,5 +72,29 @@
 	}
 	:global(.toc-section) {
 		@apply my-4;
+	}
+	:global(.toc-section > label) {
+		@apply flex cursor-pointer items-center gap-x-2 xl:hidden;
+	}
+	:global(.toc-section > label > svg) {
+		@apply h-8 w-8 fill-current;
+	}
+	:global(.toc-section > label > span) {
+		@apply fill-current text-2xl;
+	}
+	:global(.toc-section > input[type='checkbox']) {
+		@apply hidden;
+	}
+	:global(.toc-section > div) {
+		@apply grid grid-rows-[0fr] transition-all duration-200 ease-in-out;
+	}
+	:global(.toc-section > div) {
+		@apply xl:block;
+	}
+	:global(.toc-section > div > nav) {
+		@apply overflow-hidden;
+	}
+	:global(.toc-section:has(> input[type='checkbox']:checked) > div) {
+		@apply grid-rows-[1fr];
 	}
 </style>

@@ -27,48 +27,12 @@
 		function clear(tocLinks) {
 			tocLinks.forEach((l) => {
 				l.classList.remove('toc-link-active');
-				// l.classList.add('toc-link-inactive');
 			});
 		}
-		function update() {
-			if (window.innerWidth < 1280) {
-				return;
-			}
-			const anchors = Array.from(document.querySelectorAll('.article-heading'));
-			const tocLinks = Array.from(document.querySelectorAll('.toc-link'));
-			if (!anchors || tocLinks.length != anchors.length) return;
-			for (let i = 1; i < anchors.length; i++) {
-				if (anchors[i].offsetTop > window.scrollY + 65) {
-					anchors.forEach((a) => (a.style.color = ''));
-					if (tocLinks[i - 1].classList.contains('toc-link-active')) return;
-					clear(tocLinks);
-					tocLinks[i - 1].classList.add('toc-link-active');
-					// tocLinks[i - 1].classList.remove('toc-link-inactive');
-					window.history.replaceState(
-						null,
-						null,
-						document.location.pathname + '#' + anchors[i - 1].href.split('#').pop()
-					);
-					return;
-				}
-			}
-		}
-		window.onload = update;
-		window.addEventListener('scroll', update);
-		let prevWindowWidth = window.innerWidth;
-		window.addEventListener('resize', () => {
-			if (window.innerWidth < 1280 && prevWindowWidth >= 1280) {
-				clear(Array.from(document.querySelectorAll('.toc-link')));
-			} else if (window.innerWidth >= 1280 && prevWindowWidth < 1280) {
-				console.log('update');
-				update();
-			}
-			prevWindowWidth = window.innerWidth;
-		});
 	</script>
 </svelte:head>
 
-<article class="max-w-full">
+<article class="w-full max-w-[1600px]">
 	<section class="relative border-b-[3px] border-neutral-800 pb-2">
 		<h1 class="text-4xl sm:text-5xl">{data.meta.title}</h1>
 		<div class="flex flex-wrap">
@@ -85,9 +49,10 @@
 					{/each}
 				</div>
 			</div>
-			<a class="ml-auto self-end" href={source}
-				><Icon path={mdiFileCodeOutline} class="inline" />Source</a
-			>
+			<a class="ml-auto self-end" href={source}>
+				<Icon path={mdiFileCodeOutline} class="inline" />
+				Source
+			</a>
 		</div>
 	</section>
 	<div class="xl:flex xl:items-start xl:gap-8">

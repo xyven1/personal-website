@@ -1,4 +1,3 @@
-
 // MDSvex settings --------------------------------
 import { createHighlighter } from '@bitmachina/highlighter';
 import remarkUnwrapImages from 'remark-unwrap-images';
@@ -7,7 +6,7 @@ import rehypeToc from 'rehype-toc';
 import rehypeSlug from 'rehype-slug';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex-svelte';
-import { mdiLinkVariant } from '@mdi/js';
+import { mdiLinkVariant, mdiTableOfContents } from '@mdi/js';
 
 import { h } from 'hastscript';
 /**
@@ -32,7 +31,6 @@ const autoLinkOptions = {
 	}
 };
 
-
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
 	extensions: ['.md'],
@@ -48,15 +46,20 @@ const mdsvexOptions = {
 			rehypeToc,
 			{
 				customizeTOC(node) {
-					return h('section', { class: 'toc-section'}, [
-						 node
+					return h('section', { class: 'toc-section' }, [
+						h('label', { for: 'toc-toggle' }, [
+							h('svg', { viewBox: '0 0 24 24' }, h('path', { d: mdiTableOfContents })),
+							h('span', 'Contents')
+						]),
+						h('input', { type: 'checkbox', id: 'toc-toggle' }),
+						h('div', node)
 					]);
-				} 		
+				}
 			}
-		],
+		]
 	],
 	layout: {
-		_: './src/lib/mdsvex.svelte'
+		_: './src/lib/mdsvex-wrapper.svelte'
 	}
 };
 export default mdsvexOptions;
