@@ -58,10 +58,10 @@
 		@apply border-b-[3px] border-neutral-800;
 	}
 	:global(.article-heading) {
-		@apply inline-flex;
+		@apply inline-block pl-2 align-[-0.15em];
 	}
 	:global(.article-heading > svg) {
-		@apply w-4 h-4 fill-current inline-block mr-2;
+		@apply h-[1em] w-[1em] fill-current;
 	}
 	/* Table of Contents */
 	:global(.toc-link-active) {

@@ -35,10 +35,10 @@
 		"
 		on:click={closeSideMenu}
 	>
-		<ul class="h-full pt-12 text-3xl sm:flex sm:items-center sm:justify-center sm:pt-0 md:text-4xl">
+		<ul class="h-full pt-12 text-3xl flex flex-col gap-y-2 px-2 sm:px-0 sm:gap-x-8 sm:flex-row sm:items-center sm:justify-center sm:pt-0 md:text-4xl">
 			{#each routes as route}
 				<li class:text-accent={$page.url.pathname === route.path}>
-					<a href={route.path} on:focusin={openSideMenu} on:focusout={closeSideMenu} class="mx-4">
+					<a href={route.path} on:focusin={openSideMenu} on:focusout={closeSideMenu}>
 						{route.name}
 					</a>
 				</li>
