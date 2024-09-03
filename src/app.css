@@ -5,15 +5,14 @@
 
 @layer base {
 	a:not(.large-anchor) {
-		@apply underline decoration-1 underline-offset-2 transition
-      duration-300 hover:text-accent;
+		@apply dark:hover:text-daccent underline decoration-1 underline-offset-2
+      transition duration-300 hover:text-accent;
 	}
-	.large-anchor:hover > .large-anchor-link {
-		@apply text-accent;
+	.large-anchor:hover .large-anchor-link {
+		@apply dark:text-daccent text-accent underline;
 	}
-	.large-anchor > .large-anchor-link {
-		@apply underline decoration-1 underline-offset-2  transition
-		duration-300;
+	.large-anchor .large-anchor-link {
+		@apply decoration-1 underline-offset-2 transition duration-300;
 	}
 }
 
@@ -23,9 +22,6 @@ body {
 }
 body {
 	font-family: 'Fira Sans', sans-serif;
- /* add font spacing  */
+	letter-spacing: 0.02em;
 	background: none transparent;
-}
-:root {
-	color-scheme: dark;
 }

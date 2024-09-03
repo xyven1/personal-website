@@ -26,7 +26,7 @@
 		<iframe
 			class:flex-grow={true}
 			class:w-full={true}
-			class="bg-neutral-200"
+			class="dark:bg-neutral-200"
 			title={data.project.name}
 			src={data.project.embed_info.path}
 			style:max-height={data.project.embed_info.max_height + 'px'}

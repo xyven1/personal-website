@@ -17,11 +17,11 @@
 </script>
 
 <header
-	class="sticky top-0 z-50 flex h-12 overflow-clip overflow-x-hidden bg-gradient-to-b from-neutral-900 from-80% to-transparent"
+	class="sticky top-0 z-50 flex h-12 overflow-clip overflow-x-hidden bg-gradient-to-b from-stone-300 from-80% to-transparent dark:from-neutral-900"
 >
 	<input class="side-menu peer hidden" type="checkbox" id="side-menu" bind:checked={sideMenu} />
 	<label class="hamb group z-10 cursor-pointer p-5 sm:hidden" for="side-menu">
-		<span class="hamb-line relative block h-0.5 w-6 bg-white" />
+		<span class="hamb-line relative block h-0.5 w-6" />
 	</label>
 	<span class="grow sm:max-w-[3rem]"></span>
 
@@ -29,15 +29,17 @@
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<nav
 		class="
-			fixed h-full max-h-0 w-full overflow-hidden bg-black/80
-			transition-[max-height] duration-300 peer-[.side-menu]:peer-checked:max-h-full
-			sm:relative sm:max-h-none sm:w-auto sm:grow sm:bg-transparent
+			fixed h-full max-h-0 w-full overflow-hidden bg-white/90 transition-[max-height]
+			duration-300 peer-[.side-menu]:peer-checked:max-h-full dark:bg-black/80
+			sm:relative sm:max-h-none sm:w-auto sm:grow sm:!bg-transparent
 		"
 		on:click={closeSideMenu}
 	>
-		<ul class="h-full pt-12 text-3xl flex flex-col gap-y-2 px-2 sm:px-0 sm:gap-x-8 sm:flex-row sm:items-center sm:justify-center sm:pt-0 md:text-4xl">
+		<ul
+			class="flex h-full flex-col gap-y-2 px-2 pt-12 text-3xl sm:flex-row sm:items-center sm:justify-center sm:gap-x-8 sm:px-0 sm:pt-0 md:text-4xl"
+		>
 			{#each routes as route}
-				<li class:text-accent={$page.url.pathname === route.path}>
+				<li class={$page.url.pathname === route.path ? 'dark:text-daccent text-accent' : ''}>
 					<a href={route.path} on:focusin={openSideMenu} on:focusout={closeSideMenu}>
 						{route.name}
 					</a>
@@ -53,13 +55,18 @@
 	</div>
 </header>
 
-<style>
+<style lang="postcss">
+	.hamb-line,
 	.hamb-line::before,
 	.hamb-line::after {
-		@apply absolute block h-full w-full bg-white transition-all duration-300;
+		@apply bg-stone-950 transition-all duration-300 dark:bg-neutral-200;
 		content: '';
 	}
-
+	.hamb-line::before,
+	.hamb-line::after {
+		@apply absolute block h-full w-full bg-black transition-all duration-300 dark:bg-white;
+		content: '';
+	}
 	.hamb-line::before {
 		top: 5px;
 	}

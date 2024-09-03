@@ -2,7 +2,7 @@
 	import Icon from '$lib/Icon.svelte';
 	import Header from '$lib/header/Header.svelte';
 	import '../app.css';
-// This has to come after tailwind
+	// This has to come after tailwind
 	import '@splidejs/svelte-splide/css';
 	// finally override some svelte-splide styles
 	import '../splide-overrides.css';
@@ -40,15 +40,16 @@
 			}
 		</style>
 	</noscript>
-	<meta name="color-scheme" content="dark" />
 	<link rel="preload" as="font" href={f} type="font/woff2" crossorigin="anonymous" />
 </svelte:head>
 
-<div class="flex min-h-full flex-col bg-neutral-900 text-neutral-200">
+<div
+	class="flex min-h-full flex-col bg-stone-300 text-stone-950 dark:bg-neutral-900 dark:text-neutral-200"
+>
 	<Header {routes} />
 
 	<main
-		class="flex w-full flex-grow flex-col items-center justify-center self-center px-4 sm:px-16"
+		class="flex w-full max-w-[1600px] flex-grow flex-col items-center justify-center self-center px-4 sm:px-16"
 	>
 		<slot />
 	</main>

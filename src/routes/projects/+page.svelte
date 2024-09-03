@@ -34,7 +34,7 @@
 					}}
 					class="jsonly"
 				>
-					<SplideTrack>
+					<SplideTrack class="overflow-hidden rounded-xl bg-stone-400 dark:bg-neutral-800">
 						{#each project.images as image}
 							<SplideSlide class="mb-8 flex justify-center align-middle">
 								<a href="/projects/{project.slug}">
@@ -47,9 +47,6 @@
 							</SplideSlide>
 						{/each}
 					</SplideTrack>
-					<div class="splide__progress">
-						<div class="splide__progress__bar"></div>
-					</div>
 				</Splide>
 				<noscript>
 					<a href="/projects/{project.slug}">

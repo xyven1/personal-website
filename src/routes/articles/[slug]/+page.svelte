@@ -30,15 +30,49 @@
 				l.classList.remove('toc-link-active');
 			});
 		}
+		const anchors = [];
+		Array.from(document.querySelectorAll('.article-heading'));
+		const tocLinks = [];
+		Array.from(document.querySelectorAll('.toc-link'));
+		function update() {
+			if (window.innerWidth < 1280) {
+				return;
+			}
+			if (anchors.length === 0 || tocLinks.length != anchors.length) return;
+			for (let i = 1; i < anchors.length; i++) {
+				if (anchors[i].offsetTop > window.scrollY + 65) {
+					anchors.forEach((a) => (a.style.color = ''));
+					if (tocLinks[i - 1].classList.contains('toc-link-active')) return;
+					clear(tocLinks);
+					tocLinks[i - 1].classList.add('toc-link-active');
+					return;
+				}
+			}
+		}
+		window.onload = () => {
+			anchors.push(...document.querySelectorAll('.article-heading'));
+			tocLinks.push(...document.querySelectorAll('.toc-link'));
+			update();
+		};
+		window.addEventListener('scroll', update);
+		let prevWindowWidth = window.innerWidth;
+		window.addEventListener('resize', () => {
+			if (window.innerWidth < 1280 && prevWindowWidth >= 1280) {
+				clear(Array.from(document.querySelectorAll('.toc-link')));
+			} else if (window.innerWidth >= 1280 && prevWindowWidth < 1280) {
+				update();
+			}
+			prevWindowWidth = window.innerWidth;
+		});
 	</script>
 </svelte:head>
 
-<article class="w-full max-w-[1600px]">
+<article class="w-full">
 	<section class="relative border-b-[3px] border-neutral-800 pb-2">
 		<h1 class="text-4xl sm:text-5xl">{data.meta.title}</h1>
 		<div class="flex flex-wrap">
 			<div>
-				<p class="text-neutral-400">
+				<p class="text-stone-600 dark:text-neutral-400">
 					{new Date(data.meta.date).toLocaleDateString()}
 					{#if data.meta.updated}
 						(<i>Updated: {new Date(data.meta.updated).toLocaleDateString()}</i>)

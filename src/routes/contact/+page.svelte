@@ -58,12 +58,12 @@
 	</hgroup>
 {:else}
 	<form
-		class="relative flex w-full max-w-xl flex-grow flex-col justify-center px-8"
+		class="form-children relative flex w-full max-w-xl flex-grow flex-col justify-center gap-y-4 px-8"
 		on:submit|preventDefault={submit}
 	>
 		<!-- overlay -->
 		{#if state === State.Submitting || state === State.None}
-			<div class="absolute inset-0 flex flex-col items-center justify-center bg-black/50">
+			<div class="absolute inset-0 flex flex-col items-center justify-center dark:bg-black/50">
 				<noscript class="text-center text-3xl">
 					This form requires JavaScript, appologies for the inconvenience.
 				</noscript>
@@ -73,59 +73,53 @@
 		<input type="hidden" name="access_key" value={api} />
 		<input type="hidden" name="from_name" value={from} />
 		<input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
-		<div class="mb-4">
-			<label class="mb-2 block text-sm font-bold" for="name">Name</label>
-			<input
-				class="w-full appearance-none rounded border border-white bg-inherit px-3 py-2 leading-tight transition-colors focus:border-accent focus:outline-none"
-				type="text"
-				name="name"
-				id="name"
-				placeholder="Name"
-				required
-			/>
+		<div>
+			<label for="name">Name</label>
+			<input type="text" name="name" id="name" placeholder="Name" required />
 		</div>
-		<div class="mb-4">
-			<label class="mb-2 block text-sm font-bold" for="email">Email</label>
-			<input
-				type="email"
-				name="email"
-				id="email"
-				placeholder="Email"
-				class="w-full appearance-none rounded border border-white bg-inherit px-3 py-2 leading-tight transition-colors focus:border-accent focus:outline-none"
-				required
-			/>
+		<div>
+			<label for="email">Email</label>
+			<input type="email" name="email" id="email" placeholder="Email" required />
 		</div>
-		<div class="mb-4">
-			<label class="mb-2 block text-sm font-bold" for="subject">Subject</label>
-			<input
-				class="w-full appearance-none rounded border border-white bg-inherit px-3 py-2 leading-tight transition-colors focus:border-accent focus:outline-none"
-				type="text"
-				name="subject"
-				id="subject"
-				placeholder="Subject"
-				required
-			/>
+		<div>
+			<label for="subject">Subject</label>
+			<input type="text" name="subject" id="subject" placeholder="Subject" required />
 		</div>
-		<div class="mb-4 flex max-h-64 flex-1 flex-col">
+		<div class="flex max-h-96 sm:max-h-80 flex-1 flex-col min-h-32">
 			<label class="mb-2 block text-sm font-bold" for="message">Message</label>
-			<textarea
-				name="message"
-				id="message"
-				required
-				class="w-full flex-grow appearance-none rounded border border-white bg-inherit px-3 py-2 leading-tight transition-colors focus:border-accent focus:outline-none"
-			></textarea>
+			<textarea name="message" id="message" required class="flex-grow"></textarea>
 		</div>
 		<!-- <div class="h-captcha flex justify-center" data-captcha="true" data-theme="dark"></div> -->
 		<div class="flex justify-center">
-			<button
-				class="rounded border border-white px-2 py-1 transition-colors hover:border-accent"
-				type="submit"
-			>
-				Submit Form
-			</button>
+			<button type="submit"> Submit Form </button>
 		</div>
 		{#if state === State.Failure}
 			<p class=" text-center text-xl">Your message did not send properly.</p>
 		{/if}
 	</form>
 {/if}
+
+<style lang="postcss">
+	.form-children label {
+		@apply mb-2 block text-sm font-bold;
+	}
+	.form-children input,
+	button,
+	textarea {
+		@apply dark:focus:outline-daccent
+			w-full
+			appearance-none
+			rounded
+			border
+			border-inherit
+			bg-inherit
+			px-3
+			py-2
+			leading-tight
+			outline-none
+			transition-colors
+			focus:outline-2
+			focus:-outline-offset-1
+			focus:outline-accent;
+	}
+</style>

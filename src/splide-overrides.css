@@ -1,20 +1,17 @@
 .splide__pagination__page {
-  @apply bg-slate-700;
+	@apply bg-stone-500 dark:bg-neutral-600;
 }
 .splide__pagination__page.is-active {
-  @apply bg-accent;
+	@apply dark:bg-daccent bg-accent
 }
 .splide__pagination {
-  bottom: -1rem;
-}
-.splide__progress__bar {
-  @apply bg-accent;
+	@apply -bottom-4;
 }
 
 .splide__arrow {
-  @apply bg-white/70;
+	@apply dark:bg-white/70;
 }
 
 .splide {
-  @apply mb-4
+	@apply mb-4;
 }

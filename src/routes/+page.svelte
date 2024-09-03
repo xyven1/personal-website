@@ -12,7 +12,7 @@
 <article class="flex max-w-6xl grow flex-col space-y-4">
 	<hgroup>
 		<h1 class="text-4xl">Welcome to my site.</h1>
-		<hr />
+		<hr class="border-current" />
 	</hgroup>
 	<p class="text-2xl">
 		Checkout my <a href="/projects">projects</a>, my <a href="/articles">articles</a>, and feel free
@@ -22,7 +22,7 @@
 	<section class="space-y-4">
 		<hgroup>
 			<h2 class="text-3xl">About Me</h2>
-			<hr />
+			<hr class="border-current" />
 		</hgroup>
 		<p class="text-center text-2xl sm:text-left">
 			I fell in love with programming 10 years ago when being introduced to programming with

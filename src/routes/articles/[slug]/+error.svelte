@@ -8,7 +8,7 @@
 	</h2>
 	<h3 class="text-xl">
 		"{$page.params.slug}" is not valid article. The article may have been moved or deleted.
-		<hr class="border-neutral-700" />
+		<hr class="border-current" />
 		<a href="/articles">Check here for a list of all my articles.</a>
 	</h3>
 </div>

@@ -9,7 +9,9 @@
 	<!-- <link rel="preload" as="font" href={f} type="font/woff2" crossorigin="anonymous" /> -->
 </svelte:head>
 
-<section class={'prose prose-neutral prose-invert min-w-0 max-w-full md:prose-lg ' + $$props.class}>
+<section
+	class={'prose prose-neutral min-w-0 max-w-full dark:prose-invert md:prose-lg ' + $$props.class}
+>
 	<slot />
 </section>
 
@@ -36,7 +38,7 @@
 		@apply border-l-[3px] border-transparent px-4;
 	}
 	.prose :global(pre > code > span[data-highlighted]) {
-		@apply border-accent bg-accent/30;
+		@apply dark:border-daccent dark:bg-daccent/30 border-accent bg-accent/30;
 	}
 	.prose :global(pre > code[data-line-numbers] > span[data-line-number]) {
 		@apply ml-[var(--number-width)] pl-2;
@@ -48,14 +50,17 @@
 		@apply absolute -ml-[calc(var(--number-width)+3px+.5rem)] w-[var(--number-width)] border-r-[3px] border-transparent bg-neutral-950 pr-1 text-right text-neutral-500 content-[attr(data-line-number)];
 	}
 	.prose :global(pre > code[data-line-numbers] > span[data-highlighted]::before) {
-		@apply border-accent;
+		@apply dark:border-daccent border-accent;
 	}
 	/* Headings */
 	.prose :global([id]::before) {
 		@apply invisible -mt-12 block h-12 content-[''];
 	}
 	.prose :global(h2) {
-		@apply border-b-[3px] border-neutral-800;
+		@apply border-b-[3px] border-stone-400 dark:border-neutral-700;
+	}
+	.prose :global(h3) {
+		@apply border-b-[1.5px] border-stone-400/50 dark:border-neutral-800;
 	}
 	:global(.article-heading) {
 		@apply inline-block pl-2 align-[-0.15em];
@@ -65,10 +70,7 @@
 	}
 	/* Table of Contents */
 	:global(.toc-link-active) {
-		@apply text-accent;
-	}
-	:global(.toc-link-inactive) {
-		/* @apply !text-inherit hover:!text-accent/100; */
+		@apply dark:text-daccent text-accent;
 	}
 	:global(.toc-level) {
 		@apply border-l-2 border-neutral-700 pl-4;
@@ -92,7 +94,7 @@
 		@apply hidden;
 	}
 	:global(.toc-section > div) {
-		@apply grid grid-rows-[0fr] transition-all duration-200 ease-in-out;
+		@apply grid grid-rows-[0fr] transition-[grid-template-rows] duration-200 ease-in-out;
 	}
 	:global(.toc-section > div) {
 		@apply xl:block;
@@ -101,6 +103,10 @@
 		@apply overflow-hidden;
 	}
 	:global(.toc-section:has(> input[type='checkbox']:checked) > div) {
+		@apply grid-rows-[1fr];
+	}
+	/* focus within toc-section, expand it	 */
+	:global(.toc-section:focus-within > div) {
 		@apply grid-rows-[1fr];
 	}
 </style>
