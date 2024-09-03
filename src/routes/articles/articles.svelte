@@ -113,7 +113,6 @@
 			class=" dark:hocus:text-daccent hocus:text-accent uppercase transition-colors">Search</button
 		>
 	</form>
-	<pre>{JSON.stringify({ query, currentSearch, allLoaded, loadingAllPosts }, null, 2)}</pre>
 	{#if loadingAllPosts}
 		<div class="flex justify-center gap-x-2">
 			<Icon class="animate-spin" size={2} path={mdiLoading} aria-label="loading" />
