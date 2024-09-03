@@ -19,15 +19,7 @@ const autoLinkOptions = {
 		class: 'article-heading'
 	},
 	content() {
-		return h(
-			'svg',
-			{
-				viewBox: '0 0 24 24',
-				style:
-					'width: 1rem; height: 1rem; fill: currentColor; margin-left: 0.5rem; display: inline-block'
-			},
-			[h('path', { d: mdiLinkVariant })]
-		);
+		return h('svg', { viewBox: '0 0 24 24' }, [h('path', { d: mdiLinkVariant })]);
 	}
 };
 

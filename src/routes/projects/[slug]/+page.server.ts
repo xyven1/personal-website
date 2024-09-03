@@ -10,6 +10,6 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 			project
 		};
 	} else {
-		throw error(404, 'Project not found');
+		error(404, 'Project not found');
 	}
 };

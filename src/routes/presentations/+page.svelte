@@ -1,4 +1,5 @@
 <script>
+	import Tag from '$lib/Tag.svelte';
 	import { presentations } from './presentations';
 	const ps = Object.entries(presentations).map(([name, presentation]) => ({
 		slug: name,
@@ -21,9 +22,7 @@
 					</div>
 					<div class="sm:flex sm:flex-col sm:items-end">
 						{#each p.tags.slice(0, 2) as category}
-							<span class="m-1 inline-block whitespace-nowrap rounded-full bg-sky-800 p-1 px-2">
-								{category}
-							</span>
+							<Tag text={category} />
 						{/each}
 					</div>
 				</a>

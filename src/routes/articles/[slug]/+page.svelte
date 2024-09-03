@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
+	import Tag from '$lib/Tag.svelte';
 	import { mdiFileCodeOutline } from '@mdi/js';
 
 	export let data;
@@ -45,7 +46,7 @@
 				</p>
 				<div class="-m-1">
 					{#each data.meta.tags as category}
-						<span class="m-1 inline-block rounded-full bg-sky-800 p-1">{category}</span>
+						<Tag text={category} />
 					{/each}
 				</div>
 			</div>

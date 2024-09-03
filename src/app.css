@@ -1,4 +1,4 @@
-@import '@fontsource/cutive-mono';
+@import '@fontsource/fira-sans';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,10 +8,10 @@
 		@apply underline decoration-1 underline-offset-2 transition
       duration-300 hover:text-accent;
 	}
-	.large-anchor:hover > .large-anchor-link{
+	.large-anchor:hover > .large-anchor-link {
 		@apply text-accent;
 	}
-	.large-anchor > .large-anchor-link  {
+	.large-anchor > .large-anchor-link {
 		@apply underline decoration-1 underline-offset-2  transition
 		duration-300;
 	}
@@ -22,8 +22,9 @@ body {
 	@apply h-full;
 }
 body {
-	font-family: 'Cutive Mono', monospace;
-	background:none transparent;
+	font-family: 'Fira Sans', sans-serif;
+ /* add font spacing  */
+	background: none transparent;
 }
 :root {
 	color-scheme: dark;

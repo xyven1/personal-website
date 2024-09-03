@@ -8,7 +8,7 @@
 	import '../splide-overrides.css';
 	// preload fonts
 
-	import f from '@fontsource/cutive-mono/files/cutive-mono-latin-400-normal.woff2';
+	import f from '@fontsource/fira-sans/files/fira-sans-latin-400-normal.woff2';
 	import { mdiRss } from '@mdi/js';
 
 	const routes = [

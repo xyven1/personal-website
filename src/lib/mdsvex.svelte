@@ -57,6 +57,12 @@
 	.prose :global(h2) {
 		@apply border-b-[3px] border-neutral-800;
 	}
+	:global(.article-heading) {
+		@apply inline-flex;
+	}
+	:global(.article-heading > svg) {
+		@apply w-4 h-4 fill-current inline-block mr-2;
+	}
 	/* Table of Contents */
 	:global(.toc-link-active) {
 		@apply text-accent;

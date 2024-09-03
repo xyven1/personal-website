@@ -3,11 +3,11 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		fontFamily: {
-			sans: ['Cutive Mono']
+			sans: ['Fira Sans']
 		},
 		extend: {
 			colors: {
-				accent: '#0077c7'
+				accent: '#4077c7'
 			}
 		}
 	},
