@@ -1,16 +1,14 @@
 <script lang="ts">
 	import { Splide, SplideSlide, SplideTrack } from '@splidejs/svelte-splide';
 	import Img from '@zerodevx/svelte-img';
+	import { blurb, name } from '$lib/info';
 
 	export let data;
 </script>
 
 <svelte:head>
-	<title>Projects - Blake Bruell</title>
-	<meta
-		name="description"
-		content="Blake Bruell is a software engineer persuing a Master's degree in CS with a focus on AI, with an interest in programming languages and systems programming."
-	/>
+	<title>Projects - {name}</title>
+	<meta name="description" content={blurb} />
 </svelte:head>
 
 <article class="flex w-full max-w-6xl flex-col">
@@ -51,6 +49,7 @@
 				<noscript>
 					<a href="/projects/{project.slug}">
 						{#if typeof project.images[0] === 'string' && project.images[0].endsWith('.svg')}
+							<!-- svelte-ignore a11y-missing-attribute -->
 							<img class="h-full" src={project.images[0]} />
 						{:else}
 							<Img src={project.images[0]} />

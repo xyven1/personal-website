@@ -12,7 +12,7 @@
 	}
 
 	let api = '';
-	let from = 'Personal Site Form';
+	const from = 'Personal Site Form';
 	let state = State.None;
 	onMount(() => {
 		api =

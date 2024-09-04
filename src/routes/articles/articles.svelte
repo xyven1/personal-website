@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { replaceState, goto } from '$app/navigation';
+	import { goto, replaceState } from '$app/navigation';
 	import { type Post } from '$lib/types/posts';
 	import Icon from '$lib/Icon.svelte';
 	import Tag from '$lib/Tag.svelte';
 	import ufuzzy from '@leeoniya/ufuzzy';
 	import { mdiLoading, mdiMagnify } from '@mdi/js';
-	import { browser } from '$app/environment';
 	import { tick } from 'svelte';
+	import { browser } from '$app/environment';
 
 	export let posts: Post[];
 	export let query = '';
@@ -21,7 +21,11 @@
 	}
 
 	$: currentSearch = query;
-	$: browser && tick().then(() => replaceState(formatSearch(currentSearch), {}));
+	$: (async () => {
+		if (!browser) return;
+		await tick();
+		replaceState(formatSearch(currentSearch), {});
+	})();
 	$: postStrings = posts.map((p) => {
 		const date = new Date(p.date);
 		return [
@@ -55,14 +59,6 @@
 		}
 	}
 </script>
-
-<svelte:head>
-	<title>Articles - Blake Bruell</title>
-	<meta
-		name="description"
-		content="Blake Bruell is a software engineer persuing a Master's degree in CS with a focus on AI, with an interest in programming languages and systems programming."
-	/>
-</svelte:head>
 
 <svelte:window
 	on:keydown={(e) => {

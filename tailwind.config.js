@@ -1,4 +1,5 @@
 import plugin from 'tailwindcss/plugin';
+import typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -15,7 +16,7 @@ export default {
 		}
 	},
 	plugins: [
-		require('@tailwindcss/typography'),
+		typography,
 		plugin(function ({ addVariant }) {
 			addVariant('hocus', ['&:hover', '&:focus']);
 		})

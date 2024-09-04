@@ -4,7 +4,7 @@
 	import { mdiFileCodeOutline } from '@mdi/js';
 
 	export let data;
-	let source = `https://github.com/xyven1/personal-website/tree/master/src/articles/${data.meta.slug}.md`;
+	const source = `https://github.com/xyven1/personal-website/tree/master/src/articles/${data.meta.slug}.md`;
 </script>
 
 <!-- SEO -->

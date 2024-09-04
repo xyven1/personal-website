@@ -1,40 +1,34 @@
 <script lang="ts">
+	import { blurb, name } from '$lib/info';
 </script>
 
 <svelte:head>
-	<title>Blake Bruell - Software Engineer</title>
-	<meta
-		name="description"
-		content="Blake Bruell is a software engineer persuing a Master's degree in CS with a focus on AI, with an interest in programming languages and systems programming."
-	/>
+	<title>{name} - Software Engineer</title>
+	<meta name="description" content={blurb} />
 </svelte:head>
 
 <article class="flex max-w-6xl grow flex-col space-y-4">
 	<hgroup>
-		<h1 class="text-4xl">Welcome to my site.</h1>
+		<h1 class="text-3xl">Welcome to my site.</h1>
 		<hr class="border-current" />
 	</hgroup>
-	<p class="text-2xl">
+	<p class="text-xl">
 		Checkout my <a href="/projects">projects</a>, my <a href="/articles">articles</a>, and feel free
 		to <a href="/contact">contact</a> me for any reason.
-		<!-- and <a href="/articles">articles</a>-->
 	</p>
-	<section class="space-y-4">
+	<section class="space-y-4 [&>p]:text-justify [&>p]:text-lg">
 		<hgroup>
-			<h2 class="text-3xl">About Me</h2>
+			<h2 class="text-2xl">About Me</h2>
 			<hr class="border-current" />
 		</hgroup>
-		<p class="text-center text-2xl sm:text-left">
-			I fell in love with programming 10 years ago when being introduced to programming with
-			Arduino. The ability to write a few lines of text, which once translated into the language of
-			machines could create change in the real world entranced me. It started slow, with just the
-			simple task of making an LED blink, but I quickly realized that the potential for programming
-			was limitless, and so my journey to learn and do as much as possible began. That journey has
-			led me to where I am today, studying computer science at WPI, and coding professionally.
+		<p>
+			I began programming over 10 years ago, with the humble task of making an LED blink. This
+			proved interesting enough to me that I have not stopped since, leading me to where I am now,
+			pursuing a Master's in CS at Worcester Polytechnic Institute, and coding professionally.
 		</p>
-		<p class="text-center text-2xl sm:text-left">
-			I am currently pursuing my masters's degree in Computer Science at WPI, with plans to complete
-			a 4 year BS/MS program with a focus on ML.
+		<p>
+			While I still appreciate making an LED blink every now and then, most of my time these days is
+			spent working with Nix/NixOS, low level programming, machine learning .
 		</p>
 	</section>
 </article>
