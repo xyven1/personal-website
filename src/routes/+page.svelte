@@ -28,7 +28,10 @@
 		</p>
 		<p>
 			While I still appreciate making an LED blink every now and then, most of my time these days is
-			spent working with Nix/NixOS, low level programming, machine learning .
+			spent working with <a href="https://github.com/xyven1/nixos-configuration">Nix/NixOS</a>, low
+			level/systems programming (often in Rust, but also C/C++, Go, and other languages as well),
+			machine learning, system/network admin, and spending a little too much time configuring
+			<a href="https://github.com/xyven1/neovim-config">neovim</a>.
 		</p>
 	</section>
 </article>
