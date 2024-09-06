@@ -10,7 +10,7 @@
 </svelte:head>
 
 <section
-	class={'prose prose-neutral min-w-0 max-w-full dark:prose-invert md:prose-lg ' + $$props.class}
+	class={'prose prose-neutral min-w-0 max-w-full md:prose-lg dark:prose-invert ' + $$props.class}
 >
 	<slot />
 </section>
@@ -38,7 +38,7 @@
 		@apply border-l-[3px] border-transparent px-4;
 	}
 	.prose :global(pre > code > span[data-highlighted]) {
-		@apply dark:border-daccent dark:bg-daccent/30 border-accent bg-accent/30;
+		@apply border-accent bg-accent/30 dark:border-daccent dark:bg-daccent/30;
 	}
 	.prose :global(pre > code[data-line-numbers] > span[data-line-number]) {
 		@apply ml-[var(--number-width)] pl-2;
@@ -50,7 +50,7 @@
 		@apply absolute -ml-[calc(var(--number-width)+3px+.5rem)] w-[var(--number-width)] border-r-[3px] border-transparent bg-neutral-950 pr-1 text-right text-neutral-500 content-[attr(data-line-number)];
 	}
 	.prose :global(pre > code[data-line-numbers] > span[data-highlighted]::before) {
-		@apply dark:border-daccent border-accent;
+		@apply border-accent dark:border-daccent;
 	}
 	/* Headings */
 	.prose :global([id]::before) {
@@ -70,7 +70,7 @@
 	}
 	/* Table of Contents */
 	:global(.toc-link-active) {
-		@apply dark:text-daccent text-accent;
+		@apply text-accent dark:text-daccent;
 	}
 	:global(.toc-level) {
 		@apply border-l-2 border-neutral-700 pl-4;
@@ -94,7 +94,7 @@
 		@apply hidden;
 	}
 	:global(.toc-section > div) {
-		@apply grid grid-rows-[0fr] transition-[grid-template-rows] duration-200 ease-in-out;
+		@apply grid grid-rows-[0fr] transition-[grid-template-rows] duration-300;
 	}
 	:global(.toc-section > div) {
 		@apply xl:block;

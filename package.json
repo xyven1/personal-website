@@ -33,6 +33,7 @@
 		"imagetools-core": "^7.0.1",
 		"mdsvex": "^0.12.3",
 		"postcss": "^8.4.44",
+		"postcss-custom-selectors": "^8.0.1",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.6",
 		"prettier-plugin-tailwindcss": "^0.6.6",

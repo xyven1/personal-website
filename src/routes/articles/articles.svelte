@@ -86,7 +86,7 @@
 		}}
 	>
 		<div
-			class="dark:focus-within:border-daccent flex min-w-0 max-w-[120ch] flex-grow border-b-2 border-current bg-inherit transition-all focus-within:border-accent"
+			class="flex min-w-0 max-w-[120ch] flex-grow border-b-2 border-current transition-[border-color] duration-300 focus-within:border-accent dark:focus-within:border-daccent"
 		>
 			<Icon path={mdiMagnify} class="flex-shrink-0" size={1} />
 			<input
@@ -106,7 +106,7 @@
 		</div>
 		<button
 			type="submit"
-			class=" dark:hocus:text-daccent hocus:text-accent uppercase transition-colors">Search</button
+			class=" uppercase transition-colors hocus:text-accent dark:hocus:text-daccent">Search</button
 		>
 	</form>
 	{#if loadingAllPosts}

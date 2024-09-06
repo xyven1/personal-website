@@ -7,40 +7,27 @@
 		name: string;
 		path: string;
 	}[];
-	let sideMenu = false;
-	function closeSideMenu() {
-		sideMenu = false;
-	}
-	function openSideMenu() {
-		sideMenu = true;
-	}
 </script>
 
-<header
-	class="sticky top-0 z-50 flex h-12 overflow-clip overflow-x-hidden bg-gradient-to-b from-stone-300 from-80% to-transparent dark:from-neutral-900"
->
-	<input class="side-menu peer hidden" type="checkbox" id="side-menu" bind:checked={sideMenu} />
-	<label class="hamb group z-10 cursor-pointer p-5 sm:hidden" for="side-menu">
-		<span class="hamb-line relative block h-0.5 w-6" />
-	</label>
+<header class="sticky top-0 z-50 flex h-12 overflow-clip overflow-x-hidden bg-inherit shadow">
+	<button class="hamb z-10 cursor-pointer sm:hidden" tabindex="-1">
+		<span class="hamb-line relative m-5 block h-0.5 w-6" />
+	</button>
+
 	<span class="grow sm:max-w-[3rem]"></span>
 
-	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<nav
-		class="
-			fixed h-full max-h-0 w-full overflow-hidden bg-white/90 transition-[max-height]
-			duration-300 peer-[.side-menu]:peer-checked:max-h-full dark:bg-black/80
-			sm:relative sm:max-h-none sm:w-auto sm:grow sm:!bg-transparent
-		"
-		on:click={closeSideMenu}
+		class="fixed h-full max-h-0 w-full overflow-hidden
+		bg-stone-300 !bg-opacity-90 shadow-[0_1px] shadow-current transition-[max-height] duration-300
+		sm:relative sm:max-h-none sm:w-auto
+		sm:grow sm:!bg-transparent dark:bg-neutral-900"
 	>
 		<ul
 			class="flex h-full flex-col gap-y-2 px-2 pt-12 text-3xl sm:flex-row sm:items-center sm:justify-center sm:gap-x-8 sm:px-0 sm:pt-0 md:text-4xl"
 		>
 			{#each routes as route}
-				<li class={$page.url.pathname === route.path ? 'dark:text-daccent text-accent' : ''}>
-					<a href={route.path} on:focusin={openSideMenu} on:focusout={closeSideMenu}>
+				<li class={$page.url.pathname === route.path ? 'text-accent dark:text-daccent' : ''}>
+					<a href={route.path}>
 						{route.name}
 					</a>
 				</li>
@@ -56,36 +43,33 @@
 </header>
 
 <style lang="postcss">
-	.hamb-line,
-	.hamb-line::before,
-	.hamb-line::after {
-		@apply bg-stone-950 transition-all duration-300 dark:bg-neutral-200;
-		content: '';
+	@custom-selector :--hamb-focus .hamb:focus, .hamb:has(~ nav a:focus);
+	.hamb-line {
+		@apply bg-stone-950 transition-[background-color] duration-300 before:top-1.5 after:-top-1.5 dark:bg-neutral-200;
 	}
 	.hamb-line::before,
 	.hamb-line::after {
-		@apply absolute block h-full w-full bg-black transition-all duration-300 dark:bg-white;
+		@apply absolute block h-full w-full bg-black transition-[transform,top] duration-300 dark:bg-white;
 		content: '';
 	}
-	.hamb-line::before {
-		top: 5px;
+
+	:--hamb-focus ~ nav {
+		@apply max-h-full;
 	}
 
-	.hamb-line::after {
-		top: -5px;
+	:--hamb-focus {
+		@apply pointer-events-none;
 	}
 
-	#side-menu:checked ~ .hamb .hamb-line {
-		background: transparent;
+	:--hamb-focus .hamb-line {
+		@apply bg-transparent;
 	}
 
-	#side-menu:checked ~ .hamb .hamb-line::before {
-		transform: rotate(-45deg);
-		top: 0;
+	:--hamb-focus .hamb-line::before {
+		@apply top-0 -rotate-45;
 	}
 
-	#side-menu:checked ~ .hamb .hamb-line::after {
-		transform: rotate(45deg);
-		top: 0;
+	:--hamb-focus .hamb-line::after {
+		@apply top-0 rotate-45;
 	}
 </style>

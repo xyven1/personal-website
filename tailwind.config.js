@@ -12,6 +12,13 @@ export default {
 			colors: {
 				daccent: '#4077c7',
 				accent: '#7ea3d9'
+			},
+			typography: {
+				DEFAULT: {
+					css: {
+						'th, td': null
+					}
+				}
 			}
 		}
 	},

@@ -85,7 +85,7 @@
 			<label for="subject">Subject</label>
 			<input type="text" name="subject" id="subject" placeholder="Subject" required />
 		</div>
-		<div class="flex max-h-96 sm:max-h-80 flex-1 flex-col min-h-32">
+		<div class="flex max-h-96 min-h-32 flex-1 flex-col sm:max-h-80">
 			<label class="mb-2 block text-sm font-bold" for="message">Message</label>
 			<textarea name="message" id="message" required class="flex-grow"></textarea>
 		</div>
@@ -106,20 +106,6 @@
 	.form-children input,
 	button,
 	textarea {
-		@apply dark:focus:outline-daccent
-			w-full
-			appearance-none
-			rounded
-			border
-			border-inherit
-			bg-inherit
-			px-3
-			py-2
-			leading-tight
-			outline-none
-			transition-colors
-			focus:outline-2
-			focus:-outline-offset-1
-			focus:outline-accent;
+		@apply w-full appearance-none rounded border border-current bg-inherit px-3 py-2 leading-tight outline-none transition-colors focus:outline-2 focus:-outline-offset-1 focus:outline-accent dark:focus:outline-daccent;
 	}
 </style>
