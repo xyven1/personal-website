@@ -3,5 +3,6 @@ import { imagetools } from '@zerodevx/svelte-img/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+	server: { host: '0.0.0.0' },
 	plugins: [sveltekit(), imagetools()]
 });
