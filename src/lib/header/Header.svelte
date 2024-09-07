@@ -18,7 +18,7 @@
 
 	<nav
 		class="fixed h-full max-h-0 w-full overflow-hidden
-		bg-stone-300 !bg-opacity-90 shadow-[0_1px] shadow-current transition-[max-height] duration-300
+		bg-stone-300 !bg-opacity-95 transition-[max-height] duration-300
 		sm:relative sm:max-h-none sm:w-auto
 		sm:grow sm:!bg-transparent dark:bg-neutral-900"
 	>
@@ -51,6 +51,10 @@
 	.hamb-line::after {
 		@apply absolute block h-full w-full bg-black transition-[transform,top] duration-300 dark:bg-white;
 		content: '';
+	}
+
+	:global(body:has(.hamb:focus)) {
+		@apply overflow-hidden;
 	}
 
 	:--hamb-focus ~ nav {

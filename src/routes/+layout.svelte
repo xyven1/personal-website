@@ -43,9 +43,7 @@
 	<link rel="preload" as="font" href={f} type="font/woff2" crossorigin="anonymous" />
 </svelte:head>
 
-<div
-	class="flex min-h-full flex-col bg-stone-300 text-stone-950 dark:bg-neutral-900 dark:text-neutral-200"
->
+<div class="app flex min-h-full flex-col">
 	<Header {routes} />
 
 	<main
@@ -60,3 +58,9 @@
 		<span>© 2022 Blake Bruell</span>
 	</footer>
 </div>
+
+<style lang="postcss">
+	:global(html, body, .app) {
+		@apply bg-stone-300 text-stone-950 dark:bg-neutral-900 dark:text-neutral-200;
+	}
+</style>
