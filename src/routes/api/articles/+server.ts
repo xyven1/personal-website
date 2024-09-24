@@ -1,8 +1,6 @@
 import type { Post } from '$lib/types/posts';
 import { json } from '@sveltejs/kit';
 
-export const prerender = true;
-
 async function getPosts() {
 	let posts: Post[] = [];
 

@@ -13,7 +13,7 @@ published: true
 This site is built on [**SvelteKit**](https://github.com/sveltejs/kit) (^1.24.1). The main reasons I chose this framework are as follows:
 - **Adapters**: SvelteKit adapters allow for easy integration with many different hosting platforms (including multiple forms of self-hosting) via adapters. This makes the site agnostic to hosting service, but still plug and play with existing solutions like Cloudflare Pages (the current hosting service as of writing)
 - **SSR and Prerendering**: Many different frameworks support this, but SvelteKit has first class support for both SSR (`export const ssr = true;`), and prerendering (`export const prerender = true;`). These features allow the site to be compiled into pure HTML and CSS wherever possible, speeding up page delivery and reducing redundant computation
-- **Optional Hydration**: SvelteKit makes it easy to completely disable the JS runtime (`export const prerender = false;`)
+- **Optional Hydration**: SvelteKit makes it easy to completely disable the JS runtime (`export const csr = false;`)
 
 ### Tailwind
 I chose to use [**tailwindcss**](https://github.com/tailwindlabs/tailwindcss) (^3.3.3) for styling on this site, as the localized styling as well as robust documentation and ecosystem made it a breeze to use.
