@@ -1,13 +1,10 @@
 <script lang="ts" context="module">
 	import img from '@zerodevx/svelte-img';
+
 	import 'katex/dist/katex.min.css';
 
 	export { img };
 </script>
-
-<svelte:head>
-	<!-- <link rel="preload" as="font" href={f} type="font/woff2" crossorigin="anonymous" /> -->
-</svelte:head>
 
 <section
 	class={'prose prose-neutral min-w-0 max-w-full md:prose-lg dark:prose-invert ' + $$props.class}
@@ -16,6 +13,9 @@
 </section>
 
 <style lang="postcss">
+	:global(html) {
+		@apply scroll-smooth;
+	}
 	.prose :global(code) {
 		font-family: 'JetBrains Mono', monospace;
 		--number-width: 5ch;
@@ -53,8 +53,8 @@
 		@apply border-accent dark:border-daccent;
 	}
 	/* Headings */
-	.prose :global([id]::before) {
-		@apply invisible -mt-12 block h-12 content-[''];
+	.prose :global([id]) {
+		@apply scroll-mt-12;
 	}
 	.prose :global(h2) {
 		@apply border-b-[3px] border-stone-400 dark:border-neutral-700;
