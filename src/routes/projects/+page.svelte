@@ -18,7 +18,7 @@
 				<h2 class="bg-transparent text-3xl">{project.name}</h2>
 				<p>{project.short_description}</p>
 			</a>
-			{#if project.images.length > 0}
+			{#if project.images.length > 1}
 				<Splide
 					hasTrack={false}
 					options={{
@@ -49,13 +49,28 @@
 				<noscript>
 					<a href="/projects/{project.slug}">
 						{#if typeof project.images[0] === 'string' && project.images[0].endsWith('.svg')}
-							<!-- svelte-ignore a11y-missing-attribute -->
-							<img class="h-full" src={project.images[0]} />
+							<img
+								class="h-full"
+								src={project.images[0]}
+								alt={project.images[0].substring(project.images[0].lastIndexOf('/'))}
+							/>
 						{:else}
 							<Img src={project.images[0]} />
 						{/if}
 					</a>
 				</noscript>
+			{:else if project.images.length === 1}
+				<a href="/projects/{project.slug}">
+					{#if typeof project.images[0] === 'string' && project.images[0].endsWith('.svg')}
+						<img
+							class="h-full"
+							src={project.images[0]}
+							alt={project.images[0].substring(project.images[0].lastIndexOf('/'))}
+						/>
+					{:else}
+						<Img src={project.images[0]} />
+					{/if}
+				</a>
 			{/if}
 		</section>
 	{/each}
