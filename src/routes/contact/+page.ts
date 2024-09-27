@@ -1,9 +1,9 @@
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 
 export const csr = true;
 export const prerender = false;
 
-export const load: PageServerLoad = async ({ url }) => {
+export const load: PageLoad = async ({ url }) => {
 	return {
 		origin: url.origin,
 		api:

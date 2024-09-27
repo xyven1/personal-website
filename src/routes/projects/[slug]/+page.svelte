@@ -33,10 +33,13 @@
 			style:min-height={data.project.embed_info.min_height + 'px'}
 		></iframe>
 	{:else if data.project.images.length > 0}
-		<Image src={data.project.images[0]} class="max-w-100"/>
+		<Image src={data.project.images[0]} class="max-w-100" />
 	{/if}
 	{#if data.project.long_description}
-		<div class="text-justify indent-8 text-lg">{@html data.project.long_description}</div>
+		<div class="text-justify indent-8 text-lg">
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+			{@html data.project.long_description}
+		</div>
 	{/if}
 	{#if data.project.images.length > 1}
 		<section class="space-y-8 pt-8">

@@ -1,8 +1,8 @@
 import type { Project } from '$lib/data/projects';
 import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 
-export const load: PageServerLoad = async ({ fetch, params }) => {
+export const load: PageLoad = async ({ fetch, params }) => {
 	const projects: Project[] = await fetch(`/api/projects`).then((r) => r.json());
 	const project = projects.find((p) => p.slug === params.slug);
 	if (project) {
