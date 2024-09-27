@@ -7,7 +7,7 @@
 </script>
 
 {#if typeof src === 'string' && src.endsWith('.svg')}
-	<img class={$$props.class} {src} {alt} />
+	<img class={'h-full ' + $$props.class} {src} {alt} />
 {:else}
 	<Img {src} class={$$props.class} {alt} />
 {/if}

@@ -16,7 +16,7 @@
 		Checkout my <a href="/projects">projects</a>, my <a href="/articles">articles</a>, and feel free
 		to <a href="/contact">contact</a> me for any reason.
 	</p>
-	<section class="space-y-4 [&>p]:text-justify [&>p]:text-lg">
+	<section class="space-y-4 [&>p]:text-lg sm:[&>p]:text-justify">
 		<hgroup>
 			<h2 class="text-2xl">About Me</h2>
 			<hr class="border-current" />

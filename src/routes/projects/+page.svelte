@@ -22,6 +22,7 @@
 				<Splide
 					hasTrack={false}
 					options={{
+						height: '80vh',
 						autoplay: project.images.length > 1,
 						resetProgress: false,
 						interval: 5000,

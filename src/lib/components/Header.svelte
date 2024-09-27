@@ -17,13 +17,14 @@
 	<span class="grow sm:max-w-[3rem]"></span>
 
 	<nav
-		class="fixed h-full max-h-0 w-full overflow-hidden
-		bg-stone-300 !bg-opacity-95 transition-[max-height] duration-300
-		sm:relative sm:max-h-none sm:w-auto
-		sm:grow sm:!bg-transparent dark:bg-neutral-900"
+		class="pointer-events-none fixed h-full w-full overflow-hidden
+		bg-stone-300/50 opacity-0 backdrop-blur transition-[opacity] duration-[400ms]
+		sm:pointer-events-auto sm:relative sm:max-h-full sm:w-auto
+		sm:grow sm:!bg-transparent sm:opacity-100 sm:transition-none dark:bg-neutral-900/50"
 	>
 		<ul
-			class="flex h-full flex-col gap-y-2 px-2 pt-12 text-3xl sm:flex-row sm:items-center sm:justify-center sm:gap-x-8 sm:px-0 sm:pt-0 md:text-4xl"
+			class="flex h-full flex-col gap-y-2 overscroll-contain px-2 pt-12 text-3xl
+			sm:flex-row sm:items-center sm:justify-center sm:gap-x-8 sm:px-0 sm:pt-0 md:text-4xl"
 		>
 			{#each routes as route}
 				<li class={$page.url.pathname === route.path ? 'text-accent dark:text-daccent' : ''}>
@@ -58,7 +59,7 @@
 	}
 
 	:--hamb-focus ~ nav {
-		@apply max-h-full;
+		@apply pointer-events-auto opacity-100;
 	}
 
 	:--hamb-focus {

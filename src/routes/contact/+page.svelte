@@ -39,7 +39,6 @@
 <svelte:head>
 	<title>Contact</title>
 	<meta name="description" content="Contact form" />
-	<script src="https://web3forms.com/client/script.js" async defer></script>
 </svelte:head>
 {#if state === State.Success}
 	<hgroup class="flex flex-col items-center justify-center gap-y-1">
@@ -61,7 +60,6 @@
 		action="https://api.web3forms.com/submit"
 		on:submit|preventDefault={submit}
 	>
-		<!-- overlay -->
 		{#if state === State.Submitting}
 			<div class="fixed inset-0 flex flex-col items-center justify-center backdrop-blur-sm">
 				<Icon size={2} path={mdiLoading} class="jsonly animate-spin" />
