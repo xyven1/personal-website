@@ -42,9 +42,17 @@
 	<script src="https://web3forms.com/client/script.js" async defer></script>
 </svelte:head>
 {#if state === State.Success}
-	<hgroup class="flex flex-col items-center justify-center">
+	<hgroup class="flex flex-col items-center justify-center gap-y-1">
 		<h2 class="text-4xl font-bold">Success!</h2>
 		<p class="text-xl">Your message has been sent.</p>
+		<button
+			class="jsonly rounded border border-accent px-2 py-1 text-accent transition-[background-color] duration-300 hover:bg-accent/15 dark:border-daccent dark:text-daccent dark:hover:bg-daccent/15"
+			on:click={() => {
+				state = State.Input;
+			}}
+		>
+			Back to form
+		</button>
 	</hgroup>
 {:else}
 	<form
@@ -94,8 +102,8 @@
 		@apply mb-2 block text-sm font-bold;
 	}
 	.form-children input,
-	button,
-	textarea {
+	.form-children button,
+	.form-children textarea {
 		@apply w-full appearance-none rounded border border-current bg-inherit px-3 py-2 leading-tight outline-none transition-colors focus:outline-2 focus:-outline-offset-1 focus:outline-accent dark:focus:outline-daccent;
 	}
 </style>

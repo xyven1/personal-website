@@ -11,7 +11,7 @@ export default {
 		extend: {
 			colors: {
 				daccent: '#4077c7',
-				accent: '#7ea3d9'
+				accent: '#4666b8'
 			},
 			typography: {
 				DEFAULT: {

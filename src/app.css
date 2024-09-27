@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 @layer base {
-	a:not(.large-anchor) {
+	a:not(.large-anchor):not(.not-link) {
 		@apply dark:hocus:text-daccent hocus:text-accent underline decoration-1 underline-offset-2 transition-[color] duration-300;
 	}
 	.large-anchor .large-anchor-link {
