@@ -51,7 +51,7 @@ const mdsvexOptions = {
 		[rehypeToc, tocOptions]
 	],
 	layout: {
-		_: './src/lib/mdsvex/mdsvex-wrapper.svelte'
+		_: './src/lib/mdsvex/wrapper.svelte'
 	}
 };
 export default mdsvexOptions;

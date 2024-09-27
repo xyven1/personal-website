@@ -1,12 +1,10 @@
-import type { Post } from '$lib/types/posts.js';
+import type { Post } from '$lib/types';
 import { error, type Load } from '@sveltejs/kit';
-import type { ComponentType } from 'svelte';
+import type { Component } from 'svelte';
 
-export const load: Load = async function ({
-	params
-}): Promise<{ content: InstanceType<ComponentType>; meta: Post }> {
+export const load: Load = async function ({ params }): Promise<{ content: Component; meta: Post }> {
 	try {
-		const post = await import(`../../../articles/${params.slug}.md`);
+		const post = await import(`../../../../articles/${params.slug}.md`);
 		post.metadata.slug = params.slug;
 
 		return {

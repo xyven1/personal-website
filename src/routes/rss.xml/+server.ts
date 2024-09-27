@@ -1,4 +1,4 @@
-import type { Post } from '$lib/types/posts';
+import type { Post } from '$lib/types';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ fetch }) => {

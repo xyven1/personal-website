@@ -1,10 +1,9 @@
 <script lang="ts">
-	import Icon from '$lib/components/Icon.svelte';
-	import Tag from '$lib/components/Tag.svelte';
+	import { Icon, Tag } from '$lib/components';
 	import { mdiFileCodeOutline } from '@mdi/js';
 
 	export let data;
-	const source = `https://github.com/xyven1/personal-website/tree/master/src/articles/${data.meta.slug}.md`;
+	const source = `https://github.com/xyven1/personal-website/blob/prod/articles/${data.meta.slug}.md`;
 </script>
 
 <!-- SEO -->

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import Icon from '$lib/components/Icon.svelte';
+	import { Icon } from '$lib/components';
 	import { mdiGithub } from '@mdi/js';
 
 	export let routes: {

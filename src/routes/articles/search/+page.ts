@@ -1,4 +1,4 @@
-import type { Post } from '$lib/types/posts';
+import type { Post } from '$lib/types';
 import type { PageLoad } from './$types';
 
 import ufuzzy from '@leeoniya/ufuzzy';
