@@ -1,5 +1,5 @@
 <script>
-	import Tag from '$lib/Tag.svelte';
+	import { Tag } from '$lib/components';
 	import { presentations } from './presentations';
 	const ps = Object.entries(presentations).map(([name, presentation]) => ({
 		slug: name,

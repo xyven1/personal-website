@@ -34,7 +34,7 @@
 	$: style = getStyles();
 </script>
 
-<svg viewBox="0 0 24 24" {style} class={$$props.class}>
+<svg viewBox="0 0 24 24" {style} class={$$props.class} width="2.5em">
 	<path d={path} />
 </svg>
 

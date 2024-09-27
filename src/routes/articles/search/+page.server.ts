@@ -1,5 +1,5 @@
 import type { Post } from '$lib/types/posts';
-import type { Load } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 
 import ufuzzy from '@leeoniya/ufuzzy';
 
@@ -9,7 +9,7 @@ const uf = new ufuzzy({
 	intraIns: 1
 });
 
-export const load: Load = async ({ fetch, url }) => {
+export const load: PageServerLoad = async ({ fetch, url }) => {
 	const response = await fetch('/api/articles');
 	const allPosts: Post[] = await response.json();
 	const postStrings = allPosts.map((p) => {

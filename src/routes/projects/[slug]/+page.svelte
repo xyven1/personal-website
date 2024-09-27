@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Img from '@zerodevx/svelte-img';
+	import { Image } from '$lib/components';
 
 	export let data;
 </script>
@@ -24,24 +24,16 @@
 	</hgroup>
 	{#if data.project.embed_info}
 		<iframe
-			class:flex-grow={true}
-			class:w-full={true}
-			class="dark:bg-neutral-200"
+			width="100%"
+			class="w-full flex-grow dark:bg-neutral-200"
 			title={data.project.name}
 			src={data.project.embed_info.path}
 			style:max-height={data.project.embed_info.max_height + 'px'}
 			style:max-width={data.project.embed_info.max_width + 'px'}
 			style:min-height={data.project.embed_info.min_height + 'px'}
-		/>
+		></iframe>
 	{:else if data.project.images.length > 0}
-		{#if typeof data.project.images[0] === 'string' && data.project.images[0].endsWith('.svg')}
-			<img
-				src={data.project.images[0]}
-				alt={data.project.images[0].substring(data.project.images[0].lastIndexOf('/'))}
-			/>
-		{:else}
-			<Img src={data.project.images[0]} />
-		{/if}
+		<Image src={data.project.images[0]} class="max-w-100"/>
 	{/if}
 	{#if data.project.long_description}
 		<div class="text-justify indent-8 text-lg">{@html data.project.long_description}</div>
@@ -49,13 +41,9 @@
 	{#if data.project.images.length > 1}
 		<section class="space-y-8 pt-8">
 			<h2 class="text- text-center text-3xl">Images</h2>
-			{#each data.project.images as image}
+			{#each data.project.images as src}
 				<div class="flex justify-center">
-					{#if typeof image === 'string' && image.endsWith('.svg')}
-						<img src={image} alt={image.substring(image.lastIndexOf('/'))} />
-					{:else}
-						<Img src={image} />
-					{/if}
+					<Image {src} />
 				</div>
 			{/each}
 		</section>

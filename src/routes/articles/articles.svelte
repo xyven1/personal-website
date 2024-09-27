@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { goto, replaceState } from '$app/navigation';
 	import { type Post } from '$lib/types/posts';
-	import Icon from '$lib/Icon.svelte';
-	import Tag from '$lib/Tag.svelte';
+	import { Icon, Tag } from '$lib/components';
 	import ufuzzy from '@leeoniya/ufuzzy';
 	import { mdiLoading, mdiMagnify } from '@mdi/js';
 	import { tick } from 'svelte';

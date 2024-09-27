@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { blurb, name } from '$lib/info';
+	import { blurb, name } from '$lib/data/info';
 	import Articles from '../articles.svelte';
 
 	export let data;

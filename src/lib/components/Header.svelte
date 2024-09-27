@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import Icon from '$lib/Icon.svelte';
+	import Icon from '$lib/components/Icon.svelte';
 	import { mdiGithub } from '@mdi/js';
 
 	export let routes: {
@@ -10,8 +10,8 @@
 </script>
 
 <header class="sticky top-0 z-50 flex h-12 overflow-clip overflow-x-hidden bg-inherit shadow">
-	<button class="hamb z-10 cursor-pointer sm:hidden" tabindex="-1">
-		<span class="hamb-line relative m-5 block h-0.5 w-6" />
+	<button class="hamb z-10 cursor-pointer sm:hidden" tabindex="-1" aria-label="Menu">
+		<span class="hamb-line relative m-5 block h-0.5 w-6"></span>
 	</button>
 
 	<span class="grow sm:max-w-[3rem]"></span>

@@ -1,10 +1,10 @@
-import homeManagementEdit from '$lib/home-management/home-management-edit.svg';
-import homeManagementIrrigation from '$lib/home-management/home-management-irrigation.svg';
-import homeManagementLightMode from '$lib/home-management/home-management-light-mode.svg';
-import homeManagementLights from '$lib/home-management/home-management-lights.svg';
-import homeManagementMobile from '$lib/home-management/home-management-mobile.svg';
+import homeManagementEdit from '$lib/data/home-management/home-management-edit.svg';
+import homeManagementIrrigation from '$lib/data/home-management/home-management-irrigation.svg';
+import homeManagementLightMode from '$lib/data/home-management/home-management-light-mode.svg';
+import homeManagementLights from '$lib/data/home-management/home-management-lights.svg';
+import homeManagementMobile from '$lib/data/home-management/home-management-mobile.svg';
 
-import dipole from '$lib/images/dipole-physics-simulation.png?as=run';
+import dipole from '$lib/data/images/dipole-physics-simulation.png?as=run';
 import type { Picture } from 'imagetools-core';
 export type EmbedInfo = {
 	path: string;

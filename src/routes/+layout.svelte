@@ -1,6 +1,5 @@
 <script lang="ts">
-	import Icon from '$lib/Icon.svelte';
-	import Header from '$lib/header/Header.svelte';
+	import { Header, Icon } from '$lib/components';
 	import '../app.css';
 	// This has to come after tailwind
 	import '@splidejs/svelte-splide/css';

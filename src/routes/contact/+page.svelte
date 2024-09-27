@@ -1,29 +1,18 @@
 <script lang="ts">
-	import Icon from '$lib/Icon.svelte';
+	import { Icon } from '$lib/components';
+	import type { PageData } from './$types';
 	import { mdiLoading } from '@mdi/js';
-	import { onMount } from 'svelte';
 	import type { EventHandler } from 'svelte/elements';
+
 	enum State {
-		None,
 		Input,
 		Submitting,
 		Success,
 		Failure
 	}
 
-	let api = '';
 	const from = 'Personal Site Form';
-	let state = State.None;
-	onMount(() => {
-		api =
-			{
-				localhost: '1cb1191f-2cf4-4cb8-a895-2b83e91a2be5',
-				'xyven.dev': '5b3ec125-a470-42d7-bda4-1b2f2dc124aa',
-				'personal-website-svelte.pages.dev': '5b3ec125-a470-42d7-bda4-1b2f2dc124aa',
-				'blake.bruell.com': 'eb0d973f-8562-4ac4-a138-8488d6fac2a0'
-			}[window.location.hostname] || api;
-		state = State.Input;
-	});
+	let state = State.Input;
 	const submit: EventHandler<SubmitEvent, HTMLFormElement> = async (data) => {
 		state = State.Submitting;
 		const formData = new FormData(data.currentTarget);
@@ -44,6 +33,7 @@
 			state = State.Failure;
 		}
 	};
+	export let data: PageData;
 </script>
 
 <svelte:head>
@@ -58,21 +48,21 @@
 	</hgroup>
 {:else}
 	<form
-		class="form-children relative flex w-full max-w-xl flex-grow flex-col justify-center gap-y-4 px-8"
+		class="form-children relative flex w-full max-w-xl flex-grow flex-col justify-center gap-y-4 px-4"
+		method="POST"
+		action="https://api.web3forms.com/submit"
 		on:submit|preventDefault={submit}
 	>
 		<!-- overlay -->
-		{#if state === State.Submitting || state === State.None}
-			<div class="absolute inset-0 flex flex-col items-center justify-center dark:bg-black/50">
-				<noscript class="text-center text-3xl">
-					This form requires JavaScript, appologies for the inconvenience.
-				</noscript>
+		{#if state === State.Submitting}
+			<div class="fixed inset-0 flex flex-col items-center justify-center backdrop-blur-sm">
 				<Icon size={2} path={mdiLoading} class="jsonly animate-spin" />
 			</div>
 		{/if}
-		<input type="hidden" name="access_key" value={api} />
+		<input type="hidden" name="access_key" value={data.api} />
 		<input type="hidden" name="from_name" value={from} />
 		<input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+		<input type="hidden" name="redirect" value={`${data.origin}/contact/success`} />
 		<div>
 			<label for="name">Name</label>
 			<input type="text" name="name" id="name" placeholder="Name" required />

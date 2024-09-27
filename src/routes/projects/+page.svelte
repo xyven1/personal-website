@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Splide, SplideSlide, SplideTrack } from '@splidejs/svelte-splide';
-	import Img from '@zerodevx/svelte-img';
-	import { blurb, name } from '$lib/info';
+	import { Image } from '$lib/components';
+	import { blurb, name } from '$lib/data/info';
 
 	export let data;
 </script>
@@ -22,7 +22,7 @@
 				<Splide
 					hasTrack={false}
 					options={{
-						// autoplay: project.images.length > 1,
+						autoplay: project.images.length > 1,
 						resetProgress: false,
 						interval: 5000,
 						pauseOnHover: true,
@@ -33,14 +33,10 @@
 					class="jsonly"
 				>
 					<SplideTrack class="overflow-hidden rounded-xl bg-stone-400 dark:bg-neutral-800">
-						{#each project.images as image}
+						{#each project.images as src}
 							<SplideSlide class="mb-8 flex justify-center align-middle">
 								<a href="/projects/{project.slug}">
-									{#if typeof image === 'string' && image.endsWith('.svg')}
-										<img class="h-full" src={image} alt={image.substring(image.lastIndexOf('/'))} />
-									{:else}
-										<Img src={image} />
-									{/if}
+									<Image {src} />
 								</a>
 							</SplideSlide>
 						{/each}
@@ -48,28 +44,12 @@
 				</Splide>
 				<noscript>
 					<a href="/projects/{project.slug}">
-						{#if typeof project.images[0] === 'string' && project.images[0].endsWith('.svg')}
-							<img
-								class="h-full"
-								src={project.images[0]}
-								alt={project.images[0].substring(project.images[0].lastIndexOf('/'))}
-							/>
-						{:else}
-							<Img src={project.images[0]} />
-						{/if}
+						<Image src={project.images[0]} />
 					</a>
 				</noscript>
 			{:else if project.images.length === 1}
 				<a href="/projects/{project.slug}">
-					{#if typeof project.images[0] === 'string' && project.images[0].endsWith('.svg')}
-						<img
-							class="h-full"
-							src={project.images[0]}
-							alt={project.images[0].substring(project.images[0].lastIndexOf('/'))}
-						/>
-					{:else}
-						<Img src={project.images[0]} />
-					{/if}
+					<Image src={project.images[0]} />
 				</a>
 			{/if}
 		</section>

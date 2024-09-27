@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { blurb, name } from '$lib/info';
+	import { blurb, name } from '$lib/data/info';
 	import Articles from './articles.svelte';
 	export let data;
 </script>

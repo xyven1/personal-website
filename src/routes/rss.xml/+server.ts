@@ -1,5 +1,5 @@
 import type { Post } from '$lib/types/posts';
-import type { RequestHandler } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ fetch }) => {
 	const response = await fetch('/api/articles');

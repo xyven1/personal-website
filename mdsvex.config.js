@@ -19,7 +19,21 @@ const autoLinkOptions = {
 		class: 'article-heading'
 	},
 	content() {
-		return h('svg', { viewBox: '0 0 24 24' }, [h('path', { d: mdiLinkVariant })]);
+		return h('svg', { viewBox: '0 0 24 24', width: '1em' }, [h('path', { d: mdiLinkVariant })]);
+	}
+};
+
+/** @type {import('rehype-toc').Options} */
+const tocOptions = {
+	customizeTOC(node) {
+		return h('section', { class: 'toc-section' }, [
+			h('label', { for: 'toc-toggle' }, [
+				h('svg', { viewBox: '0 0 24 24', width: '2.5em' }, h('path', { d: mdiTableOfContents })),
+				h('span', 'Contents')
+			]),
+			h('input', { type: 'checkbox', id: 'toc-toggle' }),
+			h('div', node)
+		]);
 	}
 };
 
@@ -34,24 +48,10 @@ const mdsvexOptions = {
 		[rehypeKatex],
 		rehypeSlug,
 		[rehypeAutoLinkHeadings, autoLinkOptions],
-		[
-			rehypeToc,
-			{
-				customizeTOC(node) {
-					return h('section', { class: 'toc-section' }, [
-						h('label', { for: 'toc-toggle' }, [
-							h('svg', { viewBox: '0 0 24 24' }, h('path', { d: mdiTableOfContents })),
-							h('span', 'Contents')
-						]),
-						h('input', { type: 'checkbox', id: 'toc-toggle' }),
-						h('div', node)
-					]);
-				}
-			}
-		]
+		[rehypeToc, tocOptions]
 	],
 	layout: {
-		_: './src/lib/mdsvex-wrapper.svelte'
+		_: './src/lib/mdsvex/mdsvex-wrapper.svelte'
 	}
 };
 export default mdsvexOptions;

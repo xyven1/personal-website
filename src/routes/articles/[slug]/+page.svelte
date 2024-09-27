@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Icon from '$lib/Icon.svelte';
-	import Tag from '$lib/Tag.svelte';
+	import Icon from '$lib/components/Icon.svelte';
+	import Tag from '$lib/components/Tag.svelte';
 	import { mdiFileCodeOutline } from '@mdi/js';
 
 	export let data;
