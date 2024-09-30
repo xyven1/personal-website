@@ -31,7 +31,7 @@
 						arrows: project.images.length > 1,
 						pagination: project.images.length > 1
 					}}
-					class="jsonly"
+					class="jsonly h-[80vh]"
 				>
 					<SplideTrack class="overflow-hidden rounded-xl bg-stone-400 dark:bg-neutral-800">
 						{#each project.images as src}
