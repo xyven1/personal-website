@@ -5,19 +5,19 @@
 
 @layer base {
 	a:not(.large-anchor):not(.not-link) {
-		@apply dark:hocus:text-daccent hocus:text-accent underline decoration-1 underline-offset-2 transition-[color] duration-300;
+		@apply underline decoration-1 underline-offset-2 transition-[color] duration-300 hocus:text-accent dark:hocus:text-daccent;
 	}
 	.large-anchor .large-anchor-link {
 		@apply decoration-1 underline-offset-2 transition-[color] duration-300;
 	}
 	.large-anchor:is(:hover, :focus) .large-anchor-link {
-		@apply dark:text-daccent text-accent underline;
+		@apply text-accent underline dark:text-daccent;
 	}
 }
 
 html,
 body {
-	@apply h-full;
+	@apply h-full dark:[color-scheme:dark];
 }
 body {
 	font-family: 'Fira Sans', sans-serif;
