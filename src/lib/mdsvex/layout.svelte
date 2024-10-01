@@ -90,7 +90,7 @@
 		@apply my-4;
 	}
 	:global(.toc-section > label) {
-		@apply flex cursor-pointer items-center gap-x-2 xl:hidden;
+		@apply flex cursor-pointer flex-wrap items-center gap-x-2 xl:hidden;
 	}
 	:global(.toc-section > label > svg) {
 		@apply h-8 w-8 fill-current;
