@@ -6,11 +6,19 @@
 	export { img };
 </script>
 
-<section
-	class={'prose prose-neutral min-w-0 max-w-full md:prose-lg dark:prose-invert ' + $$props.class}
->
-	<slot />
-</section>
+<div class={$$props.class}>
+	<section
+		class="prose prose-neutral min-w-0 max-w-[120ch] break-words md:prose-lg dark:prose-invert"
+	>
+		<slot />
+	</section>
+	<div class="flex h-0 flex-wrap">
+		<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+		{#each Array(6) as _}
+			<span class="w-[20ch]"></span>
+		{/each}
+	</div>
+</div>
 
 <style lang="postcss">
 	:global(html) {

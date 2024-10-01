@@ -26,6 +26,7 @@ const autoLinkOptions = {
 /** @type {import('rehype-toc').Options} */
 const tocOptions = {
 	customizeTOC(node) {
+		if (node.children[0].children.length === 0) return null;
 		return h('section', { class: 'toc-section' }, [
 			h('label', { for: 'toc-toggle' }, [
 				h('svg', { viewBox: '0 0 24 24', width: '2.5em' }, h('path', { d: mdiTableOfContents })),

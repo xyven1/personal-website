@@ -46,7 +46,7 @@
 	<Header {routes} />
 
 	<main
-		class="flex w-full max-w-[1600px] flex-grow flex-col items-center justify-center self-center px-4 sm:px-16"
+		class="flex w-full flex-grow flex-col items-center justify-center self-center px-4 sm:px-16"
 	>
 		<slot />
 	</main>
