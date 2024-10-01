@@ -17,14 +17,15 @@
 	<span class="grow sm:max-w-[3rem]"></span>
 
 	<nav
-		class="pointer-events-none fixed h-full w-full overflow-hidden
-		bg-stone-300/50 opacity-0 backdrop-blur transition-[opacity] duration-[400ms]
+		class="pointer-events-none fixed h-full w-full overflow-hidden bg-stone-300
+		!bg-opacity-95 opacity-0 transition-[opacity] duration-[400ms]
+		supports-[display:grid]:!bg-opacity-50 supports-[display:grid]:backdrop-blur
 		sm:pointer-events-auto sm:relative sm:max-h-full sm:w-auto
-		sm:grow sm:!bg-transparent sm:opacity-100 sm:transition-none dark:bg-neutral-900/50"
+		sm:grow sm:!bg-transparent sm:opacity-100 sm:transition-none dark:bg-neutral-900"
 	>
 		<ul
-			class="flex h-full flex-col gap-y-2 overscroll-contain px-2 pt-12 text-3xl
-			sm:flex-row sm:items-center sm:justify-center sm:gap-x-8 sm:px-0 sm:pt-0 md:text-4xl"
+			class="flex h-full flex-col gap-y-2 px-2 pt-12 text-3xl sm:flex-row
+			sm:items-center sm:justify-center sm:gap-x-8 sm:px-0 sm:pt-0 md:text-4xl"
 		>
 			{#each routes as route}
 				<li class={$page.url.pathname === route.path ? 'text-accent dark:text-daccent' : ''}>
@@ -36,8 +37,8 @@
 		</ul>
 	</nav>
 
-	<div class=" w-12 justify-center">
-		<a href="https://github.com/Xyven1" aria-label="Github Account">
+	<div class="w-12 justify-center">
+		<a href="https://github.com/xyven1" aria-label="Github Account">
 			<Icon size={2} path={mdiGithub} />
 		</a>
 	</div>
