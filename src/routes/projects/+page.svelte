@@ -22,7 +22,6 @@
 				<Splide
 					hasTrack={false}
 					options={{
-						height: '80vh',
 						autoplay: project.images.length > 1,
 						resetProgress: false,
 						interval: 5000,
@@ -31,13 +30,13 @@
 						arrows: project.images.length > 1,
 						pagination: project.images.length > 1
 					}}
-					class="jsonly h-[80vh]"
+					class="jsonly [&:not(.is-initialized)]:h-[80vh]"
 				>
 					<SplideTrack class="overflow-hidden rounded-xl bg-stone-400 dark:bg-neutral-800">
 						{#each project.images as src}
 							<SplideSlide class="mb-8 flex justify-center align-middle">
 								<a href="/projects/{project.slug}">
-									<Image {src} />
+									<Image {src} class="max-h-[80vh]" />
 								</a>
 							</SplideSlide>
 						{/each}
@@ -45,12 +44,12 @@
 				</Splide>
 				<noscript>
 					<a href="/projects/{project.slug}">
-						<Image src={project.images[0]} />
+						<Image src={project.images[0]} class="max-h-[80vh]" />
 					</a>
 				</noscript>
 			{:else if project.images.length === 1}
 				<a href="/projects/{project.slug}">
-					<Image src={project.images[0]} />
+					<Image src={project.images[0]} class="max-h-[80vh]" />
 				</a>
 			{/if}
 		</section>
