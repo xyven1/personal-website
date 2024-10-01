@@ -66,7 +66,7 @@
 	</script>
 </svelte:head>
 
-<article>
+<article class="max-w-full">
 	<section class="relative border-b-[3px] border-neutral-800 pb-2">
 		<h1 class="text-4xl sm:text-5xl">{data.meta.title}</h1>
 		<div class="flex flex-wrap">
