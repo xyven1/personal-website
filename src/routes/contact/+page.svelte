@@ -95,13 +95,15 @@
 	</form>
 {/if}
 
-<style lang="postcss">
-	.form-children label {
-		@apply mb-2 block text-sm font-bold;
-	}
-	.form-children input,
-	.form-children button,
-	.form-children textarea {
-		@apply w-full appearance-none rounded border border-current bg-inherit px-3 py-2 leading-tight outline-none transition-colors focus:outline-2 focus:-outline-offset-1 focus:outline-accent dark:focus:outline-daccent;
+<style lang="scss">
+	.form-children {
+		label {
+			@apply mb-2 block text-sm font-bold;
+		}
+		input,
+		button,
+		textarea {
+			@apply w-full appearance-none rounded border border-current bg-inherit px-3 py-2 leading-tight outline-none transition-colors focus:outline-2 focus:-outline-offset-1 focus:outline-accent dark:focus:outline-daccent;
+		}
 	}
 </style>

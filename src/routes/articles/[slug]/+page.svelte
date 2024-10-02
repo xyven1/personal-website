@@ -30,9 +30,7 @@
 			});
 		}
 		const anchors = [];
-		Array.from(document.querySelectorAll('.article-heading'));
 		const tocLinks = [];
-		Array.from(document.querySelectorAll('.toc-link'));
 		function update() {
 			if (window.innerWidth < 1280) {
 				return;
@@ -49,7 +47,7 @@
 			}
 		}
 		window.onload = () => {
-			anchors.push(...document.querySelectorAll('.article-heading'));
+			anchors.push(...document.querySelectorAll('.article-heading-link'));
 			tocLinks.push(...document.querySelectorAll('.toc-link'));
 			update();
 		};
@@ -69,7 +67,7 @@
 <article class="max-w-full">
 	<section class="relative border-b-[3px] border-neutral-800 pb-2">
 		<h1 class="text-4xl sm:text-5xl">{data.meta.title}</h1>
-		<div class="flex flex-wrap">
+		<div class="flex flex-wrap gap-2">
 			<div>
 				<p class="text-stone-600 dark:text-neutral-400">
 					{new Date(data.meta.date).toLocaleDateString()}
@@ -94,8 +92,13 @@
 	</div>
 </article>
 
-<style lang="postcss">
-	:global(.toc-section) {
-		@apply xl:sticky xl:top-12 xl:max-w-[36ch] xl:flex-initial;
+<style lang="scss">
+	:global {
+		.toc-section {
+			@apply xl:sticky xl:top-12 xl:max-w-[36ch] xl:flex-initial;
+		}
+		.toc-link-active {
+			@apply text-accent dark:text-daccent;
+		}
 	}
 </style>

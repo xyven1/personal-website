@@ -20,101 +20,106 @@
 	</div>
 </div>
 
-<style lang="postcss">
-	:global(html) {
-		@apply scroll-smooth;
-	}
-	.prose :global(code) {
-		font-family: 'JetBrains Mono', monospace;
-		--number-width: 5ch;
-		@apply font-normal;
-	}
-	/* Code blocks */
-	.prose :global(pre) {
-		@apply relative overflow-x-hidden p-0;
-	}
-	.prose :global(pre[data-code-title]:before) {
-		@apply block bg-neutral-800 px-4 py-1.5 content-[attr(data-code-title)];
-	}
-	.prose :global(pre > code) {
-		@apply grid overflow-x-auto py-4;
-	}
-	.prose :global(pre[data-code-title] > code) {
-		@apply pt-0;
-	}
-	.prose :global(pre > code > span) {
-		@apply border-l-[3px] border-transparent px-4;
-	}
-	.prose :global(pre > code > span[data-highlighted]) {
-		@apply border-accent bg-accent/30 dark:border-daccent dark:bg-daccent/30;
-	}
-	.prose :global(pre > code[data-line-numbers] > span[data-line-number]) {
-		@apply ml-[var(--number-width)] pl-2;
-	}
-	.prose :global(pre > code[data-line-numbers] > span[data-highlighted]) {
-		@apply border-transparent;
-	}
-	.prose :global(pre > code[data-line-numbers] > span[data-line-number]::before) {
-		@apply absolute -ml-[calc(var(--number-width)+3px+.5rem)] w-[var(--number-width)] border-r-[3px] border-transparent bg-neutral-950 pr-1 text-right text-neutral-500 content-[attr(data-line-number)];
-	}
-	.prose :global(pre > code[data-line-numbers] > span[data-highlighted]::before) {
-		@apply border-accent dark:border-daccent;
-	}
-	/* Headings */
-	.prose :global([id]) {
-		@apply scroll-mt-12;
-	}
-	.prose :global(h2) {
-		@apply border-b-[3px] border-stone-400 dark:border-neutral-700;
-	}
-	.prose :global(h3) {
-		@apply border-b-[1.5px] border-stone-400/50 dark:border-neutral-800;
-	}
-	:global(.article-heading) {
-		@apply inline-block pl-2 align-[-0.15em];
-	}
-	:global(.article-heading > svg) {
-		@apply h-[1em] w-[1em] fill-current;
+<style lang="scss">
+	.prose :global {
+		/* Code blocks */
+		figure[data-rehype-pretty-code-figure] {
+			--shiki-dark-selection: #443e3c;
+			--shiki-light-selection: #e5d8b2;
+
+			@apply my-0 overflow-clip rounded-lg;
+
+			pre {
+				@apply relative overflow-x-hidden rounded-none bg-transparent p-0;
+			}
+
+			code[data-theme*=' '],
+			code[data-theme*=' '] span {
+				@apply text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
+			}
+
+			code {
+				--number-width: 5ch;
+				@apply font-mono grid overflow-x-auto bg-[var(--shiki-light-bg)] py-4 font-normal dark:bg-[var(--shiki-dark-bg)];
+			}
+
+			figcaption[data-rehype-pretty-code-title] {
+				@apply font-mono block bg-stone-400 px-4 py-1.5 text-sm font-bold text-stone-900 content-[attr(data-code-title)] dark:bg-neutral-700 dark:text-neutral-200;
+			}
+
+			span[data-line] {
+				@apply pl-4;
+			}
+
+			span[data-highlighted-line] {
+				@apply bg-[var(--shiki-light-selection)] dark:bg-[var(--shiki-dark-selection)];
+			}
+
+			/* Line numbers */
+			code[data-line-numbers] > {
+				span[data-line] {
+					--gutter-width: calc(var(--number-width) + 1rem);
+					@apply ml-[var(--gutter-width)] pl-0;
+				}
+				span[data-line]::before {
+					@apply absolute -ml-[var(--gutter-width)] w-[var(--gutter-width)] pr-4 text-right content-[counter(line)] [counter-increment:line];
+					@apply bg-[var(--shiki-light-bg)] text-[#a89984] dark:bg-[var(--shiki-dark-bg)] dark:text-[#7c6f64];
+				}
+				span[data-highlighted-line]::before {
+					@apply bg-[var(--shiki-light-selection)] text-[#928374] dark:bg-[var(--shiki-dark-selection)] dark:text-[#928374];
+				}
+			}
+		}
+
+		/* Headings */
+		:is(h1, h2, h3, h4, h5, h6) {
+			@apply scroll-mt-12 border-stone-400 dark:border-neutral-700;
+
+			> a {
+				@apply inline-block pl-2 align-[-0.15em];
+				> svg {
+					@apply h-[1em] w-[1em] fill-current;
+				}
+			}
+		}
+		h2 {
+			@apply border-b-[3px];
+		}
+		h3 {
+			@apply border-b-[1.5px] border-opacity-50;
+		}
 	}
 	/* Table of Contents */
-	:global(.toc-link-active) {
-		@apply text-accent dark:text-daccent;
-	}
-	:global(.toc-level) {
-		@apply border-l-2 border-neutral-700 pl-4;
-	}
-	:global(.toc-level-1) {
-		@apply border-0 pl-0;
-	}
-	:global(.toc-section) {
+	:global .toc-section {
 		@apply my-4;
-	}
-	:global(.toc-section > label) {
-		@apply flex cursor-pointer flex-wrap items-center gap-x-2 xl:hidden;
-	}
-	:global(.toc-section > label > svg) {
-		@apply h-8 w-8 fill-current;
-	}
-	:global(.toc-section > label > span) {
-		@apply fill-current text-2xl;
-	}
-	:global(.toc-section > input[type='checkbox']) {
-		@apply hidden;
-	}
-	:global(.toc-section > div) {
-		@apply grid grid-rows-[0fr] transition-[grid-template-rows] duration-300;
-	}
-	:global(.toc-section > div) {
-		@apply xl:block;
-	}
-	:global(.toc-section > div > nav) {
-		@apply overflow-hidden;
-	}
-	:global(.toc-section:has(> input[type='checkbox']:checked) > div) {
-		@apply grid-rows-[1fr];
-	}
-	/* focus within toc-section, expand it	 */
-	:global(.toc-section:focus-within > div) {
-		@apply grid-rows-[1fr];
+		/* focus within toc-section, expand it	 */
+		&:has(> input[type='checkbox']:checked) > div,
+		&:focus-within > div {
+			@apply grid-rows-[1fr];
+		}
+		> label {
+			@apply flex cursor-pointer flex-wrap items-center gap-x-2 xl:hidden;
+			> svg {
+				@apply h-8 w-8 fill-current;
+			}
+			> span {
+				@apply fill-current text-2xl;
+			}
+		}
+		> input[type='checkbox'] {
+			@apply hidden;
+		}
+		> div {
+			@apply grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 xl:block;
+			> nav {
+				@apply overflow-hidden;
+			}
+		}
+		.toc-level {
+			@apply border-l-2 border-neutral-700 pl-4;
+		}
+		.toc-level-1 {
+			@apply border-0 pl-0;
+		}
 	}
 </style>

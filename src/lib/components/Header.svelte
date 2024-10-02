@@ -44,38 +44,37 @@
 	</div>
 </header>
 
-<style lang="postcss">
-	@custom-selector :--hamb-focus .hamb:focus, .hamb:has(~ nav a:focus);
+<style lang="scss">
 	.hamb-line {
 		@apply bg-stone-950 transition-[background-color] duration-300 before:top-1.5 after:-top-1.5 dark:bg-neutral-200;
-	}
-	.hamb-line::before,
-	.hamb-line::after {
-		@apply absolute block h-full w-full bg-black transition-[transform,top] duration-300 dark:bg-white;
-		content: '';
+		&::before,
+		&::after {
+			@apply absolute block h-full w-full bg-black transition-[transform,top] duration-300 dark:bg-white;
+			content: '';
+		}
 	}
 
-	:global(body:has(.hamb:focus)) {
+	:global(body:has(.hamb:focus, .hamb ~ nav a:focus)) {
 		@apply overflow-hidden;
 	}
 
-	:--hamb-focus ~ nav {
-		@apply pointer-events-auto opacity-100;
-	}
-
-	:--hamb-focus {
+	.hamb:focus,
+	.hamb:has(~ nav a:focus) {
 		@apply pointer-events-none;
-	}
+		~ nav {
+			@apply pointer-events-auto opacity-100;
+		}
 
-	:--hamb-focus .hamb-line {
-		@apply bg-transparent;
-	}
+		.hamb-line {
+			@apply bg-transparent;
+		}
 
-	:--hamb-focus .hamb-line::before {
-		@apply top-0 -rotate-45;
-	}
+		.hamb-line::before {
+			@apply top-0 -rotate-45;
+		}
 
-	:--hamb-focus .hamb-line::after {
-		@apply top-0 rotate-45;
+		.hamb-line::after {
+			@apply top-0 rotate-45;
+		}
 	}
 </style>

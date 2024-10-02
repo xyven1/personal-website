@@ -6,7 +6,8 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		fontFamily: {
-			sans: ['Fira Sans']
+			sans: ['Fira Sans', 'sans-serif'],
+			mono: ['JetBrains Mono', 'monospace']
 		},
 		extend: {
 			colors: {

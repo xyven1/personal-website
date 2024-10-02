@@ -15,12 +15,14 @@
 	}
 }
 
-html,
-body {
-	@apply h-full dark:[color-scheme:dark];
+html {
+	@apply h-full scroll-smooth dark:[color-scheme:dark];
 }
 body {
-	font-family: 'Fira Sans', sans-serif;
-	letter-spacing: 0.02em;
-	background: none transparent;
+	@apply h-full bg-transparent bg-none font-sans;
+}
+html,
+body,
+.app {
+	@apply bg-stone-300 text-stone-950 dark:bg-neutral-900 dark:text-neutral-200;
 }

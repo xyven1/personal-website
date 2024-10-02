@@ -57,9 +57,3 @@
 		<span>© 2022 Blake Bruell</span>
 	</footer>
 </div>
-
-<style lang="postcss">
-	:global(html, body, .app) {
-		@apply bg-stone-300 text-stone-950 dark:bg-neutral-900 dark:text-neutral-200;
-	}
-</style>
