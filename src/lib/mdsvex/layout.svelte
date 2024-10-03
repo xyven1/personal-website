@@ -8,7 +8,7 @@
 
 <div class={$$props.class}>
 	<section
-		class="prose prose-neutral min-w-0 max-w-[120ch] break-words md:prose-lg dark:prose-invert"
+		class="prose prose-stone min-w-0 max-w-[120ch] break-words md:prose-lg dark:prose-neutral dark:prose-invert"
 	>
 		<slot />
 	</section>
@@ -22,6 +22,9 @@
 
 <style lang="scss">
 	.prose :global {
+		::marker {
+			@apply text-stone-500;
+		}
 		code[data-theme*=' '],
 		code[data-theme*=' '] span {
 			@apply text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
@@ -102,7 +105,7 @@
 	}
 	/* Table of Contents */
 	:global .toc-section {
-		@apply my-4;
+		@apply mt-4;
 		/* focus within toc-section, expand it	 */
 		&:has(> input[type='checkbox']:checked) > div,
 		&:focus-within > div {
