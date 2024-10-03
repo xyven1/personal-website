@@ -22,6 +22,16 @@
 
 <style lang="scss">
 	.prose :global {
+		code[data-theme*=' '],
+		code[data-theme*=' '] span {
+			@apply text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
+		}
+		/* Inline Highlighted Code */
+		span[data-rehype-pretty-code-figure] {
+			> code {
+				@apply font-mono rounded-md bg-[var(--shiki-light-bg)] px-[1ch] py-[.15em] font-normal before:content-none after:content-none dark:bg-[var(--shiki-dark-bg)];
+			}
+		}
 		/* Code blocks */
 		figure[data-rehype-pretty-code-figure] {
 			--shiki-dark-selection: #443e3c;
@@ -33,14 +43,9 @@
 				@apply relative overflow-x-hidden rounded-none bg-transparent p-0;
 			}
 
-			code[data-theme*=' '],
-			code[data-theme*=' '] span {
-				@apply text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
-			}
-
 			code {
 				--number-width: 5ch;
-				@apply font-mono grid overflow-x-auto bg-[var(--shiki-light-bg)] py-4 font-normal dark:bg-[var(--shiki-dark-bg)];
+				@apply grid overflow-x-auto bg-[var(--shiki-light-bg)] py-4 dark:bg-[var(--shiki-dark-bg)];
 			}
 
 			figcaption[data-rehype-pretty-code-title] {
@@ -56,16 +61,22 @@
 			}
 
 			/* Line numbers */
-			code[data-line-numbers] > {
-				span[data-line] {
-					--gutter-width: calc(var(--number-width) + 1rem);
+			code[data-line-numbers] {
+				@apply [counter-reset:line];
+				--gutter-width: calc(var(--number-width) + 1rem);
+				> span[data-line] {
 					@apply ml-[var(--gutter-width)] pl-0;
 				}
-				span[data-line]::before {
-					@apply absolute -ml-[var(--gutter-width)] w-[var(--gutter-width)] pr-4 text-right content-[counter(line)] [counter-increment:line];
+				> span[data-line]::before {
+					/* Counter */
+					@apply content-[counter(line)] [counter-increment:line];
+					/* Spacing */
+					@apply absolute -ml-[var(--gutter-width)] w-[var(--gutter-width)] pr-4 text-right;
+					/* Coloring */
 					@apply bg-[var(--shiki-light-bg)] text-[#a89984] dark:bg-[var(--shiki-dark-bg)] dark:text-[#7c6f64];
 				}
-				span[data-highlighted-line]::before {
+				> span[data-highlighted-line]::before {
+					/* Highlighted Coloring */
 					@apply bg-[var(--shiki-light-selection)] text-[#928374] dark:bg-[var(--shiki-dark-selection)] dark:text-[#928374];
 				}
 			}

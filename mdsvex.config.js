@@ -50,7 +50,6 @@ import rehypeSlug from 'rehype-slug';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex-svelte';
 import { mdiLinkVariant, mdiTableOfContents } from '@mdi/js';
-import { transformerCopyButton } from '@rehype-pretty/transformers';
 import fs from 'fs';
 
 import { h } from 'hastscript';
@@ -88,13 +87,7 @@ const rehypeOptions = {
 	theme: {
 		dark: JSON.parse(fs.readFileSync('./themes/gruvbox-dark.json', 'utf-8')),
 		light: JSON.parse(fs.readFileSync('./themes/gruvbox-light.json', 'utf-8'))
-	},
-	transformers: [
-		transformerCopyButton({
-			visibility: 'always',
-			feedbackDuration: 3_000
-		})
-	]
+	}
 };
 
 /** @type {import('mdsvex').MdsvexOptions} */

@@ -7,6 +7,7 @@ import { sveltePreprocess } from 'svelte-preprocess';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: [
+		mdsvex(mdsvexOptions),
 		vitePreprocess(),
 		sveltePreprocess({
 			sourceMap: false,
@@ -20,8 +21,7 @@ const config = {
 			coffeescript: false,
 			pug: false,
 			globalStyle: true
-		}),
-		mdsvex(mdsvexOptions)
+		})
 	],
 	extensions: ['.svelte', '.md'],
 	kit: {
