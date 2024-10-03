@@ -1,8 +1,8 @@
 ---
 title: How I Made My Website
 description: How my personal site works, and why I made the technical choices I did.
-date: 2023-11-21
-updated: 2023-11-25
+date: 2023-11-21 EST
+updated: 2024-10-03 EST
 tags:
   - sveltekit
   - svelte
@@ -12,8 +12,8 @@ published: true
 ### SvelteKit
 This site is built on [**SvelteKit**](https://github.com/sveltejs/kit) (^1.24.1). The main reasons I chose this framework are as follows:
 - **Adapters**: SvelteKit adapters allow for easy integration with many different hosting platforms (including multiple forms of self-hosting) via adapters. This makes the site agnostic to hosting service, but still plug and play with existing solutions like Cloudflare Pages (the current hosting service as of writing)
-- **SSR and Prerendering**: Many different frameworks support this, but SvelteKit has first class support for both SSR (`export const ssr = true;`), and prerendering (`export const prerender = true;`). These features allow the site to be compiled into pure HTML and CSS wherever possible, speeding up page delivery and reducing redundant computation
-- **Optional Hydration**: SvelteKit makes it easy to completely disable the JS runtime (`export const csr = false;`)
+- **SSR and Prerendering**: Many different frameworks support this, but SvelteKit has first class support for both SSR (`export const ssr = true;`), and pre-rendering (`export const prerender = true;`). These features allow the site to be compiled into pure HTML and CSS wherever possible, speeding up page delivery and reducing redundant computation
+- **Optional Hydration**: SvelteKit makes it easy to completely disable the JavaScript runtime (`export const csr = false;`)
 
 ### Tailwind
 I chose to use [**tailwindcss**](https://github.com/tailwindlabs/tailwindcss) (^3.3.3) for styling on this site, as the localized styling as well as robust documentation and ecosystem made it a breeze to use.
@@ -25,16 +25,16 @@ Another key tool is [**mdsvex**](https://github.com/pngwn/MDsveX) (^0.11.0), a t
 #### Remark and Rehype
 Using MDSveX also opened up a huge ecosystem of **remark** and **rehype** plugins, which allow complex transformations of the AST at both the markdown stage and the HTML stage of the transformation. The plugins used include the following:
 - **remark-math** and **rehype-katex**: This combination of plugins allows for beautiful and easy math equations embedded right in the markdown. This plays nicely with markdown editors like obsidian, making editing more ergonomic.
-- **rehype-toc**: Along **rehype-autolink-headings** and **rehype-slug**, this plugin provides a very elegant way of creating a table of contents for the site.
+- **rehype-toc**: Along **rehype-autolink-headings** and **rehype-slug**, this plugin provides an elegant way of creating a table of contents for the site.
 
 #### Code Highlighting
-While there are robust rehype based highlighting plugins, there are often issues using them with MDSveX, due to the way certain symbols which are used in svelte source code are encoded. As such I went with [**@bitmachina/highlighter**](https://github.com/johnhooks/highlighter) (1.0.0-alpha.7), a plugin which is intended for use with MDSveX, and thus has no such issues. Under the hood, it uses [**shiki**](https://github.com/shikijs/shiki), which itself uses the same tokenization engine as VSCode.
+Code highlighting was a tough nut to crack, and is actually still one of the pain points of this site. For the first pass of this site I used [**@bitmachina/highlighter**](https://github.com/johnhooks/highlighter) (1.0.0-alpha.7), a plugin designed for use with MDSveX, which made it easy to get functional. Sadly the project is not maintianed, and so I switched to an option which was more feature-full and actively maintained, [**rehype-pretty-code**](https://github.com/rehype-pretty/rehype-pretty-code) (^0.14.0). To get this working I created a custom implementation for MDSveX's highlighter hook and reassembled markdown code blocks strings which were then passed to a standard [**unified**](https://github.com/unifiedjs/unified) parsing pipeline with rehype-pretty-code. This solution, while kind of hacky, provides as much functionality as possible without having to modify either MDSveX or rehype-pretty-code.
 
 ### Cloudflare Pages
 Currently, the site is hosted on Cloudflare using [Cloudflare Pages](https://developers.cloudflare.com/pages/). There are some nice advantages:
 - Cloudflare pages support serverless functions, which pair nicely with `+server.ts` routes in SvelteKit
 - Continuous deployment is free and plentiful (500 per month on the free plan) and updates are extremely fast
-- Integration with SvelteKit is completely automatic using the preinstalled `adapter-auto`
+- Integration with SvelteKit is completely automatic using the pre-installed `adapter-auto`
 - Setting up multiple domains was easy, and I was already using Cloudflare to manage the relevant DNS
 - Active community
 

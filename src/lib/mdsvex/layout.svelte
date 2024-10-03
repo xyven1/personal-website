@@ -29,11 +29,9 @@
 		code[data-theme*=' '] span {
 			@apply text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
 		}
-		/* Inline Highlighted Code */
-		span[data-rehype-pretty-code-figure] {
-			> code {
-				@apply font-mono rounded-md bg-[var(--shiki-light-bg)] px-[1ch] py-[.15em] font-normal before:content-none after:content-none dark:bg-[var(--shiki-dark-bg)];
-			}
+		/* Inline Code */
+		*:not(pre) > code {
+			@apply font-mono rounded-[4px] border border-stone-400/50 bg-stone-400/20 px-1 py-[.1em] font-normal before:content-none after:content-none dark:border-neutral-700 dark:bg-neutral-800;
 		}
 		/* Code blocks */
 		figure[data-rehype-pretty-code-figure] {
