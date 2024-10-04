@@ -9,4 +9,4 @@
 	<meta name="description" content={blurb} />
 </svelte:head>
 
-<Articles posts={data.posts} />
+<Articles posts={data.posts} tags={[]} allTags={data.tags} />

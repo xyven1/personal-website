@@ -1,4 +1,5 @@
-import type { Post } from '$lib/types';
+import type { Posts } from '$lib/types';
+import { filterTags, postsToStrings } from '../search';
 import type { PageLoad } from './$types';
 
 import ufuzzy from '@leeoniya/ufuzzy';
@@ -11,29 +12,18 @@ const uf = new ufuzzy({
 });
 
 export const load: PageLoad = async ({ fetch, url }) => {
-	const response = await fetch('/api/articles');
-	const allPosts: Post[] = await response.json();
-	const postStrings = allPosts.map((p) => {
-		const date = new Date(p.date);
-		return [
-			p.title,
-			p.description,
-			...p.tags,
-			date.toLocaleDateString(),
-			date.toLocaleDateString(undefined, {
-				weekday: 'long',
-				month: 'long'
-			})
-		].join(' ');
-	});
+	const resp: Posts = await (await fetch(`/api/articles`)).json();
+	// Filter posts by tags
+	resp.posts = filterTags(resp.posts, url.searchParams.getAll('tag'));
+	// Search posts by query
 	const q = url.searchParams.get('q');
 	if (q === null || q === '') {
-		return { posts: allPosts };
+		return resp;
 	}
+	const postStrings = postsToStrings(resp.posts);
 	const [idxs, ,] = uf.search(postStrings, q, 1);
-	let posts: Post[] = [];
 	if (idxs !== null && idxs.length > 0) {
-		posts = idxs.map((i) => allPosts[i]);
+		resp.posts = idxs.map((i) => resp.posts[i]);
 	}
-	return { posts };
+	return resp;
 };

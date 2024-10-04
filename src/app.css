@@ -21,6 +21,10 @@ html {
 body {
 	@apply h-full bg-transparent bg-none font-sans;
 }
+
+body:has(header) :is([id]) {
+	@apply scroll-mt-12;
+}
 html,
 body,
 .app {

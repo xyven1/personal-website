@@ -19,7 +19,7 @@
 	<nav
 		class="pointer-events-none fixed h-full w-full overflow-hidden bg-stone-300
 		!bg-opacity-95 opacity-0 transition-[opacity] duration-[400ms]
-		supports-[display:grid]:!bg-opacity-50 supports-[display:grid]:backdrop-blur
+		supports-[backdrop-filter]:!bg-opacity-50 supports-[backdrop-filter]:backdrop-blur
 		sm:pointer-events-auto sm:relative sm:max-h-full sm:w-auto
 		sm:grow sm:!bg-transparent sm:opacity-100 sm:transition-none dark:bg-neutral-900"
 	>

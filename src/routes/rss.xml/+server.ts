@@ -1,9 +1,8 @@
-import type { Post } from '$lib/types';
+import type { Posts } from '$lib/types';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ fetch }) => {
-	const response = await fetch('/api/articles');
-	const posts: Post[] = await response.json();
+	const resp: Posts = await (await fetch('/api/articles')).json();
 
 	const headers = { 'Content-Type': 'application/xml' };
 
@@ -14,7 +13,7 @@ export const GET: RequestHandler = async ({ fetch }) => {
 				<description>What Blake Bruell is talking and thinking about</description>
 				<link>https://xyven.dev/articles</link>
 				<atom:link href="https://xyven.dev/rss.xml" rel="self" type="application/rss+xml"/>
-				${posts
+				${resp.posts
 					.map(
 						(post) => `
 						<item>

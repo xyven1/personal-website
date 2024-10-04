@@ -7,3 +7,8 @@ export type Post = {
 	description: string;
 	tags: string[];
 };
+
+export type Posts = {
+	posts: Post[];
+	tags: string[];
+};

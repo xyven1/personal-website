@@ -1,5 +1,6 @@
-<script lang="ts" context="module">
+<script lang="ts">
 	import img from '@zerodevx/svelte-img';
+	import Giscus from '@giscus/svelte';
 
 	import 'katex/dist/katex.min.css';
 
@@ -11,6 +12,23 @@
 		class="prose prose-stone min-w-0 max-w-[120ch] break-words md:prose-lg dark:prose-neutral dark:prose-invert"
 	>
 		<slot />
+	</section>
+	<section class="mx-auto mt-12 max-w-[80ch]" id="comments">
+		<Giscus
+			id=""
+			repo="xyven1/personal-website"
+			repoId="R_kgDOGsqAyA"
+			category="Comments"
+			categoryId="DIC_kwDOGsqAyM4CjEt3"
+			mapping="og:title"
+			term=""
+			strict="1"
+			reactionsEnabled="1"
+			emitMetadata="0"
+			inputPosition="top"
+			theme="preferred_color_scheme"
+			lang="en"
+		/>
 	</section>
 	<div class="flex h-0 flex-wrap">
 		<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
@@ -85,7 +103,7 @@
 
 		/* Headings */
 		:is(h1, h2, h3, h4, h5, h6) {
-			@apply scroll-mt-12 border-stone-400 dark:border-neutral-700;
+			@apply border-stone-400 dark:border-neutral-700;
 
 			> a {
 				@apply inline-block pl-2 align-[-0.15em];
@@ -128,7 +146,7 @@
 			}
 		}
 		.toc-level {
-			@apply border-l-2 border-neutral-700 pl-4;
+			@apply border-l-2 border-stone-400 pl-4 dark:border-neutral-700;
 		}
 		.toc-level-1 {
 			@apply border-0 pl-0;

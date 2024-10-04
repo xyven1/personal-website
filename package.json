@@ -17,6 +17,7 @@
 		"@eslint/js": "^9.9.1",
 		"@fontsource/fira-sans": "^5.0.21",
 		"@fontsource/jetbrains-mono": "^5.0.21",
+		"@giscus/svelte": "^3.0.0",
 		"@mdi/js": "^7.4.47",
 		"@rehype-pretty/transformers": "^0.13.2",
 		"@splidejs/svelte-splide": "^0.2.9",

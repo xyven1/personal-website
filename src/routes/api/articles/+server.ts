@@ -1,4 +1,4 @@
-import type { Post } from '$lib/types';
+import type { Post, Posts } from '$lib/types';
 import { json } from '@sveltejs/kit';
 
 async function getPosts() {
@@ -26,5 +26,10 @@ async function getPosts() {
 
 export async function GET() {
 	const posts = await getPosts();
-	return json(posts);
+	const tags = [...new Set(posts.flatMap((p) => p.tags))];
+	const data: Posts = {
+		posts,
+		tags
+	};
+	return json(data);
 }

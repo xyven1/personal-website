@@ -71,6 +71,13 @@ const autoLinkOptions = {
 const tocOptions = {
 	customizeTOC(node) {
 		if (node.children[0].children.length === 0) return null;
+		node.children[0].children.push(
+			...[
+				h('li', { class: 'toc-item toc-item-h2' }, [
+					h('a', { class: 'toc-link toc-link-h2', href: '#comments' }, 'Comments')
+				])
+			]
+		);
 		return h('section', { class: 'toc-section' }, [
 			h('label', { for: 'toc-toggle' }, [
 				h('svg', { viewBox: '0 0 24 24', width: '2.5em' }, h('path', { d: mdiTableOfContents })),
@@ -103,8 +110,6 @@ const mdsvexOptions = {
 		[rehypeAutoLinkHeadings, autoLinkOptions],
 		[rehypeToc, tocOptions]
 	],
-	layout: {
-		_: './src/lib/mdsvex/wrapper.svelte'
-	}
+	layout: './src/lib/mdsvex/wrapper.svelte'
 };
 export default mdsvexOptions;

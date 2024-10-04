@@ -5,7 +5,8 @@
 
 	export let data;
 
-	$: query = $page.url.searchParams.get('q') || '';
+	const query = $page.url.searchParams.get('q') || '';
+	const tags = $page.url.searchParams.getAll('tag');
 </script>
 
 <svelte:head>
@@ -13,4 +14,4 @@
 	<meta name="description" content={blurb} />
 </svelte:head>
 
-<Articles posts={data.posts} {query} />
+<Articles posts={data.posts} {query} {tags} allTags={data.tags} />

@@ -1,58 +1,70 @@
 <script lang="ts">
 	import { goto, replaceState } from '$app/navigation';
-	import type { Post } from '$lib/types';
+	import type { Post, Posts } from '$lib/types';
 	import { Icon, Tag } from '$lib/components';
 	import ufuzzy from '@leeoniya/ufuzzy';
-	import { mdiLoading, mdiMagnify } from '@mdi/js';
+	import { mdiCheck, mdiLoading, mdiMagnify } from '@mdi/js';
 	import { tick } from 'svelte';
 	import { browser } from '$app/environment';
+	import { filterTags, postsToStrings } from './search';
 
 	export let posts: Post[];
-	export let query = '';
+	export let allTags: string[];
+
+	export let query: string = '';
+	export let tags: string[] = [];
+
 	let search: HTMLInputElement;
 
 	const uf = new ufuzzy({
 		intraIns: 1
 	});
 
-	function formatSearch(search: string) {
-		return `/articles${search && `/search?q=${search}`}`;
+	function formatSearch(search: string, tags: string[]) {
+		const query = new URLSearchParams(tags.map((t) => ['tag', t]));
+		if (search) query.set('q', search);
+		const queryString = query.toString();
+		return `/articles${queryString && `/search?${queryString}`}`;
 	}
 
 	$: currentSearch = query;
+	$: currentTags = tags;
+
 	$: (async () => {
 		if (!browser) return;
 		await tick();
-		replaceState(formatSearch(currentSearch), {});
+		replaceState(formatSearch(currentSearch, currentTags), {});
 	})();
-	$: postStrings = posts.map((p) => {
-		const date = new Date(p.date);
-		return [
-			p.title,
-			p.description,
-			...p.tags,
-			date.toLocaleDateString(),
-			date.toLocaleDateString(undefined, {
-				weekday: 'long',
-				month: 'long'
-			})
-		].join(' ');
-	});
+
+	$: filteredPosts = filterTags(posts, currentTags);
+	$: postStrings = postsToStrings(filteredPosts);
 	$: shownPosts =
 		currentSearch === ''
-			? posts
-			: (uf.search(postStrings, currentSearch, 1)[0] ?? []).map((i) => posts[i]);
+			? filteredPosts
+			: (uf.search(postStrings, currentSearch, 1)[0] ?? []).map((i) => filteredPosts[i]);
 
-	let allLoaded = query === '';
+	let allLoaded = query === '' && tags.length === 0;
 	let loadingAllPosts = false;
-	async function updateSearch(search: string) {
-		if (search === currentSearch) return;
-		currentSearch = search;
+	async function updateSearch(
+		search: string | null = null,
+		tag: { value: string; checked: boolean } | null = null
+	) {
+		const staleSearch = search === null || search === currentSearch;
+		const staleTag =
+			tag === null ||
+			(tag.checked ? currentTags.includes(tag.value) : !currentTags.includes(tag.value));
+		if (staleSearch && staleTag) return;
+		if (!staleSearch) currentSearch = search;
+		if (!staleTag) {
+			if (tag.checked) currentTags = [...currentTags, tag.value];
+			else currentTags = currentTags.filter((t) => t !== tag.value);
+		}
 		if (!allLoaded) {
 			if (loadingAllPosts) return;
 			loadingAllPosts = true;
-			const resp = await fetch(`/api/articles`);
-			posts = await resp.json();
+			const resp: Posts = await (await fetch(`/api/articles`)).json();
+			posts = resp.posts;
+			allTags = resp.tags;
 			loadingAllPosts = false;
 			allLoaded = true;
 		}
@@ -75,38 +87,74 @@
 
 <article class="relative flex w-full flex-grow flex-col">
 	<form
-		class="sticky top-8 -mt-4 mb-4 flex flex-wrap justify-center gap-4 bg-stone-300 pb-1 pt-6 dark:bg-neutral-900"
+		class="sticky top-8 -mt-4 mb-4 flex flex-wrap justify-center gap-2 bg-stone-300 pb-1 pt-6 dark:bg-neutral-900"
 		action="/articles/search"
 		method="get"
 		on:submit={(e) => {
 			e.preventDefault();
-			replaceState(formatSearch(query), {});
-			goto(formatSearch(currentSearch));
+			replaceState(formatSearch(query, tags), {});
+			goto(formatSearch(currentSearch, currentTags));
 		}}
 	>
-		<div
-			class="flex min-w-0 max-w-[120ch] flex-grow border-b-2 border-current transition-[border-color] duration-300 focus-within:border-accent dark:focus-within:border-daccent"
-		>
-			<Icon path={mdiMagnify} class="flex-shrink-0" size={1} />
-			<input
-				bind:this={search}
-				type="search"
-				id="search"
-				autocomplete="off"
-				name="q"
-				class="min-w-0 flex-grow appearance-none text-ellipsis bg-inherit text-current outline-none [&::-webkit-search-cancel-button]:appearance-none"
-				placeholder="Search articles"
-				value={query}
-				on:input={(e) => {
-					e.preventDefault();
-					updateSearch(e.currentTarget.value);
-				}}
-			/>
+		<div class="flex-grow space-y-2">
+			<div class="flex flex-wrap justify-center gap-4">
+				<div
+					class="flex min-w-0 max-w-[120ch] flex-grow border-b-2 border-current transition-[border-color] duration-300 focus-within:border-accent dark:focus-within:border-daccent"
+				>
+					<Icon path={mdiMagnify} class="flex-shrink-0" size={1} />
+					<input
+						bind:this={search}
+						type="search"
+						id="search"
+						autocomplete="off"
+						name="q"
+						class="min-w-0 flex-grow appearance-none text-ellipsis bg-inherit text-current outline-none [&::-webkit-search-cancel-button]:appearance-none"
+						placeholder="Search articles"
+						value={query}
+						on:input={(e) => {
+							e.preventDefault();
+							updateSearch(e.currentTarget.value);
+						}}
+					/>
+				</div>
+			</div>
+			<div class="space-x-2">
+				{#each allTags as tag}
+					<label
+						for={`$tag-${tag}`}
+						class="inline-flex cursor-pointer items-center gap-1 self-center rounded-full bg-accent !bg-opacity-50 px-3 py-1 text-center text-stone-100 dark:bg-daccent dark:!text-current [&:has(>input:checked)]:!bg-opacity-100"
+					>
+						<input
+							type="checkbox"
+							name="tag"
+							id={`$tag-${tag}`}
+							class="peer"
+							value={tag}
+							checked={currentTags.includes(tag)}
+							on:change={(e) => {
+								e.preventDefault();
+								updateSearch(null, { value: tag, checked: e.currentTarget.checked });
+							}}
+							hidden
+						/>
+						<div
+							class="grid grid-cols-[0fr] transition-[grid-template-columns] duration-300 peer-checked:grid-cols-[1fr]"
+						>
+							<div class="overflow-hidden">
+								<Icon path={mdiCheck} size={0.9} />
+							</div>
+						</div>
+						<span>{tag}</span>
+					</label>
+				{/each}
+			</div>
 		</div>
 		<button
 			type="submit"
-			class=" uppercase transition-colors hocus:text-accent dark:hocus:text-daccent">Search</button
+			class="self-start uppercase transition-colors hocus:border-accent hocus:text-accent dark:hocus:border-daccent dark:hocus:text-daccent"
 		>
+			Search
+		</button>
 	</form>
 	{#if loadingAllPosts}
 		<div class="flex justify-center gap-x-2">
