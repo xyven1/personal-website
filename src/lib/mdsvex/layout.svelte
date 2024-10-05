@@ -1,6 +1,5 @@
 <script lang="ts">
 	import img from '@zerodevx/svelte-img';
-	// import Giscus from '@giscus/svelte';
 
 	import 'katex/dist/katex.min.css';
 
@@ -14,21 +13,6 @@
 		<slot />
 	</section>
 	<section class="mx-auto max-w-[80ch] [&:has(>.giscus)]:pt-8" id="comments">
-		<!-- <Giscus
-			id=""
-			repo="xyven1/personal-website"
-			repoId="R_kgDOGsqAyA"
-			category="Comments"
-			categoryId="DIC_kwDOGsqAyM4CjEt3"
-			mapping="og:title"
-			term=""
-			strict="1"
-			reactionsEnabled="1"
-			emitMetadata="0"
-			inputPosition="top"
-			theme="preferred_color_scheme"
-			lang="en"
-		/> -->
 		<script
 			src="https://giscus.app/client.js"
 			data-repo="xyven1/personal-website"
