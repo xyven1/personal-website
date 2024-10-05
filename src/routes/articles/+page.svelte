@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { blurb, name } from '$lib/data/info';
-	import Articles from './articles.svelte';
+	import { Articles } from '$lib/components';
 	export let data;
 </script>
 
@@ -9,4 +9,4 @@
 	<meta name="description" content={blurb} />
 </svelte:head>
 
-<Articles posts={data.posts} tags={[]} allTags={data.tags} />
+<Articles posts={data.posts} numPosts={data.numPosts} allTags={data.tags} />

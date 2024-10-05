@@ -11,4 +11,5 @@ export type Post = {
 export type Posts = {
 	posts: Post[];
 	tags: string[];
+	numPosts: number;
 };

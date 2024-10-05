@@ -6,6 +6,7 @@
 	export let routes: {
 		name: string;
 		path: string;
+		pattern?: string;
 	}[];
 </script>
 
@@ -28,7 +29,15 @@
 			sm:items-center sm:justify-center sm:gap-x-8 sm:px-0 sm:pt-0 md:text-4xl"
 		>
 			{#each routes as route}
-				<li class={$page.url.pathname === route.path ? 'text-accent dark:text-daccent' : ''}>
+				<li
+					class={(
+						route.pattern
+							? new RegExp(`^${route.pattern}$`).test($page.url.pathname)
+							: $page.url.pathname === route.path
+					)
+						? 'text-accent dark:text-daccent'
+						: ''}
+				>
 					<a href={route.path}>
 						{route.name}
 					</a>

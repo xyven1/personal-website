@@ -21,14 +21,14 @@
 		},
 		{
 			name: 'Articles',
-			path: '/articles'
+			path: '/articles',
+			pattern: '/articles(/search)?'
 		},
 		{
 			name: 'Contact',
 			path: '/contact'
 		}
 	];
-	routes.push();
 </script>
 
 <svelte:head>

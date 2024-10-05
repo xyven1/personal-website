@@ -29,7 +29,8 @@ export async function GET() {
 	const tags = [...new Set(posts.flatMap((p) => p.tags))];
 	const data: Posts = {
 		posts,
-		tags
+		tags,
+		numPosts: posts.length
 	};
 	return json(data);
 }
