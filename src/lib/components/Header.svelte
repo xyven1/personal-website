@@ -19,7 +19,7 @@
 
 	<nav
 		class="pointer-events-none fixed h-full w-full overflow-hidden bg-stone-300
-		!bg-opacity-95 opacity-0 transition-[opacity] duration-[400ms]
+		!bg-opacity-95 opacity-0 transition-[opacity] duration-300
 		supports-[backdrop-filter]:!bg-opacity-50 supports-[backdrop-filter]:backdrop-blur
 		sm:pointer-events-auto sm:relative sm:max-h-full sm:w-auto
 		sm:grow sm:!bg-transparent sm:opacity-100 sm:transition-none dark:bg-neutral-900"
@@ -48,14 +48,14 @@
 
 	<div class="w-12 justify-center">
 		<a href="https://github.com/xyven1" aria-label="Github Account">
-			<Icon size={2} path={mdiGithub} />
+			<Icon size={3} path={mdiGithub} />
 		</a>
 	</div>
 </header>
 
 <style lang="scss">
 	.hamb-line {
-		@apply bg-stone-950 transition-[background-color] duration-300 before:top-1.5 after:-top-1.5 dark:bg-neutral-200;
+		@apply bg-stone-950 transition-[background-color] duration-300 before:-top-1.5 after:top-1.5 dark:bg-neutral-200;
 		&::before,
 		&::after {
 			@apply absolute block h-full w-full bg-black transition-[transform,top] duration-300 dark:bg-white;
@@ -79,11 +79,11 @@
 		}
 
 		.hamb-line::before {
-			@apply top-0 -rotate-45;
+			@apply top-0 rotate-45;
 		}
 
 		.hamb-line::after {
-			@apply top-0 rotate-45;
+			@apply top-0 -rotate-45;
 		}
 	}
 </style>

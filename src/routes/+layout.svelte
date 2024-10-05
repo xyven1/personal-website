@@ -52,8 +52,8 @@
 	</main>
 
 	<footer class="text-center">
-		<a href="/rss.xml"><Icon path={mdiRss} class="inline" size={0.8} />RSS Feed</a>
+		<a href="/rss.xml"><Icon path={mdiRss} class="inline" size={1.5} />RSS Feed</a>
 		|
-		<span>© 2022 Blake Bruell</span>
+		<span>© 2022-2024 Blake Bruell</span>
 	</footer>
 </div>

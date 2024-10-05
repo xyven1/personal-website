@@ -9,7 +9,7 @@
 		const transform = [];
 		const styles = [];
 		if (size !== null) {
-			const width = typeof size === 'string' ? size : `${size * 1.5}rem`;
+			const width = typeof size === 'string' ? size : `${size}em`;
 			styles.push(['width', width]);
 			styles.push(['height', width]);
 		}
@@ -34,7 +34,7 @@
 	$: style = getStyles();
 </script>
 
-<svg viewBox="0 0 24 24" {style} class={$$props.class} width="2.5em">
+<svg viewBox="0 0 24 24" {style} class={$$props.class} width={size+ "em" }>
 	<path d={path} />
 </svg>
 

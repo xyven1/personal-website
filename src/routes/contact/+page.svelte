@@ -45,7 +45,7 @@
 		<h2 class="text-4xl font-bold">Success!</h2>
 		<p class="text-xl">Your message has been sent.</p>
 		<button
-			class="jsonly rounded border border-accent px-2 py-1 text-accent transition-[background-color] duration-300 hover:bg-accent/15 dark:border-daccent dark:text-daccent dark:hover:bg-daccent/15"
+			class="jsonly rounded border border-accent px-2 py-1 text-accent transition-[background-color] hover:bg-accent/15 dark:border-daccent dark:text-daccent dark:hover:bg-daccent/15"
 			on:click={() => {
 				state = State.Input;
 			}}
@@ -62,7 +62,7 @@
 	>
 		{#if state === State.Submitting}
 			<div class="fixed inset-0 flex flex-col items-center justify-center backdrop-blur-sm">
-				<Icon size={2} path={mdiLoading} class="jsonly animate-spin" />
+				<Icon size={3} path={mdiLoading} class="jsonly animate-spin" />
 			</div>
 		{/if}
 		<input type="hidden" name="access_key" value={data.api} />

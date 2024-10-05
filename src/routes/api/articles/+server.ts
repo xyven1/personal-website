@@ -26,7 +26,17 @@ async function getPosts() {
 
 export async function GET() {
 	const posts = await getPosts();
-	const tags = [...new Set(posts.flatMap((p) => p.tags))];
+	const tags = [
+		...posts
+			.flatMap((p) => p.tags)
+			.reduce((acc, tag) => {
+				acc.set(tag, (acc.get(tag) || 0) + 1);
+				return acc;
+			}, new Map())
+			.entries()
+	]
+		.toSorted(([k1, v1], [k2, v2]) => v2 - v1 || k1.localeCompare(k2))
+		.map(([k]) => k);
 	const data: Posts = {
 		posts,
 		tags,

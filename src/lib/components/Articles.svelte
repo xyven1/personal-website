@@ -2,7 +2,7 @@
 	import { afterNavigate, goto } from '$app/navigation';
 	import type { Post, Posts } from '$lib/types';
 	import { Icon, Tag } from '$lib/components';
-	import { mdiCheck, mdiLoading, mdiMagnify } from '@mdi/js';
+	import { mdiChevronRight, mdiLoading, mdiMagnify, mdiTag, mdiTagOutline } from '@mdi/js';
 	import { search, SearchState_ } from '$lib/search';
 
 	export let posts: Post[];
@@ -10,6 +10,8 @@
 	export let query = '';
 	export let tags: string[] = [];
 	export let allTags: string[];
+
+	const maxNumTags = 10;
 
 	let searchInput: HTMLInputElement;
 
@@ -68,7 +70,7 @@
 
 <article class="relative flex w-full flex-grow flex-col">
 	<form
-		class="sticky top-8 -mt-4 mb-4 flex flex-wrap justify-center gap-2 bg-stone-300 pb-1 pt-6 dark:bg-neutral-900"
+		class="group/form sticky top-12 space-y-2 bg-stone-300 pb-2 pt-4 dark:bg-neutral-900"
 		action="/articles/search"
 		method="get"
 		on:submit={(e) => {
@@ -80,14 +82,14 @@
 			if (query !== location.search) goto(`/articles${query && `/search?${query}`}`);
 		}}
 	>
-		<div class="flex-grow space-y-2">
+		<div class="flex flex-wrap justify-center gap-x-2 gap-y-2">
 			<div
-				class="flex min-w-0 max-w-[120ch] flex-grow border-b-2 border-current transition-[border-color] duration-300 focus-within:border-accent dark:focus-within:border-daccent"
+				class="flex min-w-0 max-w-[120ch] flex-grow border-b-2 border-current transition-[border-color] focus-within:border-accent dark:focus-within:border-daccent"
 			>
-				<Icon path={mdiMagnify} class="flex-shrink-0" size={1} />
+				<Icon path={mdiMagnify} class="flex-shrink-0" size={1.5} />
 				<input
 					bind:this={searchInput}
-					size="1"
+					size="10"
 					type="search"
 					id="search"
 					autocomplete="off"
@@ -103,47 +105,123 @@
 					}}
 				/>
 			</div>
-			<div class="flex flex-wrap justify-center gap-2">
-				{#each allTags as tag}
+			<button
+				type="submit"
+				class="uppercase transition-colors hocus:border-accent hocus:text-accent dark:hocus:border-daccent dark:hocus:text-daccent"
+			>
+				Search
+			</button>
+		</div>
+		<ul class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+			{#each allTags.slice(0, maxNumTags) as tag}
+				<li class="group">
 					<label
 						for={`$tag-${tag}`}
-						class="inline-flex cursor-pointer items-center self-center rounded-full bg-accent !bg-opacity-50 px-3 py-1 text-center text-stone-100 dark:bg-daccent dark:!text-current [&:has(>input:checked)]:!bg-opacity-100"
+						class="inline-flex cursor-pointer items-center gap-x-[2px] transition-[color] hocus:text-accent dark:hocus:text-daccent"
 					>
 						<input
 							type="checkbox"
 							name="tag"
 							id={`$tag-${tag}`}
-							class="peer"
+							class="peer hidden"
 							value={tag}
 							checked={tags.includes(tag)}
 							on:input={(e) => {
 								e.preventDefault();
 								updateSearch(null, { value: tag, checked: e.currentTarget.checked });
 							}}
-							hidden
 						/>
-						<div
-							class="grid grid-cols-[0fr] transition-[grid-template-columns] duration-300 peer-checked:grid-cols-[1fr]"
-						>
-							<div class="overflow-hidden">
-								<Icon path={mdiCheck} size={0.9} class="mr-1" />
-							</div>
-						</div>
+						<span class="relative">
+							<Icon
+								path={mdiTagOutline}
+								size={1.25}
+								class="inline group-has-[input:checked]:hidden"
+							/>
+							<Icon
+								width={0}
+								path={mdiTag}
+								size={1.25}
+								class="hidden group-has-[input:checked]:inline"
+							/>
+						</span>
 						<span>{tag}</span>
 					</label>
-				{/each}
+				</li>
+			{/each}
+			{#if allTags.length > maxNumTags}
+				<li class="group">
+					<label
+						for="more-tags"
+						class="inline-flex cursor-pointer items-center transition-[color] hocus:text-accent dark:hocus:text-daccent"
+					>
+						<input
+							type="checkbox"
+							checked={tags.some((t) => allTags.slice(maxNumTags).includes(t))}
+							id="more-tags"
+							class="peer hidden"
+							tabindex="0"
+						/>
+						<span class="uppercase">More Tags</span>
+						<span>
+							<Icon
+								path={mdiChevronRight}
+								size={1.25}
+								class="transition-transform group-has-[input:checked]:rotate-90"
+							/>
+						</span>
+					</label>
+				</li>
+			{/if}
+		</ul>
+		{#if allTags.length > maxNumTags}
+			<div
+				class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 group-has-[#more-tags:checked]/form:grid-rows-[1fr]"
+			>
+				<div class="overflow-hidden">
+					<ul class="mt-1 flex flex-wrap justify-center gap-x-4 gap-y-1" id="overflow-tags">
+						{#each allTags.slice(maxNumTags) as tag}
+							<li class="group">
+								<label
+									for={`$tag-${tag}`}
+									class="inline-flex cursor-pointer items-center gap-x-[2px] transition-[color] hocus:text-accent dark:hocus:text-daccent"
+								>
+									<input
+										type="checkbox"
+										name="tag"
+										id={`$tag-${tag}`}
+										class="peer hidden"
+										value={tag}
+										checked={tags.includes(tag)}
+										on:input={(e) => {
+											e.preventDefault();
+											updateSearch(null, { value: tag, checked: e.currentTarget.checked });
+										}}
+									/>
+									<span class="relative">
+										<Icon
+											path={mdiTagOutline}
+											size={1.25}
+											class="inline group-has-[input:checked]:hidden"
+										/>
+										<Icon
+											width={0}
+											path={mdiTag}
+											size={1.25}
+											class="hidden group-has-[input:checked]:inline"
+										/>
+									</span>
+									<span>{tag}</span>
+								</label>
+							</li>
+						{/each}
+					</ul>
+				</div>
 			</div>
-		</div>
-		<button
-			type="submit"
-			class="self-start uppercase transition-colors hocus:border-accent hocus:text-accent dark:hocus:border-daccent dark:hocus:text-daccent"
-		>
-			Search
-		</button>
+		{/if}
 	</form>
 	{#if loadingAllPosts}
 		<div class="flex justify-center gap-x-2">
-			<Icon class="animate-spin" size={2} path={mdiLoading} aria-label="loading" />
+			<Icon class="animate-spin" size={3} path={mdiLoading} aria-label="loading" />
 		</div>
 	{:else if shownPosts.length === 0}
 		<p class="text-center">No articles found</p>

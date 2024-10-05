@@ -5,10 +5,10 @@
 
 @layer base {
 	a:not(.large-anchor):not(.not-link) {
-		@apply underline decoration-1 underline-offset-2 transition-[color] duration-300 hocus:text-accent dark:hocus:text-daccent;
+		@apply underline decoration-1 underline-offset-2 transition-[color] hocus:text-accent dark:hocus:text-daccent;
 	}
 	.large-anchor .large-anchor-link {
-		@apply decoration-1 underline-offset-2 transition-[color] duration-300;
+		@apply decoration-1 underline-offset-2 transition-[color];
 	}
 	.large-anchor:is(:hover, :focus) .large-anchor-link {
 		@apply text-accent underline dark:text-daccent;

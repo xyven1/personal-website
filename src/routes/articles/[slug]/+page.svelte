@@ -67,7 +67,7 @@
 	<meta name="twitter:card" content="summary" />
 </svelte:head>
 
-<article class="max-w-full py-4">
+<article class="max-w-full py-8">
 	<section class="relative border-b-[3px] border-neutral-800 pb-2">
 		<h1 class="text-4xl sm:text-5xl">{data.meta.title}</h1>
 		<p class="flex flex-wrap gap-x-2 text-stone-600 dark:text-neutral-400">
@@ -85,7 +85,7 @@
 				</div>
 			</div>
 			<a class="self-end" href={source}>
-				<Icon path={mdiFileCodeOutline} class="inline" />
+				<Icon path={mdiFileCodeOutline} class="inline" size={1.5} />
 				Source
 			</a>
 		</div>
