@@ -13,10 +13,7 @@
 	>
 		<slot />
 	</section>
-	<section
-		class="mx-auto max-w-[80ch] [&:has(>giscus-widget)]:pt-8"
-		id="comments"
-	>
+	<section class="mx-auto max-w-[80ch] [&:has(>giscus-widget)]:pt-8" id="comments">
 		<Giscus
 			id=""
 			repo="xyven1/personal-website"
