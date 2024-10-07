@@ -1,6 +1,6 @@
 <script>
 	import { Tag } from '$lib/components';
-	import { presentations } from './presentations';
+	import { presentations } from '$lib/data/presentations';
 	const ps = Object.entries(presentations).map(([name, presentation]) => ({
 		slug: name,
 		...presentation

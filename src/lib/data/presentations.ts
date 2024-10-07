@@ -18,5 +18,12 @@ export const presentations: Record<string, Presentation> = {
 		description:
 			'A presentation on local search, the metropolis algorithm, and simulated annealing.',
 		tags: ['Algorithms', 'Simulated Annealing', 'Local Search', 'AI']
+	},
+	zkp: {
+		href: 'https://docs.google.com/presentation/d/1t4eu54bfACUSWMknT2X-pInvJ0F9c3g4h0W3Bm6lzik/edit?usp=sharing',
+		title: 'Zero Knowledge Proofs',
+		description:
+			'A presentations about zero knowledge proofs, their applications, and how they work.',
+		tags: ['Cryptography']
 	}
 };
