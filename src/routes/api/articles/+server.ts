@@ -32,6 +32,8 @@ for (let i = 1; ; i++) {
 	deployments.push(...page.result.filter((d) => d.url));
 }
 
+await exec('git fetch --unshallow');
+
 async function getPosts() {
 	let posts: Post[] = [];
 
