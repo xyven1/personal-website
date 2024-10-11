@@ -2,7 +2,7 @@ import type { Posts } from '$lib/types';
 import { search, SearchState_ } from '$lib/search';
 import type { PageLoad } from './$types';
 
-export const prerender = 'auto';
+export const prerender = false;
 export const csr = true;
 
 export const load: PageLoad = async ({ fetch, url }) => {
