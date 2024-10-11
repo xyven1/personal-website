@@ -237,11 +237,11 @@
 								{post.title}
 							</h2>
 							<p class="text-stone-600 dark:text-neutral-400">
-								{new Date(post.date).toLocaleDateString()}
+								{new Date(post.date).toLocaleDateString()} ~ {post.readTime} min read
 							</p>
 							<p>{post.description}</p>
 						</div>
-						<div class="sm:flex sm:flex-col sm:items-end">
+						<div class="flex flex-wrap gap-x-3 gap-y-1 p-1 sm:flex-col sm:items-end">
 							{#each post.tags.slice(0, 2) as category}
 								<Tag text={category} />
 							{/each}

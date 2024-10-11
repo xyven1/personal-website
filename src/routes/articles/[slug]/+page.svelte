@@ -75,14 +75,13 @@
 			{#if data.meta.updated}
 				<span>(<i>Updated: {new Date(data.meta.updated).toLocaleDateString()}</i>)</span>
 			{/if}
+			<span>~ {data.meta.readTime} min read</span>
 		</p>
 		<div class="flex flex-wrap gap-2">
-			<div class="mr-auto">
-				<div class="-m-1">
-					{#each data.meta.tags as category}
-						<Tag text={category} />
-					{/each}
-				</div>
+			<div class="mr-auto flex flex-wrap gap-2">
+				{#each data.meta.tags as category}
+					<Tag text={category} link={`/articles/search/?tag=${category}`}/>
+				{/each}
 			</div>
 			<a class="self-end" href={source}>
 				<Icon path={mdiFileCodeOutline} class="inline" size={1.5} />

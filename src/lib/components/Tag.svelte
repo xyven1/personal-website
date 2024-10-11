@@ -1,9 +1,22 @@
 <script lang="ts">
-	export let text;
+	import { Icon } from '$lib/components';
+	import { mdiTag } from '@mdi/js';
+	export let text: string;
+	export let link: string = '';
 </script>
 
-<p
-	class="m-1 inline-block min-w-10 whitespace-nowrap rounded-full bg-accent px-3 py-1 text-center dark:bg-daccent text-stone-100 dark:text-neutral-200"
->
-	{text}
-</p>
+{#if link.length > 0}
+	<a
+		href={link}
+		class={'not-link inline-flex cursor-pointer items-center gap-x-[2px] transition-[color] hocus:text-accent dark:hocus:text-daccent ' +
+			$$props.class}
+	>
+		<Icon width={0} path={mdiTag} size={1.25} />
+		{text}
+	</a>
+{:else}
+	<p class={'inline-flex items-center gap-x-[2px] ' + $$props.class}>
+		<Icon width={0} path={mdiTag} size={1.25} />
+		{text}
+	</p>
+{/if}

@@ -2,6 +2,7 @@ export type Post = {
 	title: string;
 	slug: string;
 	date: string;
+	readTime: number;
 	updated?: string;
 	published: boolean;
 	description: string;

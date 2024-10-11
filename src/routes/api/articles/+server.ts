@@ -1,18 +1,31 @@
 import type { Post, Posts } from '$lib/types';
 import { json } from '@sveltejs/kit';
+import type { SvelteComponent } from 'svelte';
+import type { RequestHandler } from './$types';
+import { readFile } from 'fs/promises';
+import markdownReadingTime from '$lib/markdownReadingTime';
+
+const readingTime = markdownReadingTime({
+	regex: /\w+/g,
+	wpm: 225
+});
 
 async function getPosts() {
 	let posts: Post[] = [];
 
-	const paths = import.meta.glob('/articles/*.md', { eager: true });
+	const paths = import.meta.glob<SvelteComponent>('/articles/*.md', { eager: true });
 
 	for (const path in paths) {
 		const file = paths[path];
-		const slug = path.split('/').at(-1)?.replace('.md', '');
+		const slug = path.split('/').pop()?.replace('.md', '');
 
 		if (file && typeof file === 'object' && 'metadata' in file && slug) {
-			const metadata = file.metadata as Omit<Post, 'slug'>;
-			const post = { ...metadata, slug } satisfies Post;
+			const metadata = file.metadata as Omit<Post, 'slug' | 'readTime'>;
+			const post = {
+				...metadata,
+				readTime: await readingTime(await readFile('.' + path)),
+				slug
+			};
 			if (post.published || import.meta.env.DEV) posts.push(post);
 		}
 	}
@@ -24,7 +37,7 @@ async function getPosts() {
 	return posts;
 }
 
-export async function GET() {
+export const GET: RequestHandler = async () => {
 	const posts = await getPosts();
 	const tags = [
 		...posts
@@ -43,4 +56,4 @@ export async function GET() {
 		numPosts: posts.length
 	};
 	return json(data);
-}
+};

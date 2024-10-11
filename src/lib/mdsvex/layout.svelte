@@ -50,7 +50,7 @@
 		}
 		/* Inline Code */
 		*:not(pre) > code {
-			@apply font-mono rounded-[4px] border border-stone-400/50 bg-stone-400/20 px-1 py-[.1em] font-normal before:content-none after:content-none dark:border-neutral-700 dark:bg-neutral-800;
+			@apply rounded-[4px] border border-stone-400/50 bg-stone-400/20 px-1 py-[.1em] font-mono font-normal before:content-none after:content-none dark:border-neutral-700 dark:bg-neutral-800;
 		}
 		/* Code blocks */
 		figure[data-rehype-pretty-code-figure] {
@@ -69,7 +69,7 @@
 			}
 
 			figcaption[data-rehype-pretty-code-title] {
-				@apply font-mono block bg-stone-400 px-4 py-1.5 text-sm font-bold text-stone-900 content-[attr(data-code-title)] dark:bg-neutral-700 dark:text-neutral-200;
+				@apply block bg-stone-400 px-4 py-1.5 font-mono text-sm font-bold text-stone-900 content-[attr(data-code-title)] dark:bg-neutral-700 dark:text-neutral-200;
 			}
 
 			span[data-line] {
