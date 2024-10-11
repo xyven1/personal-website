@@ -32,7 +32,7 @@ for (let i = 1; ; i++) {
 	deployments.push(...page.result.filter((d) => d.url));
 }
 
-await exec('git fetch --unshallow');
+await exec('git fetch --depth=2147483647');
 
 async function getPosts() {
 	let posts: Post[] = [];
