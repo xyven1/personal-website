@@ -1,9 +1,14 @@
-import type { Post, Posts } from '$lib/types';
+import type { Commit, Post, Posts } from '$lib/types';
 import { json } from '@sveltejs/kit';
 import type { SvelteComponent } from 'svelte';
 import type { RequestHandler } from './$types';
 import { readFile } from 'fs/promises';
 import markdownReadingTime from '$lib/markdownReadingTime';
+import { exec as execRaw } from 'child_process';
+import { promisify } from 'util';
+import Cloudflare from 'cloudflare';
+
+const exec = promisify(execRaw);
 
 export const prerender = true;
 
@@ -11,6 +16,21 @@ const readingTime = markdownReadingTime({
 	regex: /\w+/g,
 	wpm: 225
 });
+
+const cloudflare = new Cloudflare({
+	apiToken: import.meta.env.VITE_CLOUDFLARE_API
+});
+
+const deployments: Cloudflare.Pages.Projects.Deployment[] = [];
+for (let i = 1; ; i++) {
+	const page = await cloudflare.pages.projects.deployments.list(
+		'personal-site',
+		{ account_id: import.meta.env.VITE_CLOUDFLARE_ACCOUNT },
+		{ query: { page: i } }
+	);
+	if (!page.result.length) break;
+	deployments.push(...page.result.filter((d) => d.url));
+}
 
 async function getPosts() {
 	let posts: Post[] = [];
@@ -21,13 +41,36 @@ async function getPosts() {
 		const file = paths[path];
 		const slug = path.split('/').pop()?.replace('.md', '');
 
+		const { stdout, stderr } = await exec(
+			`git log --follow --format=format:%H%n%ad articles/${slug}.md`
+		);
+		if (stderr) {
+			throw new Error("Git log didn't work");
+		}
+
+		const history = stdout
+			.split('\n')
+			.filter((v) => v.length)
+			.reduce((acc, line, i, arr) => {
+				if (i % 2 === 0) {
+					const deployment = deployments.find(
+						(r) => r.deployment_trigger?.metadata?.commit_hash === line
+					);
+					acc.push({
+						hash: line,
+						date: arr[i + 1],
+						liveUrl: deployment?.url?.length ? `${deployment.url}/articles/${slug}` : '',
+						message: deployment?.deployment_trigger?.metadata?.commit_message ?? ''
+					});
+				}
+				return acc;
+			}, [] as Commit[]);
+
+		const readTime = await readingTime(await readFile('.' + path));
+
 		if (file && typeof file === 'object' && 'metadata' in file && slug) {
-			const metadata = file.metadata as Omit<Post, 'slug' | 'readTime'>;
-			const post = {
-				...metadata,
-				readTime: await readingTime(await readFile('.' + path)),
-				slug
-			};
+			const metadata = file.metadata as Omit<Post, 'history' | 'slug' | 'readTime'>;
+			const post = { ...metadata, readTime, history, slug };
 			if (post.published || import.meta.env.DEV) posts.push(post);
 		}
 	}

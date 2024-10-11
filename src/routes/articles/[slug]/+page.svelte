@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icon, Tag } from '$lib/components';
-	import { mdiFileCodeOutline } from '@mdi/js';
+	import { mdiChevronRight, mdiFileCodeOutline } from '@mdi/js';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -68,7 +68,7 @@
 </svelte:head>
 
 <article class="max-w-full py-8">
-	<section class="relative border-b-[3px] border-neutral-800 pb-2">
+	<section class="group border-b-[3px] border-neutral-800 pb-2">
 		<h1 class="text-4xl sm:text-5xl">{data.meta.title}</h1>
 		<p class="flex flex-wrap gap-x-2 text-stone-600 dark:text-neutral-400">
 			<span>{new Date(data.meta.date).toLocaleDateString()}</span>
@@ -77,10 +77,50 @@
 			{/if}
 			<span>~ {data.meta.readTime} min read</span>
 		</p>
+		{#if data.meta.history.length > 0}
+			<label
+				class="flex cursor-pointer items-center text-stone-600 hocus:text-accent dark:text-neutral-400 hocus:dark:text-daccent"
+				for="history"
+			>
+				<input type="checkbox" id="history" hidden />
+				<span>History</span>
+				<Icon
+					path={mdiChevronRight}
+					size={1.35}
+					class="transition-[transform] group-has-[input:checked]:rotate-90"
+				/>
+			</label>
+			<div
+				class="grid grid-rows-[0fr] transition-[grid-template-rows] group-has-[input:checked]:grid-rows-[1fr]"
+			>
+				<div class="overflow-hidden">
+					<ol class="px-1">
+						{#each data.meta.history as commit}
+							<li
+								class="mb-3 border-l-2 border-stone-600 px-1 leading-snug dark:border-neutral-400"
+							>
+								<div>
+									{new Date(commit.date).toLocaleString()} - {commit.message}
+								</div>
+								<div class="space-x-1">
+									{#if commit.liveUrl !== ''}
+										<a href={`${commit.liveUrl}`}> Live Link </a>
+									{/if}
+									<a href={`https://github.com/xyven1/personal-website/commit/${commit.hash}`}>
+										View Diff
+									</a>
+								</div>
+							</li>
+						{/each}
+					</ol>
+				</div>
+			</div>
+		{/if}
+
 		<div class="flex flex-wrap gap-2">
 			<div class="mr-auto flex flex-wrap gap-2">
 				{#each data.meta.tags as category}
-					<Tag text={category} link={`/articles/search/?tag=${category}`}/>
+					<Tag text={category} link={`/articles/search/?tag=${category}`} />
 				{/each}
 			</div>
 			<a class="self-end" href={source}>

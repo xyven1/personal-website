@@ -9,16 +9,17 @@ export const load: PageLoad = async function ({
 }): Promise<{ content: SvelteComponent; meta: Post }> {
 	try {
 		const post = await import(`$/articles/${params.slug}.md`);
-		const readTime =
-			((await (await fetch('/api/articles')).json()) as Posts).posts.find(
-				(p) => p.slug === params.slug
-			)?.readTime ?? 0;
-
+		const postData = ((await (await fetch('/api/articles')).json()) as Posts).posts.find(
+			(p) => p.slug === params.slug
+		);
+		if (!postData) throw new Error('Post data not found');
+		const { readTime, history } = postData;
 		return {
 			content: post.default,
 			meta: {
 				...post.metadata,
 				readTime,
+				history,
 				slug: params.slug
 			}
 		};

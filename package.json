@@ -27,6 +27,7 @@
 		"@types/eslint__js": "^8.42.3",
 		"@zerodevx/svelte-img": "^2.1.1",
 		"autoprefixer": "^10.4.20",
+		"cloudflare": "^3.5.0",
 		"eslint": "^9.9.1",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.43.0",
