@@ -5,6 +5,8 @@ import type { RequestHandler } from './$types';
 import { readFile } from 'fs/promises';
 import markdownReadingTime from '$lib/markdownReadingTime';
 
+export const prerender = true;
+
 const readingTime = markdownReadingTime({
 	regex: /\w+/g,
 	wpm: 225
