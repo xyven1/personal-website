@@ -68,7 +68,7 @@
 	}}
 />
 
-<article class="relative flex w-full flex-grow flex-col">
+<article class="relative flex w-full max-w-[1000px] flex-grow flex-col">
 	<form
 		class="group/form sticky top-12 space-y-2 bg-stone-300 pb-2 pt-4 dark:bg-neutral-900"
 		action="/articles/search"
