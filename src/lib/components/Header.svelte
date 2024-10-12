@@ -64,7 +64,7 @@
 	}
 
 	:global(body:has(.hamb:focus, .hamb ~ nav a:focus)) {
-		@apply overflow-hidden;
+		@apply overflow-hidden sm:overflow-auto;
 	}
 
 	.hamb:focus,

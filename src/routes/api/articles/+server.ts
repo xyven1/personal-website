@@ -52,6 +52,7 @@ async function getPosts() {
 
 		const history = stdout
 			.split('\n')
+			.map((v) => v.trim())
 			.filter((v) => v.length)
 			.reduce((acc, line, i, arr) => {
 				if (i % 2 === 0) {

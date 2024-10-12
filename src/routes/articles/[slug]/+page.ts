@@ -9,15 +9,28 @@ export const load: PageLoad = async function ({
 }): Promise<{ content: SvelteComponent; meta: Post }> {
 	try {
 		const post = await import(`$/articles/${params.slug}.md`);
-		const postData = ((await (await fetch('/api/articles')).json()) as Posts).posts.find(
-			(p) => p.slug === params.slug
-		);
+		const postData = import.meta.env.DEV
+			? {
+					history: [
+						{
+							hash: 'dummy',
+							message: 'test message',
+							liveUrl: 'https://example.com',
+							date: 'Fri Sep 27 02:02:55 2024 -0400'
+						}
+					],
+					readTime: -1
+				}
+			: ((await (await fetch('/api/articles')).json()) as Posts).posts.find(
+					(p) => p.slug === params.slug
+				);
 		if (!postData) throw new Error('Post data not found');
 		const { readTime, history } = postData;
+		const metadata: Omit<Post, 'readTime' | 'history' | 'slug'> = post.metadata;
 		return {
 			content: post.default,
 			meta: {
-				...post.metadata,
+				...metadata,
 				readTime,
 				history,
 				slug: params.slug

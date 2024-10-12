@@ -76,8 +76,12 @@
 				@apply pl-4;
 			}
 
-			span[data-highlighted-line] {
+			span[data-highlighted-line],
+			mark[data-highlighted-chars] {
 				@apply bg-[var(--shiki-light-selection)] dark:bg-[var(--shiki-dark-selection)];
+			}
+			mark[data-highlighted-chars] {
+				@apply -m-1 rounded-md p-1;
 			}
 
 			/* Line numbers */

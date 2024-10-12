@@ -10,7 +10,7 @@
 	<meta name="description" content={blurb} />
 </svelte:head>
 
-<article class="flex max-w-6xl grow flex-col space-y-4">
+<article class="my-8 flex max-w-6xl grow flex-col space-y-8">
 	<section class="space-y-4 [&>p]:text-lg sm:[&>p]:text-justify">
 		<hgroup>
 			<h2 class="text-2xl">About Me</h2>
@@ -35,8 +35,8 @@
 		</p>
 	</section>
 
-	<section class="space-y-8">
-		<hgroup>
+	<section>
+		<hgroup class="mb-4">
 			<h2 class="text-xl">What I've Been Writing About</h2>
 			<hr class="border-current" />
 		</hgroup>
