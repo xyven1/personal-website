@@ -88,7 +88,7 @@
 					<Icon
 						path={mdiChevronRight}
 						size={1.35}
-						class="transition-[transform] group-has-[input:checked]:rotate-90 group-focus-within:rotate-90"
+						class="transition-[transform] group-focus-within:rotate-90 group-has-[input:checked]:rotate-90"
 					/>
 				</label>
 				<div

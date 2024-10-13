@@ -14,22 +14,32 @@
 	>
 		<slot />
 	</section>
-	<Giscus
-		id="comments"
-		term=""
-		repo="xyven1/personal-website"
-		repoId="R_kgDOGsqAyA"
-		category="Comments"
-		categoryId="DIC_kwDOGsqAyM4CjEt3"
-		mapping="og:title"
-		strict="1"
-		reactionsEnabled="1"
-		emitMetadata="0"
-		inputPosition="top"
-		theme="preferred_color_scheme"
-		lang="en"
-		loading="lazy"
-	/>
+	<section id="comments" class="mx-auto max-w-[80ch] pt-8">
+		<noscript>
+			<div class="mb-4 mt-8 w-full text-center text-stone-600 dark:text-neutral-400">
+				<strong> Unfortunately, the commenting feature requires JavaScript to function. </strong>
+				<div class="text-sm">
+					Please enable JavaScript for this site if you would like to use the comment feature.
+				</div>
+			</div>
+		</noscript>
+		<Giscus
+			id=""
+			term=""
+			repo="xyven1/personal-website"
+			repoId="R_kgDOGsqAyA"
+			category="Comments"
+			categoryId="DIC_kwDOGsqAyM4CjEt3"
+			mapping="og:title"
+			strict="1"
+			reactionsEnabled="1"
+			emitMetadata="0"
+			inputPosition="top"
+			theme="preferred_color_scheme"
+			lang="en"
+			loading="lazy"
+		/>
+	</section>
 	<div class="flex h-0 flex-wrap">
 		<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 		{#each Array(6) as _}
@@ -154,14 +164,6 @@
 		}
 		.toc-level-1 {
 			@apply border-0 pl-0;
-		}
-	}
-	// Comments
-	:global giscus-widget {
-		@apply mx-auto flex max-w-[80ch];
-
-		&::part(iframe) {
-			@apply mt-8;
 		}
 	}
 </style>

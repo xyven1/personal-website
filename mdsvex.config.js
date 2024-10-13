@@ -72,11 +72,9 @@ const tocOptions = {
 	customizeTOC(node) {
 		if (node.children[0].children.length === 0) return null;
 		node.children[0].children.push(
-			...[
-				h('li', { class: 'toc-item toc-item-h2' }, [
-					h('a', { class: 'toc-link toc-link-h2', href: '#comments' }, 'Comments')
-				])
-			]
+			h('li', { class: 'toc-item toc-item-h2' }, [
+				h('a', { class: 'toc-link toc-link-h2', href: '#comments' }, 'Comments')
+			])
 		);
 		return h('section', { class: 'toc-section' }, [
 			h('label', { for: 'toc-toggle' }, [
