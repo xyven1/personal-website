@@ -42,7 +42,6 @@ export function createHighlighter(options) {
 }
 
 // MDSvex settings --------------------------------
-// import { createHighlighter } from '@bitmachina/highlighter';
 import remarkUnwrapImages from 'remark-unwrap-images';
 import rehypeAutoLinkHeadings from 'rehype-autolink-headings';
 import rehypeToc from 'rehype-toc';
@@ -50,9 +49,9 @@ import rehypeSlug from 'rehype-slug';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex-svelte';
 import { mdiLinkVariant, mdiTableOfContents } from '@mdi/js';
+import { h } from 'hastscript';
 import fs from 'fs';
 
-import { h } from 'hastscript';
 /**
  * @typedef {import('hast').ElementContent} ElementContent
  */
@@ -60,6 +59,8 @@ import { h } from 'hastscript';
 const autoLinkOptions = {
 	behavior: 'append',
 	properties: {
+		'aria-hidden': true,
+		tabindex: -1,
 		class: 'article-heading-link'
 	},
 	content() {
