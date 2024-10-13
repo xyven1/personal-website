@@ -3,6 +3,8 @@ import { error } from '@sveltejs/kit';
 import type { SvelteComponent } from 'svelte';
 import type { PageLoad } from './$types';
 
+export const csr = true;
+
 export const load: PageLoad = async function ({
 	params,
 	fetch

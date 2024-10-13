@@ -3,6 +3,8 @@
 
 	import 'katex/dist/katex.min.css';
 
+	import Giscus from '@giscus/svelte';
+
 	export { img };
 </script>
 
@@ -12,25 +14,22 @@
 	>
 		<slot />
 	</section>
-	<section class="mx-auto max-w-[80ch] [&:has(>.giscus)]:pt-8" id="comments">
-		<script
-			src="https://giscus.app/client.js"
-			data-repo="xyven1/personal-website"
-			data-repo-id="R_kgDOGsqAyA"
-			data-category="Comments"
-			data-category-id="DIC_kwDOGsqAyM4CjEt3"
-			data-mapping="og:title"
-			data-strict="1"
-			data-reactions-enabled="1"
-			data-emit-metadata="0"
-			data-input-position="top"
-			data-theme="preferred_color_scheme"
-			data-lang="en"
-			crossorigin="anonymous"
-			async
-		>
-		</script>
-	</section>
+	<Giscus
+		id="comments"
+		term=""
+		repo="xyven1/personal-website"
+		repoId="R_kgDOGsqAyA"
+		category="Comments"
+		categoryId="DIC_kwDOGsqAyM4CjEt3"
+		mapping="og:title"
+		strict="1"
+		reactionsEnabled="1"
+		emitMetadata="0"
+		inputPosition="top"
+		theme="preferred_color_scheme"
+		lang="en"
+		loading="lazy"
+	/>
 	<div class="flex h-0 flex-wrap">
 		<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
 		{#each Array(6) as _}
@@ -48,11 +47,11 @@
 		code[data-theme*=' '] span {
 			@apply text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
 		}
-		/* Inline Code */
+		// Inline Code
 		*:not(pre) > code {
 			@apply rounded-[4px] border border-stone-400/50 bg-stone-400/20 px-1 py-[.1em] font-mono font-normal before:content-none after:content-none dark:border-neutral-700 dark:bg-neutral-800;
 		}
-		/* Code blocks */
+		// Code blocks
 		figure[data-rehype-pretty-code-figure] {
 			--shiki-dark-selection: #443e3c;
 			--shiki-light-selection: #e5d8b2;
@@ -84,7 +83,7 @@
 				@apply -m-1 rounded-md p-1;
 			}
 
-			/* Line numbers */
+			// Line numbers
 			code[data-line-numbers] {
 				@apply [counter-reset:line];
 				--gutter-width: calc(var(--number-width) + 1rem);
@@ -92,21 +91,21 @@
 					@apply ml-[var(--gutter-width)] pl-0;
 				}
 				> span[data-line]::before {
-					/* Counter */
+					// Counter
 					@apply content-[counter(line)] [counter-increment:line];
-					/* Spacing */
+					// Spacing
 					@apply absolute -ml-[var(--gutter-width)] w-[var(--gutter-width)] pr-4 text-right;
-					/* Coloring */
+					// Coloring
 					@apply bg-[var(--shiki-light-bg)] text-[#a89984] dark:bg-[var(--shiki-dark-bg)] dark:text-[#7c6f64];
 				}
 				> span[data-highlighted-line]::before {
-					/* Highlighted Coloring */
+					// Highlighted Coloring
 					@apply bg-[var(--shiki-light-selection)] text-[#928374] dark:bg-[var(--shiki-dark-selection)] dark:text-[#928374];
 				}
 			}
 		}
 
-		/* Headings */
+		// Headings
 		:is(h1, h2, h3, h4, h5, h6) {
 			@apply border-stone-400 dark:border-neutral-700;
 
@@ -124,10 +123,10 @@
 			@apply border-b-[1.5px] border-opacity-50;
 		}
 	}
-	/* Table of Contents */
+	// Table of Contents
 	:global .toc-section {
 		@apply mt-4;
-		/* focus within toc-section, expand it	 */
+		// focus within toc-section, expand it
 		&:has(> input[type='checkbox']:checked) > div,
 		&:focus-within > div {
 			@apply grid-rows-[1fr];
@@ -155,6 +154,14 @@
 		}
 		.toc-level-1 {
 			@apply border-0 pl-0;
+		}
+	}
+	// Comments
+	:global giscus-widget {
+		@apply mx-auto flex max-w-[80ch];
+
+		&::part(iframe) {
+			@apply mt-8;
 		}
 	}
 </style>
