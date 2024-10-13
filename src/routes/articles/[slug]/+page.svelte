@@ -61,10 +61,11 @@
 		<meta property="article:modified_time" content={new Date(data.meta.updated).toISOString()} />
 	{/if}
 	<meta property="og:locale" content="en_US" />
-	<meta property="og:image" content="https://xyven.dev/favicon.png" />
+	<meta property="og:image" content="https://xyven.dev/icon.png" />
 	<!-- Twitter -->
 	<meta property="twitter:title" content={data.meta.title} />
 	<meta property="twitter:description" content={data.meta.description} />
+	<meta property="twitter:image" content="https://xyven.dev/icon.png" />
 	<meta name="twitter:card" content="summary" />
 </svelte:head>
 
