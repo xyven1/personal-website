@@ -1,0 +1,21 @@
+{
+	"$schema": "https://raw.githubusercontent.com/mfussenegger/dapconfig-schema/master/dapconfig-schema.json",
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "pwa-chrome",
+			"request": "launch",
+			"name": "Chrome",
+			"url": "http://localhost:5173",
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "pwa-node",
+			"request": "launch",
+			"name": "Debug dev",
+			"runtimeExecutable": "npm",
+			"runtimeArgs": ["run", "dev"],
+			"cwd": "${workspaceFolder}"
+		}
+	]
+}
