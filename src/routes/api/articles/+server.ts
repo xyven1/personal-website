@@ -44,7 +44,7 @@ async function getPosts() {
 		const slug = path.split('/').pop()?.replace('.md', '');
 
 		const { stdout, stderr } = await exec(
-			`git log --follow --format=format:%H%n%ad articles/${slug}.md`
+			`git log --follow --format=format:%H%n%ad%n%s articles/${slug}.md`
 		);
 		if (stderr) {
 			throw new Error("Git log didn't work");
@@ -54,16 +54,19 @@ async function getPosts() {
 			.split('\n')
 			.map((v) => v.trim())
 			.filter((v) => v.length)
-			.reduce((acc, line, i, arr) => {
-				if (i % 2 === 0) {
+			.reduce((acc, _, i, arr) => {
+				if (i % 3 === 0) {
+					const info = {
+						hash: arr[i],
+						date: arr[i + 1],
+						message: arr[i + 2]
+					};
 					const deployment = deployments.find(
-						(r) => r.deployment_trigger?.metadata?.commit_hash === line
+						(r) => r.deployment_trigger?.metadata?.commit_hash === info.hash
 					);
 					acc.push({
-						hash: line,
-						date: arr[i + 1],
-						liveUrl: deployment?.url?.length ? `${deployment.url}/articles/${slug}` : '',
-						message: deployment?.deployment_trigger?.metadata?.commit_message ?? ''
+						...info,
+						liveUrl: deployment?.url?.length ? `${deployment.url}/articles/${slug}` : ''
 					});
 				}
 				return acc;
