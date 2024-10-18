@@ -33,7 +33,7 @@ and I'll dive into each of these in detail in the following sections.
 ### Sign up to Garnix
 This step is self explanatory: sign up to Garnix with your GitHub account at [https://garnix.io/signup](https://garnix.io/signup). Take the time to read exactly what permissions the Garnix app is requesting and make sure that you are actually comfortable with Garnix having those permissions. I am not saying this because Garnix is particularly untrustworthy, this is just good practice for authorizing any third party application with GitHub, or any service for that matter.
 
-### Add Garnix to the Your Repository
+### Add Garnix to Your Repository
 If you have never used Garnix before, you can simply go to [https://garnix.io](https://garnix.io) after signing up and follow the directions for setting up your first repository. Again, the Garnix app will request some permissions, and I would **highly recommend** only giving permissions for the specific repository for which you want to setup this pipeline. Always apply the least permissions model. Once you have installed Garnix on that repository, you are done messing with Garnix.
 
 If you have previously setup Garnix, or the previous method is not working, you can go directly to [https://github.com/settings/installations](https://github.com/settings/installations) and configure the Garnix app, giving it permissions for the repositories you need. This is also the right place to go if you want to remove Garnix in the future.
@@ -77,7 +77,7 @@ For a more granular approach, you can select specific status checks provided by 
 | `Evaluate flake.nix`                | Your flake is valid nix                                |
 | `nixosConfig <config-name>`         | `nixosConfiguration.<config-name>` builds successfully |
 | `homeConfig <config-name>`          | `homeConfigurations.<config-name>` builds successfully |
-| `package <pacakge-name> [<system>]` | `pacakges.<system>.<package-name>` builds successfully |
+| `package <package-name> [<system>]` | `packages.<system>.<package-name>` builds successfully |
 
 Note that these different options should autocomplete as you enter them, as long as Garnix has performed a build.
 
@@ -88,13 +88,13 @@ Make sure to save your changes!
 ### Allow GitHub Actions to Create and Approve Pull Requests
 While we are here, to allow the `update-flake-lock` action described in the next section to function properly, you must allow GitHub actions to create and approve pull requests. This is done by going to `Actions > General` under `Code and automation` in the repository settings, and at the very bottom checking the box labeled `Allow GitHub Actions to create and approve pull requests`. Make sure to save.
 
-You can also also check [this tutorial](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#preventing-github-actions-from-creating-or-approving-pull-requests) if the above was not clear or is not working.
+You can also check [this tutorial](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#preventing-github-actions-from-creating-or-approving-pull-requests) if the above was not clear or is not working.
 
 ### Enabling Auto Merge
 In order for the `--auto` flag to work for `gh pr merge`, we need to enable automatic merging on the repository.
 To enable auto merging, go to the `General` section of the repository settings, search for the option `Allow auto-merge`, and enable the setting.
 
-You can also also check [this tutorial](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-auto-merge-for-pull-requests-in-your-repository) if the above was not clear or is not working.
+You can also check [this tutorial](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-auto-merge-for-pull-requests-in-your-repository) if the above was not clear or is not working.
 
 
 ### Configure CI/CD Job
@@ -149,7 +149,9 @@ While this setup would be useful *just* to make sure that you only ever update f
 ### Miscellaneous Notes
 - If your flake inputs are already up to date, no PR will be created.
 - If the action reruns while an old PR is still open, the action will update the existing PR, instead of creating a new one.
-- The Garnix cache is not authenticated, so anything compiled as part of your flake is inherently public. However, the build hash is needed to actually fetch the result from the cache, making it *theoretically* inaccessible unless someone already has the source.
+- By default Garnix uses a public and unauthenticated cache.
+  - This means that anything compiled as part of your flake is inherently public. However, the build hash is needed to actually fetch the result from the cache, making it theoretically inaccessible unless someone already has the source.
+  - Garnix does have private caches, but at the time of writing you must contact Garnix directly to get access to this feature.
 - You can check on how many minutes of your max you have used at the [Garnix account page](https://garnix.io/account).
 
 ## Testing it Out
