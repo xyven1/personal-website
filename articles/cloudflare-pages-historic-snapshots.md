@@ -61,42 +61,53 @@ Date:   Fri Sep 27 02:02:55 2024 -0400
     cleanup directory and import structure
 ```
 Now there are immediately some issues with the output of this command. First and foremost, the output contains way more information than we need, and on top of that it is formatted in a way which is not necessarily easy to parse. We can solve both of these problems in one fell swoop using the `--format` argument:
-```sh /--format=format:%H%n%ad/
-git log --format=format:%H%n%ad path/to/file
+```sh /--format=format:%H%n%ad%n%s/
+git log --format=format:%H%n%ad%n%s path/to/file
 ```
-This argument is very powerful, and you should read it's [full documentation](https://git-scm.com/docs/pretty-formats) on git's website if you are interested in how it works and what it can do. For our purposes though, we just need the `%H`, `%n`, and `%ad` selectors, which give us the commit hash, a newline, and the author date respectively. The command with the format argument will now output
+This argument is very powerful, and you should read it's [full documentation](https://git-scm.com/docs/pretty-formats) on git's website if you are interested in how it works and what it can do. For our purposes though, we just need the `%H`, `%n`, `%ad`, and `%s` selectors, which give us the commit hash, a newline, the author date, and the subject respectively. The command with the format argument will now output
 ```
 baa9929e12dfde2463a10a438f17860e4e44fc56
 Sat Oct 5 04:54:07 2024 -0400
+added description of commenting to blog
 815048fe63d25a61de7c746bd1d556cf48d4c22e
 Thu Oct 3 19:15:30 2024 -0400
+update personal-website article, restyle inline code
 679af7c63a827e8c969b0ddf0bedbdc45cfdd3a3
 Fri Sep 27 02:02:55 2024 -0400
+cleanup directory and import structure
 ```
-which is exactly what we need. If you wanted some more information, you could simply modify the format argument to add additional context.
+which is exactly what we need. If you wanted more information, you could simply modify the format argument to add additional context.
 
 There is one final issue, though, and that is that this history is incomplete: it is missing commits with changes to the file before the file was renamed. Git understands the importance of being able to track the file through renames, and provides another useful argument `--follow`
 ```sh /--follow/
-git log --follow --format=format:%H%n%ad path/to/file
+git log --follow --format=format:%H%n%ad%n%s path/to/file
 ```
 which gets us exactly what we want:
 ```
 baa9929e12dfde2463a10a438f17860e4e44fc56
 Sat Oct 5 04:54:07 2024 -0400
+added description of commenting to blog
 815048fe63d25a61de7c746bd1d556cf48d4c22e
 Thu Oct 3 19:15:30 2024 -0400
+update personal-website article, restyle inline code
 679af7c63a827e8c969b0ddf0bedbdc45cfdd3a3
 Fri Sep 27 02:02:55 2024 -0400
+cleanup directory and import structure
 fce9a97c3e3068672f5ef00d726746f7085d9cbc
 Mon Sep 23 20:10:36 2024 -0400
+fix search csr
 812a2c5f13dc704c9bbfb53267abdd7d55b4a795
 Fri Dec 8 15:44:01 2023 -0500
+fix typo and rename article
 66b4704bc378a499b5685704857a68fc55d2daa0
 Sat Nov 25 18:09:12 2023 -0500
+update personal site article with cloudflare pages
 1ffaa425734dfb11ce68ec49c9d4b82c845fd740
 Wed Nov 22 23:05:32 2023 -0500
+fix typo
 5a511ff414aa9c16c775fd3f1825a6ef078f3e3f
 Wed Nov 22 22:10:05 2023 -0500
+update site with finished personal
 ```
 #### Node Implementation
 While these git commands work great in the terminal, we need to translate this into code which can actually run in our build process, or in other words, into Node.js. This is done quite easily by using the `exec` and `promisify` functions provided by the standard library.
@@ -110,7 +121,7 @@ const exec = promisify(execRaw);
 const fileName = 'articles/example.md'
 
 const { stdout, stderr } = await exec(
-    `git log --follow --format=format:%H%n%ad ${fileName}`
+    `git log --follow --format=format:%H%n%ad%n%s ${fileName}`
 );
 if (stderr)
     throw new Error("Git log didn't work");
@@ -121,14 +132,21 @@ const history = stdout
     .split('\n')
     .map((v) => v.trim())
     .filter((v) => v.length)
-    .reduce((acc, line, i, arr) => {
-        if (i % 2 === 0)
+    .reduce((acc, _, i, arr) => {
+        if (i % 3 === 0)
             acc.push({
-                hash: line,
-                date: arr[i + 1]
+                hash: arr[i],
+                date: arr[i + 1],
+                message: arr[i + 2]
             });
         return acc;
-    }, [] as { hash: string, date: string});
+    }, [] as Commit[]);
+
+type Commit = {
+    hash: string;
+    date: string;
+    message: string;
+};
 ```
 This is simply splitting the output into lines, getting rid of unneeded white space, removing empty lines, and then adding each pair of lines to a list as an object. This gives us our final result: a list of every modification to a file, including a commit hash and a date.
 
@@ -174,16 +192,19 @@ const history = stdout
     .split('\n')
     .map((v) => v.trim())
     .filter((v) => v.length)
-    .reduce((acc, line, i, arr) => {
-        if (i % 2 === 0) {
+    .reduce((acc, _, i, arr) => {
+        if (i % 3 === 0) {
+            const info = {
+                hash: arr[i],
+                date: arr[i + 1],
+                message: arr[i + 2]
+            };
             const deployment = deployments.find(
-                (r) => r.deployment_trigger?.metadata?.commit_hash === line
+                (r) => r.deployment_trigger?.metadata?.commit_hash === info.hash
             );
             acc.push({
-                hash: line,
-                date: arr[i + 1],
-                liveurl: deployment?.url ? `${deployment.url}/path/to/article` : '',
-                message: deployment?.deployment_trigger?.metadata?.commit_message ?? ''
+                ...info,
+                liveUrl: deployment?.url?.length ? `${deployment.url}/articles/${slug}` : ''
             });
         }
         return acc;
@@ -191,9 +212,9 @@ const history = stdout
 
 type Commit = {
 	hash: string;
+	date: string;
 	message: string;
 	liveUrl: string;
-	date: string;
 };
 ```
 
