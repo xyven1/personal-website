@@ -18,7 +18,7 @@
 	<span class="grow sm:max-w-[3rem]"></span>
 
 	<nav
-		class="pointer-events-none fixed h-full w-full overflow-hidden bg-stone-300
+		class="pointer-events-none fixed h-full w-full overflow-hidden bg-stone-100
 		!bg-opacity-95 opacity-0 transition-[opacity] duration-300
 		supports-[backdrop-filter]:!bg-opacity-50 supports-[backdrop-filter]:backdrop-blur
 		sm:pointer-events-auto sm:relative sm:max-h-full sm:w-auto

@@ -78,7 +78,7 @@
 			}
 
 			figcaption[data-rehype-pretty-code-title] {
-				@apply block bg-stone-400 px-4 py-1.5 font-mono text-sm font-bold text-stone-900 content-[attr(data-code-title)] dark:bg-neutral-700 dark:text-neutral-200;
+				@apply block bg-stone-300 px-4 py-1.5 font-mono text-sm font-bold text-stone-900 content-[attr(data-code-title)] dark:bg-neutral-700 dark:text-neutral-200;
 			}
 
 			span[data-line] {
